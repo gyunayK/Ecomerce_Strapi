@@ -3,7 +3,7 @@ export const productsData = [
       id: 1,
       img: "https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564",
       img2: "https://ik.imagekit.io/riviaa/ImgEC/martin-katler-Y4fKN-RlMV4-unsplash.png?updatedAt=1691212067587",
-      title: "Snkeaers",
+      title: "Sneakers",
       isNew: true,
       oldPrice: 100,
       price: 85
