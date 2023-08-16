@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
+import { makeRequest } from "../../hooks/makeRequest";
 
 import axios from "axios";
 const Cart = () => {
@@ -28,6 +29,10 @@ const Cart = () => {
 
       const res = await axios.post(`${api}/orders`, {
         products
+      },{
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
+        },
       });
 
       await stripeInstance.redirectToCheckout({
