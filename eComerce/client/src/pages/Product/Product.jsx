@@ -5,84 +5,120 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
+
+import useFetch from "@/hooks/useFetch";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/cartReducer";
 const Product = () => {
-  const data = [
-    "https://ik.imagekit.io/riviaa/ImgEC/taylor-smith-aDZ5YIuedQg-unsplash.png?updatedAt=1691212067215",
-    "https://ik.imagekit.io/riviaa/ImgEC/ryan-plomp-76w_eDO1u1E-unsplash%201.png?updatedAt=1691212067523",
-  ];
+  const dispatch = useDispatch();
 
+  const id = useParams().id;
+  const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
+  const api = import.meta.env.VITE_APP_URL_API;
+
+  const { data, loading, error } = useFetch(`${api}/products/${id}?populate=*`);
   const [quantity, setQuantity] = useState(1);
-
-  const [selectedImg, setSelectedImg] = useState(data[0]);
+  const [selectedImg, setSelectedImg] = useState("img");
 
   return (
     <div className="product">
-      <div className="left">
-        <div className="images">
-          <img src={data[0]} alt="" onClick={(e) => setSelectedImg(data[0])} />
-          <img src={data[1]} alt="" onClick={(e) => setSelectedImg(data[1])} />
-        </div>
-        <div className="mainImg">
-          <img src={selectedImg} alt="" />
-        </div>
-      </div>
-      <div className="right">
-        <h1>Title</h1>
-        <span className="price">$199</span>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi
-          magnam labore incidunt amet quisquam necessitatibus vero expedita ea.
-          Sint officiis cumque ipsa quibusdam rem totam repellat modi
-          perspiciatis ab.
-        </p>
-        <div className="quantity">
-          <button
-            onClick={() => {
-              if (quantity > 1) {
-                setQuantity(quantity - 1);
+      {loading ? (
+        "loading..."
+      ) : (
+        <>
+          {" "}
+          <div className="left">
+            <div className="images">
+              <img
+                src={url_IMG + data?.attributes?.img?.data.attributes.url}
+                alt=""
+                onClick={(e) => setSelectedImg("img")}
+              />
+              <img
+                src={url_IMG + data?.attributes?.img2.data.attributes.url}
+                alt=""
+                onClick={(e) => setSelectedImg("img2")}
+              />
+            </div>
+            <div className="mainImg">
+              <img
+                src={
+                  url_IMG + data?.attributes[selectedImg].data.attributes.url
+                }
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="right">
+            <h1>{data?.attributes.title}</h1>
+            <span className="price">${data?.attributes.price}</span>
+            <p>{data?.attributes.desc}</p>
+            <div className="quantity">
+              <button
+                onClick={() => {
+                  if (quantity > 1) {
+                    setQuantity(quantity - 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <span>{quantity}</span>
+              <button
+                onClick={() => {
+                  setQuantity(quantity + 1);
+                }}
+              >
+                +
+              </button>
+            </div>
+            <button
+              className="add"
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: data.id,
+                    title: data.attributes.title,
+                    desc: data.attributes.desc,
+                    img: data.attributes.img.data.attributes.url,
+                    price: data.attributes.price,
+                    quantity: quantity,
+                  })
+                )
               }
-            }}
-          >
-            -
-          </button>
-          <span>{quantity}</span>
-          <button
-            onClick={() => {
-              setQuantity(quantity + 1);
-            }}
-          >
-            +
-          </button>
-        </div>
-        <button className="add">
-          <ShoppingCartIcon />
-          ADD TO CART
-        </button>
-        <div className="links">
-          <div className="item">
-            <FavoriteBorderIcon />
-            <span>ADD TO WISHLIST</span>
-          </div>
-          <div className="item">
-            <BalanceIcon />
-            <span>ADD TO COMPARE</span>
-          </div>
-        </div>
-        <div className="info">
-          <span>Vendor: Polo</span>
-          <span>Product Type: T-Shirt</span>
-          <span>Tag: T-Shirt, Women, Top</span>
-        </div>
+            >
+              {console.log(quantity)}
+              <ShoppingCartIcon />
+              ADD TO CART
+            </button>
+            <div className="links">
+              <div className="item">
+                <FavoriteBorderIcon />
+                <span>ADD TO WISHLIST</span>
+              </div>
+              <div className="item">
+                <BalanceIcon />
+                <span>ADD TO COMPARE</span>
+              </div>
+            </div>
+            <div className="info">
+              <span>Vendor: Polo</span>
+              <span>Product Type: T-Shirt</span>
+              <span>Tag: T-Shirt, Women, Top</span>
+            </div>
 
-        <hr />
-        <div className="info">
-          <span>DESCRIPTION</span>
-          <hr />
-          <span>ADDITIONAL IFORMATION</span>
-          <hr />
-          <span>FAQ</span>
-        </div>
-      </div>
+            <hr />
+            <div className="info">
+              <span>DESCRIPTION</span>
+              <hr />
+              <span>ADDITIONAL IFORMATION</span>
+              <hr />
+              <span>FAQ</span>
+            </div>
+          </div>{" "}
+        </>
+      )}
     </div>
   );
 };

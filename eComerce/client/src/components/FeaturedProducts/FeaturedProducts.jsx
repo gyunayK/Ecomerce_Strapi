@@ -11,7 +11,6 @@ const FeaturedProducts = ({ type }) => {
     `${url}/products?populate=*&[filters][type][$eq]=${type}`
   );
 
-  console.log(products);
 
   useEffect(() => {
     if (data) {
@@ -37,7 +36,7 @@ const FeaturedProducts = ({ type }) => {
           <h1>An error has occurred, please try again later.</h1>
         ) : (
           products?.map((product) => (
-            <Card key={product.id} item={product.attributes} />
+            <Card key={product.id} item={product.attributes} id={product.id}/>
           ))
         )}
       </div>

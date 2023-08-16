@@ -2,10 +2,10 @@ import "./Card.scss";
 
 import { Link } from "react-router-dom";
 
-const Card = ({ item }) => {
+const Card = ({ item, id }) => {
   const url = import.meta.env.VITE_APP_UPLOAD_URL;
   return (
-    <Link className="link" to={`/product/${item.id}`}>
+    <Link className="link" to={`/product/${id}`}>
       <div className="card">
         <div className="image">
           {item?.isNew ? <span>New Season</span> : null}

@@ -1,53 +1,73 @@
-import React from "react";
 import "./Cart.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removeItem, resetCart } from "@/redux/cartReducer";
+import { loadStripe } from "@stripe/stripe-js";
 
+import axios from "axios";
 const Cart = () => {
-  const data = [
-    {
-      id: 1,
-      img: "https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564",
-      img2: "https://ik.imagekit.io/riviaa/ImgEC/martin-katler-Y4fKN-RlMV4-unsplash.png?updatedAt=1691212067587",
-      title: "Sneakers",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat magnam dolorem.",
-      isNew: true,
-      oldPrice: 100,
-      price: 85,
-    },
-    {
-      id: 2,
-      img: "https://ik.imagekit.io/riviaa/ImgEC/leon-skibitzki-mHUk4Se7peY-unsplash%201.png?updatedAt=1691212067555",
-      img2: "https://ik.imagekit.io/riviaa/ImgEC/junior-samson-kWpBUh2bdwE-unsplash.png?updatedAt=1691212067480",
-      title: "Nike Air Max 270",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat magnam dolorem.",
-      isNew: false,
-      oldPrice: 120,
-      price: 100,
-    },
-  ];
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
+
+  const api = import.meta.env.VITE_APP_URL_API;
+
+  const totalPrice = products
+    .reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0)
+    .toFixed(2);
+
+  const stripePromise = loadStripe(
+    "pk_test_51NfWo9AAsmfoiDvP3oiMDsgcJR1G5jffJwlMN0X4ZpQSTVUDbvqWRhOa9QiWmoha9qCeZADsYcgqyINqm85zbguQ00v6jXAjUn"
+  );
+
+  const handlePayment = async () => {
+    try {
+      const stripeInstance = await stripePromise;
+
+      const res = await axios.post(`${api}/orders`, {
+        products
+      });
+
+      await stripeInstance.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+      
+    } catch (err) {
+      console.log(err);
+    }
+};
 
   return (
     <div className="cart">
       <h1>Products in your cart</h1>
-      {data.map((item) => (
+      {products.map((item) => (
         <div className="item" key={item.id}>
-          <img src={item.img} alt="" />
+          <img src={import.meta.env.VITE_APP_UPLOAD_URL + item.img} alt="" />
           <div className="details">
             <h1>{item.title}</h1>
             <p>{item.desc?.substring(0, 30)}...</p>
             <div className="price">
-              <h1>1 x ${item.price}</h1>
+              <h1>
+                {item.quantity} x ${item.price}
+              </h1>
             </div>
           </div>
-          <DeleteIcon className="delete" />
+          <DeleteIcon
+            className="delete"
+            onClick={() => dispatch(removeItem(item.id))}
+          />
         </div>
       ))}
       <div className="total">
         <span>SUBTOTAL</span>
-        <span>$123</span>
+        <span>${totalPrice}</span>
       </div>
-      <button>CHECKOUT</button>
-      <span className="reset">Reset</span>
+      <button onClick={handlePayment}>CHECKOUT</button>
+      <span className="reset" onClick={() => dispatch(resetCart())}>
+        Reset
+      </span>
     </div>
   );
 };

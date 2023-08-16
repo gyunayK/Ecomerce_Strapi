@@ -1,31 +1,52 @@
 import "./Products.scss";
 import { useParams } from "react-router-dom";
-import List from "@/components/List/List";
-
 import { useState } from "react";
+import List from "@/components/List/List";
+import useFetch from "@/hooks/useFetch";
 
 const Products = () => {
   const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
-  const [sort, setSort] = useState(null);
+  const [sort, setSort] = useState('');
+  const [selectedSubCategories, setSelectedSubCategories] = useState([]);
+  const url = import.meta.env.VITE_APP_URL_API;
+
+  const { data, loading, error } = useFetch(
+    `${url}/sub-categories?[filters][categories][id][$eq]=${catId}`
+  );
+
+  const handleChange = (e) => {
+    if (e.target.checked) {
+      setSelectedSubCategories([...selectedSubCategories, e.target.value]);
+    } else {
+      setSelectedSubCategories(
+        selectedSubCategories.filter((item) => item !== e.target.value)
+      );
+    }
+  }
+
+  console.log(selectedSubCategories);
+
 
   return (
     <div className="products">
       <div className="left">
         <div className="filterItem">
           <h2>Product Categories</h2>
-          <div className="inputItem">
-            <input type="checkbox" id="1" value={1} />
-            <label htmlFor="1">Shoes</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="2" value={2} />
-            <label htmlFor="2">Skirts</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="3" value={3} />
-            <label htmlFor="3">Coats</label>
-          </div>
+          {data?.map((subCategory) => {
+            return (
+              <div className="inputItem" key={subCategory.id}>
+                <input
+                  type="checkbox"
+                  id={subCategory.id}
+                  value={subCategory.id}
+                  name={subCategory.name}
+                  onChange={handleChange}
+                />
+                <label htmlFor={subCategory.id}>{subCategory.attributes.title}</label>
+              </div>
+            );
+          })}
         </div>
         <div className="filterItem">
           <h2>Filter by price</h2>
@@ -48,7 +69,7 @@ const Products = () => {
               id="acs"
               value="acs"
               name="price"
-              onChange={(e) => setSort("asc")}
+              onChange={() => setSort("asc")}
             />
             <label htmlFor="acs">Price (Lowest first)</label>
           </div>
@@ -58,7 +79,7 @@ const Products = () => {
               id="desc"
               value="desc"
               name="price"
-              onChange={(e) => setSort("desc")}
+              onChange={() => setSort("desc")}
             />
             <label htmlFor="desc">Price (Highest first)</label>
           </div>
@@ -70,7 +91,7 @@ const Products = () => {
           src="https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564"
           alt=""
         />
-        <List catId={catId} maxPrice={maxPrice} sort={sort} />
+        <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCategories}/>
       </div>
     </div>
   );
