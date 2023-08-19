@@ -21,22 +21,7 @@ const Footer = () => {
           <span>Compare</span>
           <span>Cookies</span>
         </div>
-        <div className="item">
-          <h1>About</h1>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quod
-            pariatur laborum nam natus error repellat impedit tenetur debitis
-            nesciunt tempore molestiae, molestias.
-          </span>
-        </div>
-        <div className="item">
-          <h1>Contact</h1>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quod
-            pariatur laborum nam natus error repellat impedit tenetur debitis
-            nesciunt tempore molestiae, molestias.
-          </span>
-        </div>
+       
       </div>
       <div className="bottom">
         <div className="left">

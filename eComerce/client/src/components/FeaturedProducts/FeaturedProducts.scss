@@ -1,6 +1,10 @@
 .featuredProducts{
     margin: 100px 200px;
 
+    @media (max-width: 768px) {
+        margin: 100px 50px;
+    }
+
 
     .top{
         display: flex;
