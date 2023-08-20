@@ -19,8 +19,6 @@ const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="left">
-       
-      
           <div className="item">
             <Link className="link" to="/products/1">
               Women
@@ -45,7 +43,6 @@ const Navbar = () => {
         </div>
 
         <div className="right">
-
           <div className="item">
             <Link className="link" to="/">
               About
@@ -78,14 +75,10 @@ const Navbar = () => {
           >
             <MenuIcon />
           </div>
-
         </div>
       </div>
       {mobileMenuOpen && (
-        <div className={`mobileMenu ${mobileMenuOpen ? 'open' : ''}`}>
-          {/* You can add menu items here */}
-          {/* For instance, you can move .left and .right menu items here for mobile display */}
-         
+        <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
           <div className="item">
             <Link className="link" to="/products/1">
               Women

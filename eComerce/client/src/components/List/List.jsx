@@ -7,13 +7,12 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
   const [productsData2, setProductsData2] = useState([]);
   const url = import.meta.env.VITE_APP_URL_API;
 
-
-  console.log(sort);
-
   const { data, loading, error } = useFetch(
     `${url}/products?populate=*&[filters][categories][id]=${catId}${subCats
       .map((subCat) => `&[filters][sub_categories][id][$eq]=${subCat}`)
-      .join("")}&[filters][price][$lte]=${maxPrice}&sort=price:${sort || 'desc'}`
+      .join("")}&[filters][price][$lte]=${maxPrice}&sort=price:${
+      sort || "desc"
+    }`
   );
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
       setProductsData2(data);
     }
   }, [data]);
-
 
   return (
     <div className="list">
@@ -31,8 +29,9 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
         <h1>An error has occurred, please try again later.</h1>
       ) : (
         productsData2?.map((product) => {
-          return <Card item={product.attributes
-          } key={product.id} />;
+          return (
+            <Card item={product.attributes} id={product.id} key={product.id} />
+          );
         })
       )}
     </div>

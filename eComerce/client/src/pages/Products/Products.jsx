@@ -1,19 +1,58 @@
 import "./Products.scss";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import List from "@/components/List/List";
-import useFetch from "@/hooks/useFetch";
+import { makeRequest } from "@/hooks/makeRequest";
+import axios from "axios";
 
 const Products = () => {
   const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState("");
   const [selectedSubCategories, setSelectedSubCategories] = useState([]);
-  const url = import.meta.env.VITE_APP_URL_API;
 
-  const { data, loading, error } = useFetch(
-    `${url}/sub-categories?[filters][categories][id][$eq]=${catId}`
-  );
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await makeRequest.get(
+          `/categories?populate=*&[filters][categories][id][$eq]=${catId}`
+        );
+        setCategories(response.data);
+      } catch (error) {
+        // Handle error. With Axios, error responses are caught in the catch block
+        if (error.response && error.response.status === 401) {
+          // Handle unauthorized error
+        }
+      }
+    };
+
+    const fetchSubCategories = async () => {
+      try {
+        const response = await makeRequest.get(
+          `/sub-categories?populate=*&[filters][categories][id][$eq]=${catId}`
+        );
+        setSubCategories(response.data);
+      } catch (error) {
+        // Handle error
+      }
+    };
+
+    fetchCategories();
+    fetchSubCategories();
+  }, [catId]);
+
+  // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
+  const category = categories?.data?.find((cat) => cat.id === catId);
+
+  const imageUrl =
+    category?.attributes?.img?.data?.attributes?.formats?.large?.url ||
+    category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
+    category?.attributes?.img?.data?.attributes?.formats?.medium?.url ||
+    "";
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -23,17 +62,14 @@ const Products = () => {
         selectedSubCategories.filter((item) => item !== e.target.value)
       );
     }
-  }
-
-  console.log(selectedSubCategories);
-
+  };
 
   return (
     <div className="products">
       <div className="left">
         <div className="filterItem">
           <h2>Product Categories</h2>
-          {data?.map((subCategory) => {
+          {subCategories.data?.map((subCategory) => {
             return (
               <div className="inputItem" key={subCategory.id}>
                 <input
@@ -43,7 +79,9 @@ const Products = () => {
                   name={subCategory.name}
                   onChange={handleChange}
                 />
-                <label htmlFor={subCategory.id}>{subCategory.attributes.title}</label>
+                <label htmlFor={subCategory.id}>
+                  {subCategory.attributes.title}
+                </label>
               </div>
             );
           })}
@@ -86,12 +124,13 @@ const Products = () => {
         </div>
       </div>
       <div className="right">
-        <img
-          className="catImg"
-          src="https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564"
-          alt=""
+        <img className="catImg" src={`${url_IMG}${imageUrl}`} alt="" />
+        <List
+          catId={catId}
+          maxPrice={maxPrice}
+          sort={sort}
+          subCats={selectedSubCategories}
         />
-        <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCategories}/>
       </div>
     </div>
   );

@@ -3,14 +3,13 @@ import Card from "../Card/Card";
 import { useEffect, useState } from "react";
 import useFetch from "@/hooks/useFetch";
 
-const FeaturedProducts = ({ type }) => {
+const FeaturedProducts = ({ type, desc }) => {
   const [products, setProducts] = useState([]);
   const url = import.meta.env.VITE_APP_URL_API;
 
   const { data, loading, error } = useFetch(
     `${url}/products?populate=*&[filters][type][$eq]=${type}`
   );
-
 
   useEffect(() => {
     if (data) {
@@ -23,10 +22,7 @@ const FeaturedProducts = ({ type }) => {
       <div className="top">
         <h1>{type} products</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ipsa
-          animi neque ipsam molestias ex explicabo natus molestiae. Facilis
-          repudiandae eligendi error, delectus impedit nam rem tenetur
-          temporibus itaque iste.
+          {desc}
         </p>
       </div>
       <div className="bottom">
@@ -36,7 +32,7 @@ const FeaturedProducts = ({ type }) => {
           <h1>An error has occurred, please try again later.</h1>
         ) : (
           products?.map((product) => (
-            <Card key={product.id} item={product.attributes} id={product.id}/>
+            <Card key={product.id} item={product.attributes} id={product.id} />
           ))
         )}
       </div>
