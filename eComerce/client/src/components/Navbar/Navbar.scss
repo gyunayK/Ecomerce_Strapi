@@ -1,26 +1,70 @@
 .navbar {
   height: 80px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: x-large;
+
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    right: 0;
+    z-index: 5;
+
+    
+
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    transition-duration: 200ms;
+    transition: transform 0.3s ease-in-out;
+
+    transform: translateX(100%);
+  }
+
+  .mobileMenu.open {
+    transform: translateX(0);
+  }
 
   .wrapper {
-    padding: 10px 30px;
+    padding: 0px 30px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .left, .right {
+    .left,
+    .right {
       display: flex;
       align-items: center;
       gap: 25px;
     }
 
     .hamburger {
-      display: none; 
+      display: none;
       cursor: pointer;
+      z-index: 6;
     }
 
     .center {
-      font-size: 30px;
+      font-size: 45px;
       letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      font-weight: 600;
+      
+      flex-direction: column;
+      span{
+        color: #2879fe;
+        font-size: 15px;
+      }
     }
 
     .right .icons {
@@ -49,35 +93,15 @@
     }
   }
 
-  .mobileMenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    
-    width: 100%;
-    background-color: #fff;
-    z-index: 2;
-  }
-
   @media (max-width: 768px) {
-    .wrapper .left .item, .wrapper .right .item, .wrapper .right .icons {
+    .wrapper .left .item,
+    .wrapper .right .item,
+    .wrapper .right .icons {
       display: none;
     }
 
     .wrapper .hamburger {
       display: flex;
-    }
-
-    .mobileMenu {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease-out;
-
-    }
-    .mobileMenu.open {
-      transform: translateY(0);
     }
   }
 }

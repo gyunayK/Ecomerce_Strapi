@@ -12,6 +12,12 @@
         justify-content: space-between;
         margin-bottom: 50px;
 
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 20px;
+        }
+    
+
         h1{
             flex: 2;
             text-transform: capitalize;
@@ -20,6 +26,11 @@
         p{
             flex:3;
             color: grey;
+
+            @media (max-width: 768px) {
+                text-align: center;
+            }
+        
         }
     }
 
@@ -27,5 +38,6 @@
         display: flex;
         justify-content: center;
         gap: 50px;
+        flex-wrap: wrap;
     }
 }

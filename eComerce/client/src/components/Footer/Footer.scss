@@ -1,68 +1,98 @@
-.footer{
-    background-color: #f5f5f5;
-    padding: 50px 100px;
-    color: #444;
+.footer {
+  background-color: #f5f5f5;
+  color: #444;
+  width: 100%;
 
-
-    .top{
+  .top {
+    padding: 40px 50px;
+    display: flex;
+    margin-bottom: 40px;
+    .group {
+      width: 25%;
+      padding: 0 15px;
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .items {
+        margin-bottom: 10px;
         display: flex;
-        gap: 50px;
+        flex-direction: column;
+        gap: 5px;
 
-     
-
-        .item{
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: justify ;
-            font-size: 14px;
-            h1{
-                font-size: 18px;
-                font-weight: 500;
-                color: #555;
-            }
-            span{
-                color: grey;
-                cursor: pointer;
-            }
+        span {
+          color: #444;
+          font-size: 14px;
+          display: block;
+          margin-bottom: 5px;
+          cursor: pointer;
+          &:hover {
+            color: #000;
+          }
         }
+      }
     }
-    .bottom{
+  }
+
+  .bottom {
+    .bottomGroup {
+      padding: 40px 50px;
+      border-top: 2px solid #ddd;
+
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      img {
+        height: 100px;
+        object-fit: contain;
+      }
+
+      @media (max-width: 768px) {
+        img {
+          height: 80px;
+          object-fit: contain;
+        }
+      }
+
+      .icons {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 50px;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            
-        }
-    
-
-
-        .left{
-            display: flex;
-            align-items: center;
-
-            .logo{
-                color: #2879fe;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            .copyright{
-                margin-left: 20px;
-                font-size: 12px;
-                color: grey;
-            }
-
-        }
-        .right{
-
-            img{
-                height: 50px;
-            }
-        }
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 30px;
+        cursor: pointer;
+      }
     }
+
+    .trademark {
+  
+
+      text-align: center;
+      background: #000;
+      width: 100%;
+      padding: 50px 0;
+
+      span {
+        font-size: 15px;
+        color: white;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top {
+      display: none;
+    }
+  }
 }

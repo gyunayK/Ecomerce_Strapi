@@ -1,3 +1,4 @@
+import "./Navbar.scss";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -5,7 +6,6 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";
-import "./Navbar.scss";
 import Cart from "@/Components/Cart/Cart";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -38,8 +38,9 @@ const Navbar = () => {
 
         <div className="center">
           <Link className="link" to="/">
-            KADIROV
+            KADIROV 
           </Link>
+             <span>Bringing Ecorce to Life with Kadirov</span>
         </div>
 
         <div className="right">
