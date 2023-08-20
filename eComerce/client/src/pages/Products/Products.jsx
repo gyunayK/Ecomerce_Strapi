@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import List from "@/components/List/List";
 import { makeRequest } from "@/hooks/makeRequest";
-import axios from "axios";
+import { BsFilterCircle } from "react-icons/bs";
 
 const Products = () => {
   const catId = parseInt(useParams().id);
@@ -13,7 +13,14 @@ const Products = () => {
 
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-  const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const baseURL_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -48,7 +55,7 @@ const Products = () => {
   // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
   const category = categories?.data?.find((cat) => cat.id === catId);
 
-  const imageUrl =
+  const imagePath =
     category?.attributes?.img?.data?.attributes?.formats?.large?.url ||
     category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
     category?.attributes?.img?.data?.attributes?.formats?.medium?.url ||
@@ -66,7 +73,11 @@ const Products = () => {
 
   return (
     <div className="products">
-      <div className="left">
+      <div className="hamburger" onClick={toggleMenu}>
+        <BsFilterCircle />
+      </div>
+
+      <div className={isMenuOpen ? "left open" : "left"}>
         <div className="filterItem">
           <h2>Product Categories</h2>
           {subCategories.data?.map((subCategory) => {
@@ -124,7 +135,11 @@ const Products = () => {
         </div>
       </div>
       <div className="right">
-        <img className="catImg" src={`${url_IMG}${imageUrl}`} alt="" />
+        <img
+          className="categoryIMG"
+          src={`${baseURL_IMG}${imagePath}`}
+          alt=""
+        />
         <List
           catId={catId}
           maxPrice={maxPrice}

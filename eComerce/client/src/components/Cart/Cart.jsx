@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
-import { makeRequest } from "../../hooks/makeRequest";
 
 import axios from "axios";
 const Cart = () => {

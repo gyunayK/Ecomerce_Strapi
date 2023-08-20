@@ -47,12 +47,11 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-      }
-
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 40px;
+        @media (max-width: 768px) {
+          flex-direction: column;
+          gap: 20px;
+          margin-bottom: 40px;
+        }
       }
 
       h1 {
