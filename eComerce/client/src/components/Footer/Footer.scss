@@ -6,12 +6,14 @@
   .top {
     padding: 40px 50px;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 40px;
+    width: 65%;
+    margin: 0 auto;
     .group {
-      width: 25%;
       padding: 0 15px;
       h1 {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: 600;
         margin-bottom: 20px;
       }
@@ -23,7 +25,7 @@
 
         span {
           color: #444;
-          font-size: 14px;
+          font-size: 20px;
           display: block;
           margin-bottom: 5px;
           cursor: pointer;
@@ -40,8 +42,12 @@
       padding: 40px 50px;
       border-top: 2px solid #ddd;
 
-      display: flex;
-      justify-content: space-between;
+      .wrapper {
+        width: 65%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+      }
 
       @media (max-width: 768px) {
         flex-direction: column;
@@ -72,12 +78,13 @@
         margin-top: 10px;
         font-size: 30px;
         cursor: pointer;
+        a {
+          color: #444;
+        }
       }
     }
 
     .trademark {
-  
-
       text-align: center;
       background: #000;
       width: 100%;
@@ -85,6 +92,7 @@
 
       span {
         font-size: 15px;
+        letter-spacing: 2px;
         color: white;
       }
     }

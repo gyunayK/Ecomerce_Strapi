@@ -5,37 +5,42 @@
   display: flex;
   justify-content: center;
 
-  
   .wrapper {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: larger;
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 20px;
-  }
-    
-    input {
-      padding: 10px;
-      border: none;
-      border-radius: 5px 0 0 5px;
     }
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 0 5px 5px 0;
-      color: white;
-      background-color: #333;
-      cursor: pointer;
+    .mail {
+      display: flex;
+      width: 300px;
+
+      input {
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        width: 70%;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px;
+        white-space: nowrap;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        color: white;
+        background-color: #333;
+        cursor: pointer;
+      }
     }
 
-    .icons{
-        display: flex;
-        gap: 10px;
+    .icons {
+      display: flex;
+      gap: 10px;
     }
-   
-
-
   }
 }

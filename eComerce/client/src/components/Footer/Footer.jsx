@@ -5,6 +5,7 @@ import {
   BsTwitter,
   BsPinterest,
   BsYoutube,
+  BsGithub,
 } from "react-icons/bs";
 import "./Footer.scss";
 
@@ -73,18 +74,27 @@ const Footer = () => {
 
       <div className="bottom">
         <div className="bottomGroup">
-          <div>
-            <h1>Payment Methods</h1>
-            <img src="/img/payment.png" alt="payment" />
-          </div>
-          <div >
-            <h1>Follow Us</h1>
-            <div className="icons">
-              <BsInstagram />
-              <BsFacebook />
-              <BsTwitter />
-              <BsPinterest />
-              <BsYoutube />
+          <div className="wrapper">
+            <div>
+              <h1>Payment Methods</h1>
+              <img src="/img/payment.png" alt="payment" />
+            </div>
+            <div>
+              <h1>Follow Us</h1>
+              <div className="icons">
+                <BsInstagram />
+                <BsFacebook />
+                <BsTwitter />
+                <BsPinterest />
+                <BsYoutube />
+                <a
+                  href="https://github.com/gyunayK"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <BsGithub />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -95,6 +105,5 @@ const Footer = () => {
     </div>
   );
 };
-
 
 export default Footer;

@@ -1,8 +1,7 @@
 .navbar {
-  height: 80px;
+  height: 90px;
   font-family: "Barlow Condensed", sans-serif;
   font-size: x-large;
-
 
   .mobileMenu {
     display: flex;
@@ -16,8 +15,6 @@
     top: 0;
     right: 0;
     z-index: 5;
-
-    
 
     transition-property: transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -35,9 +32,18 @@
   .wrapper {
     padding: 0px 30px;
     height: 100%;
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .item {
+      border-bottom: transparent 3px solid;
+    }
+
+    .item:hover {
+      border-bottom: #ffaa00 3px solid;
+    }
 
     .left,
     .right {
@@ -59,10 +65,10 @@
       align-items: center;
       gap: 0px;
       font-weight: 600;
-      
+
       flex-direction: column;
-      span{
-        color: #2879fe;
+      span {
+        color: #0042dc;
         font-size: 15px;
       }
     }
