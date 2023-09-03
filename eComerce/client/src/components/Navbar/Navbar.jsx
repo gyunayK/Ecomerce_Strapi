@@ -1,34 +1,27 @@
 import "./Navbar.scss";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";
 import Cart from "@/Components/Cart/Cart";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import useFetch from "@/hooks/useFetch";
-
+import Search from "../Search/Search";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+
 
   const products = useSelector((state) => state.cart.products);
 
 
-  const url = import.meta.env.VITE_APP_URL_API;
 
-  const fetchUrl = `${url}/products?filters[title][$contains]=${searchTerm}`;
-  const { data, loading, error } = useFetch(fetchUrl);
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
+ 
+
+  // const category = searchItems?.data?.find((cat) => cat.id === catId);
 
   return (
     <div className="navbar">
@@ -76,21 +69,9 @@ const Navbar = () => {
           </div>
 
           <div className="icons">
-            <SearchOutlinedIcon
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            />
-            {isSearchOpen && (
-              <div className="search">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button type="submit" className="btn">
-                  Search
-                </button>
-              </div>
-            )}
+       
+            <Search/>
+
             <PersonOutlineOutlinedIcon />
             <FavoriteBorderOutlinedIcon />
 
