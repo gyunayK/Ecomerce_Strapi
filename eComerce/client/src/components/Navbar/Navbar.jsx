@@ -1,6 +1,5 @@
 import "./Navbar.scss";
-import { useState } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useState, useEffect } from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -9,11 +8,27 @@ import { Link } from "react-router-dom";
 import Cart from "@/Components/Cart/Cart";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
+import useFetch from "@/hooks/useFetch";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const products = useSelector((state) => state.cart.products);
+
+
+  const url = import.meta.env.VITE_APP_URL_API;
+
+  const fetchUrl = `${url}/products?filters[title][$contains]=${searchTerm}`;
+  const { data, loading, error } = useFetch(fetchUrl);
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
 
   return (
     <div className="navbar">
@@ -38,9 +53,9 @@ const Navbar = () => {
 
         <div className="center">
           <Link className="link" to="/">
-            KADIROV 
+            KADIROV
           </Link>
-             <span>Bringing Ecorce to Life with Kadirov</span>
+          <span>Bringing Ecorce to Life with Kadirov</span>
         </div>
 
         <div className="right">
@@ -61,7 +76,21 @@ const Navbar = () => {
           </div>
 
           <div className="icons">
-            <SearchOutlinedIcon />
+            <SearchOutlinedIcon
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            />
+            {isSearchOpen && (
+              <div className="search">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit" className="btn">
+                  Search
+                </button>
+              </div>
+            )}
             <PersonOutlineOutlinedIcon />
             <FavoriteBorderOutlinedIcon />
 
