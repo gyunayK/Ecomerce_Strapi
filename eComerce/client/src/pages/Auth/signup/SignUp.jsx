@@ -6,7 +6,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 function SignUp() {
   return (
-    <div className="container">
+    <div className="authContainer">
       <div className="innerContainer">
         <div className="left">
           <div className="content">
