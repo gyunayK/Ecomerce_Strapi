@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./Suggestions.scss";
 import useFetch from "@/hooks/useFetch";
 import Card from "@/components/Card/Card";
@@ -6,17 +6,14 @@ import Card from "@/components/Card/Card";
 function Suggestions({ productID }) {
   const [subCategoryId, setSubCategoryId] = useState(null);
   const [suggestedProducts, setSuggestedProducts] = useState([]);
-
   const url = import.meta.env.VITE_APP_URL_API;
 
-  // Fetch the initial product
   const {
     data: productData,
     loading: productLoading,
     error: productError,
   } = useFetch(`${url}/products?populate=*&[filters][id][$eq]=${productID}`);
 
-  // Fetch the suggested products based on subCategoryId
   const {
     data: suggestedData,
     loading: suggestedLoading,
@@ -24,9 +21,14 @@ function Suggestions({ productID }) {
   } = useFetch(
     subCategoryId
       ? `${url}/sub-categories?populate=products.img,products.img2&[filters][id][$eq]=${subCategoryId}`
-
       : null
   );
+
+  const filteredProducts = useMemo(() => {
+    return suggestedProducts
+      .filter((product) => product.id !== parseInt(productID))
+      .slice(0, 4); // This will limit the array to a maximum of 4 elements
+  }, [suggestedProducts, productID]);
 
   useEffect(() => {
     if (productData) {
@@ -47,10 +49,10 @@ function Suggestions({ productID }) {
   return (
     <div className="suggestionsWrapper">
       <h1>You may also like</h1>
-      {/* Render your suggested products here */}
+
       <div className="suggestions">
-        {suggestedProducts.map((product) => (
-          <Card key={product.id} item={product.attributes} id={product.id} />
+        {filteredProducts.map(({ id, attributes }) => (
+          <Card key={id} item={attributes} id={id} />
         ))}
       </div>
     </div>
