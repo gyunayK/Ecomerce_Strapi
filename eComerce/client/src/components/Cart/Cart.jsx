@@ -11,6 +11,8 @@ const Cart = () => {
   const products = useSelector((state) => state.cart.products);
 
   const api = import.meta.env.VITE_APP_URL_API;
+  const token = import.meta.env.VITE_STRAPI_TOKEN;
+  const stripePK = import.meta.env.VITE_STIPE_PUBLISHABLE_KEY;
 
   const totalPrice = products
     .reduce((acc, item) => {
@@ -18,30 +20,31 @@ const Cart = () => {
     }, 0)
     .toFixed(2);
 
-  const stripePromise = loadStripe(
-    "pk_test_51NfWo9AAsmfoiDvP3oiMDsgcJR1G5jffJwlMN0X4ZpQSTVUDbvqWRhOa9QiWmoha9qCeZADsYcgqyINqm85zbguQ00v6jXAjUn"
-  );
+  const stripePromise = loadStripe(stripePK);
 
   const handlePayment = async () => {
     try {
       const stripeInstance = await stripePromise;
 
-      const res = await axios.post(`${api}/orders`, {
-        products
-      },{
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_STRAPI_TOKEN}`,
+      const res = await axios.post(
+        `${api}/orders`,
+        {
+          products,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       await stripeInstance.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
       });
-      
     } catch (err) {
       console.log(err);
     }
-};
+  };
 
   return (
     <div className="cart">

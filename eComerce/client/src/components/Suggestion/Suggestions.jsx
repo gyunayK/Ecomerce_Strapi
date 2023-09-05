@@ -3,6 +3,7 @@ import "./Suggestions.scss";
 import useFetch from "@/hooks/useFetch";
 import Card from "@/components/Card/Card";
 
+
 function Suggestions({ productID }) {
   const [subCategoryId, setSubCategoryId] = useState(null);
   const [suggestedProducts, setSuggestedProducts] = useState([]);

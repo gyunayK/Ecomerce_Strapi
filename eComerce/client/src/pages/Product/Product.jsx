@@ -5,6 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
+import { toast } from "react-toastify";
 
 import useFetch from "@/hooks/useFetch";
 import { useParams } from "react-router-dom";
@@ -78,6 +79,7 @@ const Product = () => {
               <button
                 className="add"
                 onClick={() =>
+                  toast.success("Product added to cart") &&
                   dispatch(
                     addToCart({
                       id: data.id,
