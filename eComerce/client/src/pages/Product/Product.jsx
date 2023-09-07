@@ -53,7 +53,7 @@ const Product = () => {
                 />
               </div>
             </div>
-            <div className="right">
+            {/* <div className="right">
               <h1>{data?.attributes.title}</h1>
               <span className="price">${data?.attributes.price}</span>
               <p>{data?.attributes.desc}</p>
@@ -110,7 +110,7 @@ const Product = () => {
                 <span>Product Type: T-Shirt</span>
                 <span>Tag: T-Shirt, Women, Top</span>
               </div>
-            </div>{" "}
+            </div>{" "} */}
           </>
         )}
       </div>
