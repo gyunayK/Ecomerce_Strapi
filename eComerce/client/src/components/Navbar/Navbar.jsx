@@ -8,18 +8,13 @@ import { Link } from "react-router-dom";
 import Cart from "@/Components/Cart/Cart";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import Search from "../Search/Search";
+import Search from "@/Components/Search/Search";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-
   const products = useSelector((state) => state.cart.products);
-
-
-
- 
 
   // const category = searchItems?.data?.find((cat) => cat.id === catId);
 
@@ -69,8 +64,7 @@ const Navbar = () => {
           </div>
 
           <div className="icons">
-       
-            <Search/>
+            <Search />
 
             <PersonOutlineOutlinedIcon />
             <FavoriteBorderOutlinedIcon />

@@ -53,7 +53,7 @@ const Product = () => {
                 />
               </div>
             </div>
-            {/* <div className="right">
+            <div className="right">
               <h1>{data?.attributes.title}</h1>
               <span className="price">${data?.attributes.price}</span>
               <p>{data?.attributes.desc}</p>
@@ -77,7 +77,7 @@ const Product = () => {
                 </button>
               </div>
               <button
-                className="add"
+                className="button-63"
                 onClick={() =>
                   toast.success("Product added to cart") &&
                   dispatch(
@@ -95,6 +95,7 @@ const Product = () => {
                 <ShoppingCartIcon />
                 ADD TO CART
               </button>
+
               <div className="links">
                 <div className="item">
                   <FavoriteBorderIcon />
@@ -105,12 +106,7 @@ const Product = () => {
                   <span>ADD TO COMPARE</span>
                 </div>
               </div>
-              <div className="info">
-                <span>Vendor: Polo</span>
-                <span>Product Type: T-Shirt</span>
-                <span>Tag: T-Shirt, Women, Top</span>
-              </div>
-            </div>{" "} */}
+            </div>{" "}
           </>
         )}
       </div>
