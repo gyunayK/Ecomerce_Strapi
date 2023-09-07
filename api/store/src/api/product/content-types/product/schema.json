@@ -64,6 +64,7 @@
       "enum": [
         "normal",
         "featured",
+        "sale",
         "trending"
       ]
     }

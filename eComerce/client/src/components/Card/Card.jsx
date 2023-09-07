@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const Card = ({ item, id }) => {
   const url = import.meta.env.VITE_APP_UPLOAD_URL;
+
+  console.log(item);
   return (
     <Link className="link" to={`/product/${id}`}>
       <div className="card">
@@ -14,12 +16,20 @@ const Card = ({ item, id }) => {
             alt=""
             className="mainImg"
           />
-          <img src={`${url}${item.img2?.data.attributes.url}`} alt="" className="secondImg" />
+          <img
+            src={`${url}${item.img2?.data.attributes.url}`}
+            alt=""
+            className="secondImg"
+          />
         </div>
-        <h2>{item.title}</h2>
-        <div className="prices">
-          <h3>${item.price + 50}</h3>
-          <h3>${item.price}</h3>
+        <div className="pricesWrapper">
+          <h2>{item.title}</h2>
+          <div className="prices">
+            {item?.type === "sale" ? (
+              <h3 className="salePrice">${item.price + 50}</h3>
+            ) : null}
+            <h3>${item.price}</h3>
+          </div>
         </div>
       </div>
     </Link>

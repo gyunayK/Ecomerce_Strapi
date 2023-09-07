@@ -3,33 +3,6 @@
   font-family: "Barlow Condensed", sans-serif;
   font-size: x-large;
 
-  .mobileMenu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 55px;
-    height: 100%;
-    background-color: #fff;
-    position: fixed;
-    width: 100vw;
-    top: 0;
-    right: 0;
-    z-index: 5;
-
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 200ms;
-    transition-duration: 200ms;
-    transition: transform 0.3s ease-in-out;
-
-    transform: translateX(100%);
-  }
-
-  .mobileMenu.open {
-    transform: translateX(0);
-  }
-
   .wrapper {
     height: 100%;
     width: 90%;
@@ -55,6 +28,8 @@
       display: flex;
       align-items: center;
       gap: 25px;
+      color: black;
+      font-size: 22px;
     }
 
     .hamburger {
@@ -64,24 +39,24 @@
     }
 
     .center {
-      font-size: 45px;
+      font-size: 40px;
       letter-spacing: 2px;
       display: flex;
       align-items: center;
       gap: 0px;
-      font-weight: 600;
+      font-weight: 500;
 
       flex-direction: column;
       span {
         color: #0042dc;
         font-size: 15px;
+        font-weight: 600;
       }
     }
 
     .right .icons {
       display: flex;
       gap: 15px;
-      color: #777;
       cursor: pointer;
       align-items: center;
       .cartIcon {
@@ -114,6 +89,33 @@
     .wrapper .hamburger {
       display: flex;
     }
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 55px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    right: 0;
+    z-index: 5;
+
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    transition-duration: 200ms;
+    transition: transform 0.3s ease-in-out;
+
+    transform: translateX(100%);
+  }
+
+  .mobileMenu.open {
+    transform: translateX(0);
   }
 }
 

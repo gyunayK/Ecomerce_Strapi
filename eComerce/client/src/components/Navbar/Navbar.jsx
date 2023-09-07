@@ -67,7 +67,7 @@ const Navbar = () => {
             <Search />
 
             <PersonOutlineOutlinedIcon />
-            <FavoriteBorderOutlinedIcon />
+            {/* <FavoriteBorderOutlinedIcon /> */}
 
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
               <ShoppingCartOutlinedIcon />
