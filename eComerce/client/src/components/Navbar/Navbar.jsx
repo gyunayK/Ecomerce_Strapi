@@ -1,14 +1,14 @@
 import "./Navbar.scss";
 
 import { useState } from "react";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
-import Cart from "@/Components/Cart/Cart";
+import Cart from "@/components/Cart/Cart";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import Search from "@/Components/Search/Search";
+import Search from "@/components/Search/Search";
+import LoginMenu from "@/components/loginMenu/LoginMenu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,8 +66,8 @@ const Navbar = () => {
           <div className="icons">
             <Search />
 
-            <PersonOutlineOutlinedIcon />
-            {/* <FavoriteBorderOutlinedIcon /> */}
+            <FavoriteBorderOutlinedIcon />
+            <LoginMenu />
 
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
               <ShoppingCartOutlinedIcon />
@@ -82,41 +82,39 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {mobileMenuOpen && (
-        <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
-          <div className="item">
-            <Link className="link" to="/products/1">
-              Women
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/products/2">
-              Men
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/products/3">
-              Children
-            </Link>
-          </div>
-
-          <div className="item">
-            <Link className="link" to="/">
-              About
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/">
-              Contact
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/">
-              Stores
-            </Link>
-          </div>
+      <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
+        <div className="item">
+          <Link className="link" to="/products/1">
+            Women
+          </Link>
         </div>
-      )}
+        <div className="item">
+          <Link className="link" to="/products/2">
+            Men
+          </Link>
+        </div>
+        <div className="item">
+          <Link className="link" to="/products/3">
+            Children
+          </Link>
+        </div>
+
+        <div className="item">
+          <Link className="link" to="/">
+            About
+          </Link>
+        </div>
+        <div className="item">
+          <Link className="link" to="/">
+            Contact
+          </Link>
+        </div>
+        <div className="item">
+          <Link className="link" to="/">
+            Stores
+          </Link>
+        </div>
+      </div>
       {isOpen && <Cart />}
     </div>
   );

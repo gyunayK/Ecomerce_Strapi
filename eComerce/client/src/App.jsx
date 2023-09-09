@@ -22,7 +22,7 @@ const Layout = () => {
 
 const Router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/signin",
     element: <Login />,
   },
   {
