@@ -105,7 +105,7 @@
   top: 0;
   z-index: 5;
 
-  transform: all 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 
   transform: translateX(100%);
 }
