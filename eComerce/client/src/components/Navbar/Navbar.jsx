@@ -1,5 +1,5 @@
 import "./Navbar.scss";
-
+import "./hamburgerStyle.scss";
 import { useState } from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -15,9 +15,12 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const products = useSelector((state) => state.cart.products);
+  console.log(mobileMenuOpen);
 
   // const category = searchItems?.data?.find((cat) => cat.id === catId);
-
+  const toggleMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -74,12 +77,17 @@ const Navbar = () => {
               <span>{products.length}</span>
             </div>
           </div>
-          <div
-            className="hamburger"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <MenuIcon />
-          </div>
+          <label>
+            <input
+              type="checkbox"
+              id="check"
+              checked={mobileMenuOpen}
+              onChange={toggleMenu}
+            />
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
         </div>
       </div>
       <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
