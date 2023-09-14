@@ -4,6 +4,7 @@
   justify-content: center;
   gap: 50px;
   flex-wrap: wrap;
+  margin-bottom: 60px;
 
   // Media Queries for .product
   @media (max-width: 1300px) {
@@ -138,10 +139,9 @@
 
 .button-63 {
   align-items: center;
-  background-image: linear-gradient(144deg, #0b60de, #0858b4 50%, #0a71e7);
+  background-color: #0a71e7;
   border: 0;
   border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
   box-sizing: border-box;
   color: #ffffff;
   display: flex;
@@ -160,7 +160,6 @@
   transition: all 0.1s ease-in-out;
 
   &:hover {
-    box-shadow: rgba(1, 62, 141, 0.4) 0 10px 20px -2px;
     transform: translateY(-2px);
   }
 }

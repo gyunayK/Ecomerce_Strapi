@@ -1,21 +1,21 @@
 import "./Navbar.scss";
 import "./hamburgerStyle.scss";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Link } from "react-router-dom";
 import Cart from "@/components/Cart/Cart";
-import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import Search from "@/components/Search/Search";
 import LoginMenu from "@/components/loginMenu/LoginMenu";
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const products = useSelector((state) => state.cart.products);
-  console.log(mobileMenuOpen);
 
   // const category = searchItems?.data?.find((cat) => cat.id === catId);
   const toggleMenu = () => {
@@ -77,7 +77,7 @@ const Navbar = () => {
               <span>{products.length}</span>
             </div>
           </div>
-          <label>
+          <label className="hamburger">
             <input
               type="checkbox"
               id="check"

@@ -30,6 +30,12 @@ function Login() {
             <form>
               <input type="email" placeholder="Email" required />
               <input type="password" placeholder="Password" required />
+              <div className="rememberMe">
+                <input type="checkbox" id="rememberMe" name="rememberMe" />
+                <label htmlFor="rememberMe" className="rememberMeLabel">
+                  Remember Me
+                </label>
+              </div>
               <button type="submit">LOGIN</button>
             </form>
             <a href="#">Forgot Password?</a>

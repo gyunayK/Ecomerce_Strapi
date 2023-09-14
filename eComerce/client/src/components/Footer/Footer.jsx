@@ -11,7 +11,7 @@ import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="top">
         <div className="group">
           <h1>Categories</h1>
@@ -102,7 +102,7 @@ const Footer = () => {
           <span>© 2023 kadirov, Inc. All Rights Reserved</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

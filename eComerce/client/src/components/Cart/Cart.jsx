@@ -13,8 +13,6 @@ const Cart = () => {
   const token = import.meta.env.VITE_STRAPI_TOKEN;
   const stripePK = import.meta.env.VITE_STIPE_PUBLISHABLE_KEY;
 
-  console.log(products);
-
   const totalPrice = products
     .reduce((acc, item) => {
       return acc + item.price * item.quantity;
@@ -22,7 +20,6 @@ const Cart = () => {
     .toFixed(2);
 
   const stripePromise = loadStripe(stripePK);
-
   const handlePayment = async () => {
     try {
       const stripeInstance = await stripePromise;
