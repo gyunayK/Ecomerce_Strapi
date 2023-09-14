@@ -23,7 +23,6 @@
     .images {
       margin: 0 auto;
       gap: 30px;
-
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -51,8 +50,9 @@
 
     .mainImg {
       img {
-        max-height: 500px;
-        object-fit: contain;
+        width: 500px;
+        height: 500px;
+        object-fit: cover;
       }
 
       // Media Queries for .mainImg

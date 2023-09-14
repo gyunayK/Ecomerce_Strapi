@@ -5,8 +5,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
-
 import useFetch from "@/hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -22,6 +22,10 @@ const Product = () => {
   const { data, loading, error } = useFetch(`${api}/products/${id}?populate=*`);
   const [quantity, setQuantity] = useState(1);
   const [selectedImg, setSelectedImg] = useState("img");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   return (
     <>
@@ -41,7 +45,7 @@ const Product = () => {
                 <img
                   src={url_IMG + data?.attributes?.img2.data.attributes.url}
                   alt=""
-                  onClick={(e) => setSelectedImg("img2")}
+                  onClick={() => setSelectedImg("img2")}
                 />
               </div>
               <div className="mainImg">

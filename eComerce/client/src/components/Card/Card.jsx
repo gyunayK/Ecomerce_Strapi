@@ -1,10 +1,8 @@
 import "./Card.scss";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Card = ({ item, id }) => {
   const url = import.meta.env.VITE_APP_UPLOAD_URL;
-  const products = useSelector((state) => state.cart);
   return (
     <Link className="link" to={`/product/${id}`}>
       <div className="card">
