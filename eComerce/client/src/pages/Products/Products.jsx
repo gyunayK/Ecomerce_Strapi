@@ -23,6 +23,10 @@ const Products = () => {
   const baseURL_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [catId]);
+
+  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await makeRequest.get(

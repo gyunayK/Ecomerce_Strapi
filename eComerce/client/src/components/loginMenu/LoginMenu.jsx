@@ -6,21 +6,25 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import Link from "@mui/material/Link";
 
 export default function LoginMenu() {
-  const [anchorEl, setAnchorEl] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    setMenuOpen(false);
   };
 
   return (
     <div>
       <Button
         id="basic-button"
-        aria-controls={anchorEl ? "basic-menu" : undefined}
+        aria-controls={menuOpen ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={anchorEl ? "true" : undefined}
+        aria-expanded={menuOpen ? "true" : undefined}
         onClick={handleClick}
         color="inherit"
       >
@@ -29,7 +33,7 @@ export default function LoginMenu() {
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
-        open={anchorEl}
+        open={menuOpen}
         onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",

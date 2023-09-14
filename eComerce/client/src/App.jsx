@@ -7,7 +7,7 @@ import Product from "./pages/Product/Product.jsx";
 import Products from "./pages/Products/Products.jsx";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Login from "./pages/Auth/login/Login.jsx";
+import Login from "./pages/Auth/login/Login";
 import SignUp from "./pages/Auth/signup/SignUp";
 
 const Layout = () => {
