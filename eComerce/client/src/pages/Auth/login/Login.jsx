@@ -15,10 +15,15 @@ import { toast } from "react-toastify";
 function Login() {
   const [requestError, setRequestError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [savedUser, setSavedUser] = useState({});
   const [user, setUser] = useState(null);
 
-  console.log(user);
+  const navigate = useNavigate();
+  console.log(JSON.parse(localStorage.getItem("UserLoginInfo")));
 
   const schema = z.object({
     email: z.string().email({ message: "Please enter a valid email." }),
@@ -28,6 +33,7 @@ function Login() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
@@ -50,32 +56,56 @@ function Login() {
         toast.error(`Error: ${response.status}`);
       }
 
+      console.log(response);
+
       localStorage.setItem("UserData", JSON.stringify(response.data.user));
       localStorage.setItem("UserJWT", JSON.stringify(response.data.jwt));
-    } catch (error) {
-      toast.error(`Error: ${error}`);
-      console.log(error.response?.data?.error?.message);
-      setRequestError(error.response?.data?.error?.message);
-      return; // Stop execution if error
-    }
-
-    try {
-      // if (rememberMe) {
-      //   localStorage.setItem("User", JSON.stringify(data));
-      // } else {
-      //   localStorage.removeItem("User");
-      // }
-
+      if (rememberMe) {
+        localStorage.setItem(
+          "UserLoginInfo",
+          JSON.stringify({
+            email: email,
+            password: data.password,
+          })
+        );
+      }
       navigate("/");
     } catch (error) {
-      console.error("Failed to navigate or save data", error);
+      setRequestError(error.response?.data?.error?.message);
+      return;
     }
   };
 
   useEffect(() => {
-    localStorage.getItem("User") &&
-      setUser(JSON.parse(localStorage.getItem("User")));
-  }, []);
+    if (savedUser.email) {
+      setEmail(savedUser.email);
+      setValue("email", savedUser.email);
+    }
+    if (savedUser.password) {
+      setPassword(savedUser.password);
+      setValue("password", savedUser.password);
+    }
+  }, [savedUser, setValue]);
+
+  useEffect(() => {
+    localStorage.getItem("UserData") &&
+      setUser(JSON.parse(localStorage.getItem("UserData")));
+
+    const savedUserInfo = JSON.parse(localStorage.getItem("UserLoginInfo"));
+
+    if (savedUserInfo) {
+      setEmail(savedUserInfo.email);
+      setPassword(savedUserInfo.password);
+      setSavedUser(savedUserInfo);
+      setRememberMe(true);
+    }
+
+    if (rememberMe === false) {
+      localStorage.removeItem("UserLoginInfo");
+      setEmail("");
+      setPassword("");
+    }
+  }, [rememberMe]);
 
   return (
     <div className="authContainer">
@@ -105,7 +135,13 @@ function Login() {
               </p>
             )}
             <form onSubmit={handleSubmit(handleLogin)}>
-              <input {...register("email")} type="email" placeholder="Email" />
+              <input
+                {...register("email")}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               {errors.email && (
                 <p className="errorMessage">{errors.email.message}</p>
               )}
@@ -114,6 +150,8 @@ function Login() {
                 {...register("password")}
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               {errors.password && (
@@ -128,6 +166,8 @@ function Login() {
                   type="checkbox"
                   id="rememberMe"
                   name="rememberMe"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
                 />
               </div>
               <button type="submit">LOGIN</button>

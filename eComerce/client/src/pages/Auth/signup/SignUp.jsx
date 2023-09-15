@@ -54,8 +54,6 @@ function SignUp() {
 
       console.log(response.data);
     } catch (error) {
-      toast.error(`Error: ${error}`);
-      console.log(error.response?.data?.error?.message);
       setRequestError(error.response?.data?.error?.message);
       return; // Stop execution if error
     }
@@ -63,7 +61,7 @@ function SignUp() {
     try {
       if (rememberMe) {
         localStorage.setItem(
-          "rememberUser",
+          "UserLoginInfo",
           JSON.stringify({
             username: data.username,
             email: data.email,
