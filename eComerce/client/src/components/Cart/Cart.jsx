@@ -1,4 +1,5 @@
 import "./Cart.scss";
+import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +7,9 @@ import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
+  const [userJWT, setUserJWT] = useState("");
+  console.log(userJWT);
+
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
 
@@ -31,7 +35,7 @@ const Cart = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userJWT ? userJWT : token}`,
           },
         }
       );
@@ -43,6 +47,10 @@ const Cart = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setUserJWT(JSON.parse(localStorage.getItem("UserJWT")));
+  }, []);
 
   return (
     <div className="cart">

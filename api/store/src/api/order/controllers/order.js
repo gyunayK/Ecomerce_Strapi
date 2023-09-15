@@ -17,7 +17,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
 
     async create(ctx) {
         const { products } = ctx.request.body;
-
+        const userId = ctx.state.user.id;
 
         const lineItems = await Promise.all(
             products.map(async (product) => {
@@ -26,7 +26,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
 
                     .findOne(product.id, { populate: ['img', 'img2'] })
 
-                console.log(item);
 
                 return {
                     price_data: {
@@ -68,6 +67,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                 .create({
                     data: {
                         products,
+                        userID: userId,
                         stripeId: session.id,
                     }
                 });

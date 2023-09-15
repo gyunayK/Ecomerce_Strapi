@@ -55,7 +55,7 @@ function SignUp() {
       console.log(response.data);
     } catch (error) {
       setRequestError(error.response?.data?.error?.message);
-      return; // Stop execution if error
+      return;
     }
 
     try {

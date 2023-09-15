@@ -91,6 +91,7 @@ const Footer = () => {
                   href="https://github.com/gyunayK"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="GitHub profile"
                 >
                   <BsGithub />
                 </a>

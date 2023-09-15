@@ -8,7 +8,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Cart from "@/components/Cart/Cart";
 import MenuIcon from "@mui/icons-material/Menu";
 import Search from "@/components/Search/Search";
-import LoginMenu from "@/components/loginMenu/LoginMenu";
+import UserMenu from "@/components/userMenu/UserMenu";
 import Button from "@mui/material/Button";
 
 const Navbar = () => {
@@ -17,7 +17,6 @@ const Navbar = () => {
 
   const products = useSelector((state) => state.cart.products);
 
-  // const category = searchItems?.data?.find((cat) => cat.id === catId);
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -70,7 +69,7 @@ const Navbar = () => {
             <Search />
 
             <FavoriteBorderOutlinedIcon />
-            <LoginMenu />
+            <UserMenu />
 
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
               <ShoppingCartOutlinedIcon />

@@ -31,7 +31,7 @@ function Search() {
   };
   return (
     <div className="search-box">
-      <button className="btn-search">
+      <button className="btn-search" aria-label="Search">
         <SearchOutlinedIcon />
       </button>
       <input

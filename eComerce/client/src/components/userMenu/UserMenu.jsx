@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Link from "@mui/material/Link";
 
-export default function LoginMenu() {
+export default function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -41,6 +41,7 @@ export default function LoginMenu() {
         aria-expanded={menuOpen ? "true" : undefined}
         onClick={handleClick}
         color="inherit"
+        aria-label="user menu"
       >
         <PersonOutlineOutlinedIcon />
       </Button>

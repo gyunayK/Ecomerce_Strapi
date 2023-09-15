@@ -58,7 +58,6 @@ const Products = () => {
 
   // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
   const category = categories?.data?.find((cat) => cat.id === catId);
-
   const imagePath =
     category?.attributes?.img?.data?.attributes?.formats?.large?.url ||
     category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
@@ -102,11 +101,13 @@ const Products = () => {
           })}
         </div>
         <div className="filterItem">
-          <h2>Filter by price</h2>
+          <h1 id="priceFilterLabel">Filter by price</h1>
           <div className="inputItem">
             <span>0</span>
             <input
               type="range"
+              id="priceRangeInput"
+              aria-labelledby="priceFilterLabel"
               min={0}
               max={1000}
               onMouseUp={(e) => setMaxPrice(e.target.value)}
