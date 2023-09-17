@@ -1,4 +1,5 @@
 import React from "react";
+import "./Order.scss";
 import { DataGrid } from "@mui/x-data-grid";
 
 function Order() {
@@ -27,7 +28,7 @@ function Order() {
     { id: 9, item: "Roxie", decription: "Harvey", price: 65 },
   ];
   return (
-    <div className="order">
+    <div className="orderContainer">
       <DataGrid
         rows={rows}
         columns={columns}
@@ -37,7 +38,6 @@ function Order() {
           },
         }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
       />
     </div>
   );
