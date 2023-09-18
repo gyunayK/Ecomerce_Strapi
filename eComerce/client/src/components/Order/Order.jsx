@@ -1,18 +1,17 @@
 import React from "react";
-import "./Order.scss";
 import { DataGrid } from "@mui/x-data-grid";
 
 function Order() {
   const columns = [
     { field: "id", headerName: "ID", width: 40 },
     { field: "item", headerName: "Item", width: 130 },
-    { field: "decription", headerName: "Decription", width: 130 },
+    { field: "decription", headerName: "Decription", width: 100 },
 
     {
       field: "price",
       headerName: "Price (USD)",
       type: "number",
-      width: 140,
+      width: 100,
     },
   ];
 
@@ -28,7 +27,13 @@ function Order() {
     { id: 9, item: "Roxie", decription: "Harvey", price: 65 },
   ];
   return (
-    <div className="orderContainer">
+    <div
+      className="orderContainer"
+      style={{
+        height: 400,
+        width: "100%",
+      }}
+    >
       <DataGrid
         rows={rows}
         columns={columns}

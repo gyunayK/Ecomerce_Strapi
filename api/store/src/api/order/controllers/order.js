@@ -23,9 +23,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
             products.map(async (product) => {
                 const item = await strapi
                     .service('api::product.product')
-
                     .findOne(product.id, { populate: ['img', 'img2'] })
-
 
                 return {
                     price_data: {
@@ -34,7 +32,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                             name: item.title,
                             description: item.desc,
                             images: [`${imgURL}${item.img.url}`],
-
                         },
                         unit_amount: item.price * 100,
 
@@ -45,13 +42,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
         );
 
 
-
-
-
-        console.log(`Success URL: ${process.env.CLIENT_URL}?success=true`);
-
-
-
         try {
             const session = await stripe.checkout.sessions.create({
                 mode: 'payment',
@@ -60,6 +50,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                 line_items: lineItems,
                 shipping_address_collection: { allowed_countries: ['US', 'CA'] },
                 payment_method_types: ['card'],
+
             });
 
             await strapi

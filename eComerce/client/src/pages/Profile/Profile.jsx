@@ -23,7 +23,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="odersContainer">
+    <div className="profileWrapper">
       <div className="userNavContainer">
         <nav className="userNavLeft">
           <ul>
