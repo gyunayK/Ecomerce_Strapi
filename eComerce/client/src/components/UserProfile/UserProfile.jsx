@@ -2,10 +2,19 @@ import { useState } from "react";
 import "./UserProfile.scss";
 import Modal from "@/components/Modal/Modal";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import PersonIcon from "@mui/icons-material/Person";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-function UserProfile() {
+function UserProfile({ user, userJWT }) {
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [changeAvatarOpen, setChangeAvatarOpen] = useState(false);
+  const [file, setFile] = useState(null);
+
+  const imgURL = import.meta.env.VITE_APP_UPLOAD_URL;
+  const api = import.meta.env.VITE_APP_URL_API;
+
+  console.log(user);
 
   const handleCloseEditProfile = () => {
     setEditProfileOpen(false);
@@ -21,6 +30,52 @@ function UserProfile() {
 
   const handleOpenChangeAvatar = () => {
     setChangeAvatarOpen(true);
+  };
+
+  const handleFileChange = ({ target: { files } }) => {
+    if (files?.length) {
+      const { type } = files[0];
+
+      if (type === "image/jpeg" || type === "image/png") {
+        setFile(files[0]);
+      } else {
+        toast.error("Accept only jpeg or png files are allowed");
+      }
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      toast.error("Please select an image");
+      return;
+    }
+
+    try {
+      const files = new FormData();
+      files.append("files", file);
+      files.append("ref", "user");
+      files.append("refId", user.id);
+      files.append("field", "profile_IMG");
+
+      const res = await axios.post(`${api}/upload`, files, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userJWT}`,
+        },
+      });
+
+      console.log(res);
+      if (res.data && res.data.length > 0) {
+        toast.success("Image uploaded successfully");
+      }
+
+      setFile(null);
+      console.log(res);
+    } catch (error) {
+      console.log({ error });
+      toast.error("An error occurred while uploading the image.");
+    }
   };
 
   return (
@@ -52,10 +107,14 @@ function UserProfile() {
         </div>
         <div className="profileImage">
           <div className="imageWrapper">
-            <img
-              src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"
-              alt="User avatar"
-            />
+            {user.profile_IMG?.url ? (
+              <img
+                src={imgURL + user.profile_IMG?.url}
+                alt={user.profile_IMG?.name}
+              />
+            ) : (
+              <PersonIcon color="primary" className="personIcon" />
+            )}
           </div>
           <div>
             <button className="changeAvatar" onClick={handleOpenChangeAvatar}>
@@ -65,11 +124,10 @@ function UserProfile() {
               <div className="editProfile">
                 <div className="editProfileForm">
                   <h1 className="editProfileTitle">Change Avatar</h1>
-                  <form>
-                    <div className="editProfileFormName">
-                      <label>Avatar</label>
-                      <input type="file" />
-                    </div>
+                  <form className="editProfileFormName" onSubmit={handleSubmit}>
+                    <label>Avatar:</label>
+                    <input type="file" onChange={handleFileChange} />
+                    <button type="submit">UPLOAD</button>
                   </form>
                 </div>
               </div>
@@ -77,10 +135,12 @@ function UserProfile() {
           </div>
         </div>
         <div className="profileInfo">
-          <div className="profileName">Name: John Doe</div>
-          <div className="profileEmail">Email: teest@gmail.com</div>
-          <div className="profilePhone">Phone: 123456789</div>
-          <div className="createdAt">Created At: 2021-07-14T11:25:00.000Z</div>
+          <div className="profileName"> {user.username}</div>
+          <div className="profileEmail">{user.email}</div>
+          <div className="profilePhone"> N/A</div>
+          <div className="createdAt">
+            Created At: {new Date(user.createdAt).toLocaleDateString()}
+          </div>
         </div>
       </div>
     </div>
