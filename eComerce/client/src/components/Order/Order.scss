@@ -1,4 +1,99 @@
 .orderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
-  height: max-content;
+  height: 100%;
+
+  .oder {
+    width: 100%;
+    border: 1px solid #ddd;
+    background: #ffff;
+    border-radius: 10px;
+    padding: 10px;
+
+    .oderTop {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      background-color: #fff;
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+      .oderTopRight {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: space-between;
+
+        div:first-child {
+          border-right: 1px solid #ddd;
+          padding-right: 10px;
+
+          p {
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    .oderBot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .imgContainer {
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: contain;
+        }
+      }
+
+      .orderBotRight {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+        width: 150px;
+
+        .addToCartBTN {
+          width: 100%;
+          height: 35px;
+          border: none;
+          border-radius: 50px;
+          background-color: #f0c14b;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: #111;
+          &:hover {
+            background-color: #ddb347;
+          }
+        }
+
+        .deleteBTN {
+          width: 100%;
+          height: 35px;
+          border: none;
+          border-radius: 50px;
+          background-color: #f0c14b;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: #111;
+          &:hover {
+            background-color: #ddb347;
+          }
+        }
+      }
+    }
+  }
 }

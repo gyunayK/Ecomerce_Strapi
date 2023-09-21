@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./UserProfile.scss";
 import Modal from "@/components/Modal/Modal";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
@@ -6,15 +6,17 @@ import PersonIcon from "@mui/icons-material/Person";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function UserProfile({ user, userJWT }) {
+function UserProfile({ user, userJWT, handleUserUpdate }) {
   const [editProfileOpen, setEditProfileOpen] = useState(false);
   const [changeAvatarOpen, setChangeAvatarOpen] = useState(false);
   const [file, setFile] = useState(null);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  console.log(user);
 
   const imgURL = import.meta.env.VITE_APP_UPLOAD_URL;
   const api = import.meta.env.VITE_APP_URL_API;
-
-  console.log(user);
 
   const handleCloseEditProfile = () => {
     setEditProfileOpen(false);
@@ -39,12 +41,12 @@ function UserProfile({ user, userJWT }) {
       if (type === "image/jpeg" || type === "image/png") {
         setFile(files[0]);
       } else {
-        toast.error("Accept only jpeg or png files are allowed");
+        toast.error("Only 'jpeg' or 'png' files are allowed");
       }
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitImage = async (e) => {
     e.preventDefault();
     if (!file) {
       toast.error("Please select an image");
@@ -53,10 +55,10 @@ function UserProfile({ user, userJWT }) {
 
     try {
       const files = new FormData();
-      files.append("files", file);
-      files.append("ref", "user");
+      files.append("ref", "plugin::users-permissions.user");
       files.append("refId", user.id);
       files.append("field", "profile_IMG");
+      files.append("files", file);
 
       const res = await axios.post(`${api}/upload`, files, {
         headers: {
@@ -65,19 +67,47 @@ function UserProfile({ user, userJWT }) {
         },
       });
 
-      console.log(res);
       if (res.data && res.data.length > 0) {
         toast.success("Image uploaded successfully");
       }
 
+      handleUserUpdate();
+      handleCloseChangeAvatar();
       setFile(null);
-      console.log(res);
     } catch (error) {
-      console.log({ error });
       toast.error("An error occurred while uploading the image.");
     }
   };
 
+  const handleUpdateInfo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.put(
+        `${api}/users/${user.id}`,
+        { username: name, email, phoneNumber: phone },
+        {
+          headers: {
+            Authorization: `Bearer ${userJWT}`,
+          },
+        }
+      );
+
+      if (res.data) {
+        toast.success("User updated successfully");
+        handleUserUpdate();
+        handleCloseEditProfile();
+      }
+    } catch (error) {
+      toast.error("An error occurred while updating the user.");
+    }
+  };
+
+  useEffect(() => {
+    if (user.email) setEmail(user.email);
+    if (user.phoneNumber) setPhone(user.phoneNumber);
+    if (user.username) setName(user.username);
+  }, [user]);
   return (
     <div className="profileContainer">
       <div className="profile">
@@ -88,19 +118,35 @@ function UserProfile({ user, userJWT }) {
           <Modal open={editProfileOpen} onClose={handleCloseEditProfile}>
             <div className="editProfile">
               <h1 className="editProfileTitle">Edit Profile</h1>
-              <form className="editProfileForm">
+              <form className="editProfileForm" onSubmit={handleUpdateInfo}>
                 <div>
                   <label>Name:</label>
-                  <input type="text" placeholder="John Doe" />
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div>
                   <label>Email:</label>
-                  <input type="email" placeholder="email" />
+                  <input
+                    type="email"
+                    placeholder="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div>
                   <label>Phone:</label>
-                  <input type="text" placeholder="Phone" />
+                  <input
+                    type="text"
+                    placeholder="Phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
                 </div>
+                <button type="submit">UPDATE</button>
               </form>
             </div>
           </Modal>
@@ -124,7 +170,10 @@ function UserProfile({ user, userJWT }) {
               <div className="editProfile">
                 <div className="editProfileForm">
                   <h1 className="editProfileTitle">Change Avatar</h1>
-                  <form className="editProfileFormName" onSubmit={handleSubmit}>
+                  <form
+                    className="editProfileFormName"
+                    onSubmit={handleSubmitImage}
+                  >
                     <label>Avatar:</label>
                     <input type="file" onChange={handleFileChange} />
                     <button type="submit">UPLOAD</button>
@@ -137,7 +186,7 @@ function UserProfile({ user, userJWT }) {
         <div className="profileInfo">
           <div className="profileName"> {user.username}</div>
           <div className="profileEmail">{user.email}</div>
-          <div className="profilePhone"> N/A</div>
+          <div className="profilePhone"> {user.phoneNumber}</div>
           <div className="createdAt">
             Created At: {new Date(user.createdAt).toLocaleDateString()}
           </div>

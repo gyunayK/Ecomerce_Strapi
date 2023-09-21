@@ -18,14 +18,24 @@ export default function Profile() {
     setCurrentView(view);
   };
 
+  const handleUserUpdate = () => {
+    setIsUserUpdated(!isUserUpdated);
+  };
+
   const renderComponent = () => {
     switch (currentView) {
       case "Profile":
-        return <UserProfile user={user} userJWT={userJWT} />;
+        return (
+          <UserProfile
+            user={user}
+            userJWT={userJWT}
+            handleUserUpdate={handleUserUpdate}
+          />
+        );
       case "Wishlist":
         return <WishList />;
       case "Orders":
-        return <Order />;
+        return <Order user={user} />;
       default:
         return <UserProfile />;
     }
@@ -48,7 +58,7 @@ export default function Profile() {
     };
 
     getProfileData();
-  }, [userJWT, api]);
+  }, [userJWT, api, isUserUpdated]);
 
   return (
     <div className="profileWrapper">

@@ -1,49 +1,143 @@
-import React from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { useState } from "react";
+import "./Order.scss";
 
-function Order() {
-  const columns = [
-    { field: "id", headerName: "ID", width: 40 },
-    { field: "item", headerName: "Item", width: 130 },
-    { field: "decription", headerName: "Decription", width: 100 },
+function Order({ user }) {
+  const [oders, setOders] = useState([...user.orders]);
 
-    {
-      field: "price",
-      headerName: "Price (USD)",
-      type: "number",
-      width: 100,
-    },
-  ];
+  console.log(oders);
 
-  const rows = [
-    { id: 1, item: "Snow", decription: "Jon", price: 35 },
-    { id: 2, item: "Lannister", decription: "Cersei", price: 42 },
-    { id: 3, item: "Lannister", decription: "Jaime", price: 45 },
-    { id: 4, item: "Stark", decription: "Arya", price: 16 },
-    { id: 5, item: "Targaryen", decription: "Daenerys", price: 55 },
-    { id: 6, item: "Melisandre", decription: "Gareld", price: 150 },
-    { id: 7, item: "Clifford", decription: "Ferrara", price: 44 },
-    { id: 8, item: "Frances", decription: "Rossini", price: 36 },
-    { id: 9, item: "Roxie", decription: "Harvey", price: 65 },
-  ];
   return (
-    <div
-      className="orderContainer"
-      style={{
-        height: 400,
-        width: "100%",
-      }}
-    >
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-      />
+    <div className="orderContainer">
+      <div className="oder">
+        <div className="oderTop">
+          <h1>Completed</h1>
+          <div className="oderTopRight">
+            <div>
+              <p>Oder Date: May 9, 2022</p>
+              <p>Oder ID: 23131231231232</p>
+            </div>
+            <div>
+              <button>Order details</button>
+            </div>
+          </div>
+        </div>
+        <div className="oderBot">
+          <div className="imgContainer">
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+          </div>
+          <div className="orderBotRight">
+            <h2>Total: US 106.50</h2>
+            <button className="addToCartBTN">Add to cart</button>
+            <button className="deleteBTN"> Delete</button>
+          </div>
+        </div>
+      </div>
+      <div className="oder">
+        <div className="oderTop">
+          <h1>Completed</h1>
+          <div className="oderTopRight">
+            <div>
+              <p>Oder Date: May 9, 2022</p>
+              <p>Oder ID: 23131231231232</p>
+            </div>
+            <div>
+              <button>Order details</button>
+            </div>
+          </div>
+        </div>
+        <div className="oderBot">
+          <div className="imgContainer">
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+          </div>
+          <div className="orderBotRight">
+            <h2>Total: US 106.50</h2>
+            <button className="addToCartBTN">Add to cart</button>
+            <button className="deleteBTN"> Delete</button>
+          </div>
+        </div>
+      </div>
+      <div className="oder">
+        <div className="oderTop">
+          <h1>Completed</h1>
+          <div className="oderTopRight">
+            <div>
+              <p>Oder Date: May 9, 2022</p>
+              <p>Oder ID: 23131231231232</p>
+            </div>
+            <div>
+              <button>Order details</button>
+            </div>
+          </div>
+        </div>
+        <div className="oderBot">
+          <div className="imgContainer">
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+          </div>
+          <div className="orderBotRight">
+            <h2>Total: US 106.50</h2>
+            <button className="addToCartBTN">Add to cart</button>
+            <button className="deleteBTN"> Delete</button>
+          </div>
+        </div>
+      </div>
+      <div className="oder">
+        <div className="oderTop">
+          <h1>Completed</h1>
+          <div className="oderTopRight">
+            <div>
+              <p>Oder Date: May 9, 2022</p>
+              <p>Oder ID: 23131231231232</p>
+            </div>
+            <div>
+              <button>Order details</button>
+            </div>
+          </div>
+        </div>
+        <div className="oderBot">
+          <div className="imgContainer">
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+          </div>
+          <div className="orderBotRight">
+            <h2>Total: US 106.50</h2>
+            <button className="addToCartBTN">Add to cart</button>
+            <button className="deleteBTN"> Delete</button>
+          </div>
+        </div>
+      </div>
+      <div className="oder">
+        <div className="oderTop">
+          <h1>Completed</h1>
+          <div className="oderTopRight">
+            <div>
+              <p>Oder Date: May 9, 2022</p>
+              <p>Oder ID: 23131231231232</p>
+            </div>
+            <div>
+              <button>Order details</button>
+            </div>
+          </div>
+        </div>
+        <div className="oderBot">
+          <div className="imgContainer">
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+          </div>
+          <div className="orderBotRight">
+            <h2>Total: US 106.50</h2>
+            <button className="addToCartBTN">Add to cart</button>
+            <button className="deleteBTN"> Delete</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
