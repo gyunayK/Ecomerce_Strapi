@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Order.scss";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/cartReducer";
+import axios from "axios";
 
-function Order({ user }) {
-  const [orders, setOrders] = useState([...user.orders]);
+function Order({ user, userJWT, handleUserUpdate }) {
+  const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
 
   const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
+  const api = import.meta.env.VITE_APP_URL_API;
 
   const handleCopyClick = (stripeId) => {
     navigator.clipboard
@@ -30,7 +32,6 @@ function Order({ user }) {
   };
 
   const handleAddToCart = (product) => {
-    console.log(product);
     product.forEach((product) => {
       dispatch(
         addToCart({
@@ -45,7 +46,29 @@ function Order({ user }) {
     });
   };
 
-  console.log(orders);
+  const handleDeleteOrder = async (id) => {
+    try {
+      const res = await axios.delete(`${api}/orders/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userJWT}`,
+        },
+      });
+
+      // if(res.data) setOrders(orders.filter((order) => order.id !== id));
+
+      if (res.status === 200) {
+        toast.success("Order deleted!");
+        handleUserUpdate();
+      }
+    } catch (err) {
+      toast.error("Failed to delete order!");
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    setOrders([...user.orders]);
+  }, [user]);
 
   return (
     <div className="orderContainer">
@@ -90,7 +113,13 @@ function Order({ user }) {
                 >
                   Add to cart
                 </button>
-                <button className="deleteBTN"> Delete</button>
+                <button
+                  className="deleteBTN"
+                  onClick={() => handleDeleteOrder(order.id)}
+                >
+                  {" "}
+                  Delete
+                </button>
               </div>
             </div>
           </div>

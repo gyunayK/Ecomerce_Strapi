@@ -10,7 +10,6 @@ export default function Profile() {
 
   const [user, setUser] = useState({});
   const [isUserUpdated, setIsUserUpdated] = useState(false);
-
   const api = import.meta.env.VITE_APP_URL_API;
   const userJWT = JSON.parse(localStorage.getItem("UserJWT"));
 
@@ -35,7 +34,13 @@ export default function Profile() {
       case "Wishlist":
         return <WishList />;
       case "Orders":
-        return <Order user={user} />;
+        return (
+          <Order
+            user={user}
+            userJWT={userJWT}
+            handleUserUpdate={handleUserUpdate}
+          />
+        );
       default:
         return <UserProfile />;
     }
