@@ -2,19 +2,14 @@ import "./Card.scss";
 import { Link } from "react-router-dom";
 
 const Card = ({ item, id }) => {
-  const url = import.meta.env.VITE_APP_UPLOAD_URL;
   return (
     <Link className="link" to={`/product/${id}`}>
       <div className="card">
         <div className="image">
           {item?.isNew ? <span>New Season</span> : null}
+          <img src={item.img?.data.attributes.url} alt="" className="mainImg" />
           <img
-            src={`${url}${item.img?.data.attributes.url}`}
-            alt=""
-            className="mainImg"
-          />
-          <img
-            src={`${url}${item.img2?.data.attributes.url}`}
+            src={item.img2?.data.attributes.url}
             alt=""
             className="secondImg"
           />

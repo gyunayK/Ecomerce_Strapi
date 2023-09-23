@@ -20,8 +20,6 @@ const Products = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const baseURL_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [catId]);
@@ -55,6 +53,8 @@ const Products = () => {
     fetchCategories();
     fetchSubCategories();
   }, [catId]);
+
+  console.log(categories);
 
   // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
   const category = categories?.data?.find((cat) => cat.id === catId);
@@ -140,11 +140,7 @@ const Products = () => {
         </div>
       </div>
       <div className="right">
-        <img
-          className="categoryIMG"
-          src={`${baseURL_IMG}${imagePath}`}
-          alt=""
-        />
+        <img className="categoryIMG" src={imagePath} alt="" />
         <List
           catId={catId}
           maxPrice={maxPrice}

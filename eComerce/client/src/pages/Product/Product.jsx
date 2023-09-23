@@ -15,12 +15,12 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const id = useParams().id;
-  const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
   const api = import.meta.env.VITE_APP_URL_API;
 
   const { data, loading, error } = useFetch(`${api}/products/${id}?populate=*`);
   const [quantity, setQuantity] = useState(1);
   const [selectedImg, setSelectedImg] = useState("img");
+  console.log(data);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,21 +37,19 @@ const Product = () => {
             <div className="left">
               <div className="images">
                 <img
-                  src={url_IMG + data?.attributes?.img?.data.attributes.url}
+                  src={data?.attributes?.img?.data.attributes.url}
                   alt=""
                   onClick={(e) => setSelectedImg("img")}
                 />
                 <img
-                  src={url_IMG + data?.attributes?.img2.data.attributes.url}
+                  src={data?.attributes?.img2.data.attributes.url}
                   alt=""
                   onClick={() => setSelectedImg("img2")}
                 />
               </div>
               <div className="mainImg">
                 <img
-                  src={
-                    url_IMG + data?.attributes[selectedImg].data.attributes.url
-                  }
+                  src={data?.attributes[selectedImg].data.attributes.url}
                   alt=""
                 />
               </div>
