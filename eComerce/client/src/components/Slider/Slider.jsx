@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
 import "./Slider.scss";
 
 const Slider = () => {
@@ -40,7 +39,6 @@ const Slider = () => {
           <img key={index} src={image} alt="" />
         ))}
       </div>
-
       <div className="icons">
         <div className="icon" onClick={prevSlide}>
           <ArrowBackIcon />

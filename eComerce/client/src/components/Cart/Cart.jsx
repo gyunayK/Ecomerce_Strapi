@@ -8,7 +8,6 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const [userJWT, setUserJWT] = useState("");
-  console.log(userJWT);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
@@ -30,15 +29,14 @@ const Cart = () => {
 
       const res = await axios.post(
         `${api}/orders`,
-        {
-          products,
-        },
+        { products },
         {
           headers: {
             Authorization: `Bearer ${userJWT ? userJWT : token}`,
           },
         }
       );
+      console.log("Sending these products:", products);
 
       await stripeInstance.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
@@ -57,7 +55,7 @@ const Cart = () => {
       <h1>Products in your cart</h1>
       {products.map((item) => (
         <div className="item" key={item.id}>
-          <img src={import.meta.env.VITE_APP_UPLOAD_URL + item.img} alt="" />
+          <img src={item.img} alt="" />
           <div className="details">
             <h1>{item.title}</h1>
             <p>{item.desc?.substring(0, 30)}...</p>

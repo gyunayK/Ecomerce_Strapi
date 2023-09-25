@@ -18,14 +18,15 @@
   }
 
   .icons {
-    width: fit-content;
+    width: 95%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 100px;
+    right: 2%;
+    left: 2%;
+    bottom: 50%;
     gap: 10px;
-    margin: auto;
 
     .icon {
       width: 80px;
@@ -33,7 +34,6 @@
       border: 2px solid white;
       border-radius: 50%;
       color: white;
-
       display: flex;
       align-items: center;
       justify-content: center;

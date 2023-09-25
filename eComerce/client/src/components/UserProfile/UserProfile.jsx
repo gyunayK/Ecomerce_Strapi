@@ -154,10 +154,7 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
         <div className="profileImage">
           <div className="imageWrapper">
             {user.profile_IMG?.url ? (
-              <img
-                src={imgURL + user.profile_IMG?.url}
-                alt={user.profile_IMG?.name}
-              />
+              <img src={user.profile_IMG?.url} alt={user.profile_IMG?.name} />
             ) : (
               <PersonIcon color="primary" className="personIcon" />
             )}

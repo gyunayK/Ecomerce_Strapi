@@ -28,14 +28,11 @@ const Products = () => {
     const fetchCategories = async () => {
       try {
         const response = await makeRequest.get(
-          `/categories?populate=*&[filters][categories][id][$eq]=${catId}`
+          `/categories?populate=*&[filters][id][$eq]=${catId}`
         );
         setCategories(response.data);
       } catch (error) {
-        // Handle error. With Axios, error responses are caught in the catch block
-        if (error.response && error.response.status === 401) {
-          // Handle unauthorized error
-        }
+        console.log(error);
       }
     };
 
@@ -46,15 +43,13 @@ const Products = () => {
         );
         setSubCategories(response.data);
       } catch (error) {
-        // Handle error
+        console.log(error);
       }
     };
 
     fetchCategories();
     fetchSubCategories();
   }, [catId]);
-
-  console.log(categories);
 
   // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
   const category = categories?.data?.find((cat) => cat.id === catId);

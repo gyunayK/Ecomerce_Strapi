@@ -8,12 +8,10 @@
     display: none;
 
     @media (max-width: 768px) {
-      // Shown on mobile
       display: block;
       font-size: 30px;
       cursor: pointer;
       position: absolute;
-
       top: 100px;
       right: 18px;
       z-index: 1000;
