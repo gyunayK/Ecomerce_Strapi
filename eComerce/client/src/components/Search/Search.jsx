@@ -54,7 +54,7 @@ function Search() {
               <div className="searchItem" key={item.id}>
                 <Link to={`/product/${item.id}`} onClick={handleClick}>
                   <img
-                    src={`${baseURL_IMG}${imagePath}`}
+                    src={imagePath}
                     alt={item.attributes.title}
                   />
                   <div className="content">

@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Login from "./pages/Auth/login/Login";
 import SignUp from "./pages/Auth/signup/SignUp";
 import Profile from "./pages/Profile/Profile";
+import Favorites from "./pages/Favorites/Favorites";
 
 const Layout = () => {
   return (
@@ -30,7 +31,7 @@ const Router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
-
+  
   {
     path: "/",
     element: <Layout />,
@@ -50,6 +51,10 @@ const Router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },

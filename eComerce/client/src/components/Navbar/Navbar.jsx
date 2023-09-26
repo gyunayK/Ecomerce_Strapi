@@ -6,10 +6,8 @@ import { Link } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Cart from "@/components/Cart/Cart";
-import MenuIcon from "@mui/icons-material/Menu";
 import Search from "@/components/Search/Search";
 import UserMenu from "@/components/userMenu/UserMenu";
-import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +66,10 @@ const Navbar = () => {
           <div className="icons">
             <Search />
 
-            <FavoriteBorderOutlinedIcon />
+            <Link to={'/favorites'}>
+              <FavoriteBorderOutlinedIcon />
+            </Link>
+
             <UserMenu />
 
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>

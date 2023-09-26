@@ -4,6 +4,30 @@
   flex-direction: column;
   gap: 10px;
   margin-bottom: 50px;
+  position: relative;
+
+  .favIcon {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 10;
+    color: #ffffff;
+    font-size: 30px;
+    cursor: pointer;
+
+    &:hover {
+      color: #ec0000;
+    }
+  }
+  .favIconRed {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 10;
+    color: #ec0000;
+    font-size: 30px;
+    cursor: pointer;
+  }
 
   .image {
     width: 100%;
