@@ -135,6 +135,23 @@
         gap: 10px;
         color: #2f6ae0;
         font-size: 14px;
+
+        .favIcon {
+          z-index: 10;
+          color: gray;
+          font-size: 30px;
+          cursor: pointer;
+
+          &:hover {
+            color: #ec0000;
+          }
+        }
+        .favIconRed {
+          z-index: 10;
+          color: #ec0000;
+          font-size: 30px;
+          cursor: pointer;
+        }
       }
     }
   }

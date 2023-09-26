@@ -1,6 +1,5 @@
 import "./Product.scss";
 import { useState } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
@@ -11,16 +10,75 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/cartReducer";
 import Suggestions from "../../components/Suggestion/Suggestions";
+
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 const Product = () => {
+  const [quantity, setQuantity] = useState(1);
+  const [selectedImg, setSelectedImg] = useState("img");
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const [item, setItem] = useState([]);
+  console.log(item);
+
   const dispatch = useDispatch();
 
   const id = useParams().id;
   const api = import.meta.env.VITE_APP_URL_API;
-
   const { data, loading, error } = useFetch(`${api}/products/${id}?populate=*`);
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImg, setSelectedImg] = useState("img");
-  console.log(data);
+
+  const getItem = (data) => {
+    const item = data?.attributes;
+    setItem(item);
+  };
+
+  const handleAddToFavorites = () => {
+    try {
+      const favorites = JSON.parse(localStorage.getItem("favorites"));
+      if (favorites) {
+        const exist = favorites.find((fav) => fav.id === id);
+        if (exist) {
+          toast.error("This product is already in your favorites");
+        } else {
+          const newFavorites = [...favorites, { ...item, id }];
+          localStorage.setItem("favorites", JSON.stringify(newFavorites));
+          setIsFavorite(true);
+          toast.success("Added to favorites");
+        }
+      } else {
+        localStorage.setItem("favorites", JSON.stringify([{ ...item, id }]));
+        setIsFavorite(true);
+        toast.success("Added to favorites");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRemoveFromFavorites = () => {
+    try {
+      const favorites = JSON.parse(localStorage.getItem("favorites"));
+      const newFavorites = favorites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(false);
+      toast.success("Removed from favorites");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getItem(data);
+
+    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (favorites) {
+      const exist = favorites.find((fav) => fav.id === id);
+      if (exist) {
+        setIsFavorite(true);
+      }
+    }
+  }, [id, data]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,7 +157,19 @@ const Product = () => {
 
               <div className="links">
                 <div className="item">
-                  <FavoriteBorderIcon />
+                  <div className="icons">
+                    {isFavorite ? (
+                      <FavoriteIcon
+                        className="favIconRed"
+                        onClick={handleRemoveFromFavorites}
+                      />
+                    ) : (
+                      <FavoriteBorderOutlinedIcon
+                        className="favIcon"
+                        onClick={handleAddToFavorites}
+                      />
+                    )}
+                  </div>
                   <span>ADD TO WISHLIST</span>
                 </div>
                 <div className="item">
