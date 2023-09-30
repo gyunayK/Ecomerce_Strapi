@@ -8,8 +8,6 @@ import axios from "axios";
 function Order({ user, userJWT, handleUserUpdate }) {
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
-
-  const url_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
   const api = import.meta.env.VITE_APP_URL_API;
 
   const handleCopyClick = (stripeId) => {
@@ -100,7 +98,7 @@ function Order({ user, userJWT, handleUserUpdate }) {
                 {order.products.map((product, i) => {
                   return (
                     <a key={i} href={`/product/${product.id}`}>
-                      <img src={`${url_IMG}${product.img}`} alt="" />
+                      <img src={product.img} alt={product.title} />
                     </a>
                   );
                 })}

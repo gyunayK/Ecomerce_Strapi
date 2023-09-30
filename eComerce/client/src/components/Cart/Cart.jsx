@@ -5,6 +5,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
+import { Link } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
 
 const Cart = () => {
   const [userJWT, setUserJWT] = useState("");
@@ -52,30 +54,33 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <h1>Products in your cart</h1>
+      <h1>
+        {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
+      </h1>
       {products.map((item) => (
-        <div className="item" key={item.id}>
-          <img src={item.img} alt="" />
-          <div className="details">
-            <h1>{item.title}</h1>
-            <p>{item.desc?.substring(0, 30)}...</p>
-            <div className="price">
-              <h1>
-                {item.quantity} x ${item.price}
-              </h1>
+        <Link to={`/product/${item.id}`} key={item.id} className="itemWrapper">
+          <div className="item" key={item.id}>
+            <img src={item.img} alt={item.title} />
+            <div className="details">
+              <div>
+                <h1>{item.title}</h1>
+                <h1 className="price">
+                  {item.quantity} x ${item.price}
+                </h1>
+              </div>
+              <DeleteIcon
+                className="delete"
+                onClick={() => dispatch(removeItem(item.id))}
+              />
             </div>
           </div>
-          <DeleteIcon
-            className="delete"
-            onClick={() => dispatch(removeItem(item.id))}
-          />
-        </div>
+        </Link>
       ))}
       <div className="total">
-        <span>SUBTOTAL</span>
+        <span>Total</span>
         <span>${totalPrice}</span>
       </div>
-      <button onClick={handlePayment}>CHECKOUT</button>
+      <button onClick={handlePayment}>Checkout</button>
       <span className="reset" onClick={() => dispatch(resetCart())}>
         Reset
       </span>

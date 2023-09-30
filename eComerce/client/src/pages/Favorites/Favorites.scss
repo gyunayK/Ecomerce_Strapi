@@ -1,9 +1,42 @@
-.favProductWrapper{
+.favProductWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+  max-width: 1400px;
+
+  @media (max-width: 1300px) {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .top {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1180px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .cardWrapper {
+    display: flex;
+    gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin: 0 auto;
-    width: 100%;
+
+    .empty {
+      text-align: center;
+      h2 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }

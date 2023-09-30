@@ -5,44 +5,61 @@
   z-index: 999;
   background-color: white;
   padding: 20px;
-  -webkit-box-shadow: -1px 16px 39px -3px rgba(0,0,0,0.73); 
-  box-shadow: -1px 16px 39px -3px rgba(0,0,0,0.73);
+  -webkit-box-shadow: -1px 16px 39px -3px rgba(0, 0, 0, 0.73);
+  box-shadow: -1px 16px 39px -3px rgba(0, 0, 0, 0.73);
 
   h1 {
     margin-bottom: 30px;
-    color: grey;
+    color: black;
     font-weight: 400;
     font-size: 24px;
   }
 
-  .item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    img {
-      width: 80px;
-      height: 100px;
-      object-fit: cover;
+  .itemWrapper {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
-    .details {
-      h1 {
-        font-size: 18px;
-        font-weight: 500;
+    .item {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #e0e0e0;
+      padding: 10px;
+      border-radius: 8px;
+
+      img {
+        width: 80px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
       }
-      p {
-        color: grey;
-        margin-bottom: 10px;
-        font-size: 14px;
+      .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        h1 {
+          font-size: 18px;
+          font-weight: 500;
+        }
+        .price {
+          color: #2870fe;
+        }
       }
-      .price {
-        color: #2870fe;
+      .delete {
+        color: #cb0101;
+        font-size: 25px;
+        cursor: pointer;
+
+        &:hover {
+          color: red;
+          scale: 1.1;
+        }
       }
-    }
-    .delete {
-      color: red;
-      font-size: 30px;
-      cursor: pointer;
     }
   }
   .total {
@@ -52,7 +69,7 @@
     font-size: 18px;
     margin-bottom: 20px;
   }
-  button{
+  button {
     width: 180px;
     height: 50px;
     background-color: #3879fe;
@@ -73,7 +90,7 @@
     font-weight: 500;
   }
 
-  .reset{
+  .reset {
     color: red;
     font-size: 18px;
     font-weight: 600;
@@ -82,5 +99,4 @@
     justify-content: end;
     text-align: right;
   }
-
 }
