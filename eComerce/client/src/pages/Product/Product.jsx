@@ -13,6 +13,7 @@ import Suggestions from "../../components/Suggestion/Suggestions";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Loading from "@/components/Loading/Loading";
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImg, setSelectedImg] = useState("img");
@@ -88,7 +89,7 @@ const Product = () => {
     <>
       <div className="product">
         {loading ? (
-          "loading..."
+           <Loading />
         ) : (
           <>
             {" "}

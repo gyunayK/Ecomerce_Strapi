@@ -2,6 +2,7 @@ import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
 import { useEffect, useState } from "react";
 import useFetch from "@/hooks/useFetch";
+import Loading from "@/components/Loading/Loading";
 
 const FeaturedProducts = ({ type, desc }) => {
   const [products, setProducts] = useState([]);
@@ -21,13 +22,11 @@ const FeaturedProducts = ({ type, desc }) => {
     <div className="featuredProducts">
       <div className="top">
         <h1>{type} products</h1>
-        <p>
-          {desc}
-        </p>
+        <p>{desc}</p>
       </div>
       <div className="bottom">
         {loading ? (
-          <h1>Loading...</h1>
+          <Loading />
         ) : error ? (
           <h1>An error has occurred, please try again later.</h1>
         ) : (

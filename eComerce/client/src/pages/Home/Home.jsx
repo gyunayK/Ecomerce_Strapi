@@ -3,7 +3,6 @@ import Slider from "@/components/Slider/Slider";
 import "./Home.scss";
 import Categories from "@/components/Categories/Categories";
 import Contact from "../../components/Contact/Contact";
-import Loading from "../../components/Loading/Loading";
 
 const Home = () => {
   return (
@@ -20,7 +19,6 @@ const Home = () => {
       />
 
       <Contact />
-      <Loading/>
     </div>
   );
 };

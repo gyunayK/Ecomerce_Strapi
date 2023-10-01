@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./List.scss";
 import Card from "@/components/Card/Card";
 import useFetch from "@/hooks/useFetch";
+import Loading from "@/components/Loading/Loading";
 
 const List = ({ subCats, catId, maxPrice, sort }) => {
   const [productsData2, setProductsData2] = useState([]);
@@ -24,7 +25,7 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
   return (
     <div className="list">
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : error ? (
         <h1>An error has occurred, please try again later.</h1>
       ) : (
