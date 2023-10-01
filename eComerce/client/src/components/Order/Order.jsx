@@ -52,8 +52,6 @@ function Order({ user, userJWT, handleUserUpdate }) {
         },
       });
 
-      // if(res.data) setOrders(orders.filter((order) => order.id !== id));
-
       if (res.status === 200) {
         toast.success("Order deleted!");
         handleUserUpdate();
