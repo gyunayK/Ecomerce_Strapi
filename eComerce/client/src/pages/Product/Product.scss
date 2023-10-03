@@ -50,9 +50,9 @@
 
     .mainImg {
       img {
-        width: 500px;
-        height: 500px;
-        object-fit: cover;
+        width: 400px;
+        height: 100%;
+        object-fit: contain;
       }
 
       // Media Queries for .mainImg
@@ -90,7 +90,7 @@
     }
 
     p {
-      font-size: 20px;
+      font-size: 15px;
       color: #555;
       font-weight: 400;
       width: 300px;

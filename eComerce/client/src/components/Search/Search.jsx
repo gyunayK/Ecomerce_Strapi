@@ -7,16 +7,16 @@ function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, setSearchItems] = useState([]);
   const url = import.meta.env.VITE_APP_URL_API;
+
+  //every word has to be capitalized
   const fetchUrl = `${url}/products?populate=*&[filters][title][$contains]=${searchTerm.replace(
     /\b[a-z]/g,
     (char) => char.toUpperCase()
   )}`;
 
   const shouldFetch = searchTerm !== "";
-
   const { data, loading, error } = useFetch(fetchUrl, shouldFetch);
 
-  console.log(searchTerm);
 
   useEffect(() => {
     if (searchTerm === "") {
