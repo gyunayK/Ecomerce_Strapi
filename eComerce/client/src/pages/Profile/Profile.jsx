@@ -31,8 +31,7 @@ export default function Profile() {
             handleUserUpdate={handleUserUpdate}
           />
         );
-      case "Wishlist":
-        return <WishList />;
+
       case "Orders":
         return (
           <Order
@@ -76,13 +75,6 @@ export default function Profile() {
               }}
             >
               Profile
-            </li>
-            <li
-              onClick={() => {
-                handleChangeComponent("Wishlist");
-              }}
-            >
-              Wishlist
             </li>
             <li
               onClick={() => {

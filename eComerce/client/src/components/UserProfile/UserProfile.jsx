@@ -13,9 +13,7 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
-  console.log(user);
 
-  const imgURL = import.meta.env.VITE_APP_UPLOAD_URL;
   const api = import.meta.env.VITE_APP_URL_API;
 
   const handleCloseEditProfile = () => {
@@ -108,6 +106,7 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
     if (user.phoneNumber) setPhone(user.phoneNumber);
     if (user.username) setName(user.username);
   }, [user]);
+
   return (
     <div className="profileContainer">
       <div className="profile">

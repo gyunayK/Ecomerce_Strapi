@@ -60,10 +60,7 @@
   .renderedCompContainer {
     width: 100%;
     max-width: 1000px;
-    background-color: #f5f5f5;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,8 +69,6 @@
       width: auto;
     }
 
-    .renderedComp {
-      padding: 20px;
-    }
+   
   }
 }

@@ -59,11 +59,6 @@ export default function UserMenu() {
             Profile
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link href="/orders" underline="none" color={"inherit"}>
-            Orders
-          </Link>
-        </MenuItem>
         <MenuItem>
           {user ? (
             <Button

@@ -171,14 +171,10 @@ const Product = () => {
                       />
                     )}
                   </div>
-                  <span>ADD TO WISHLIST</span>
-                </div>
-                <div className="item">
-                  <BalanceIcon />
-                  <span>ADD TO COMPARE</span>
+                  <span>ADD TO FAVORITES</span>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </>
         )}
       </div>
