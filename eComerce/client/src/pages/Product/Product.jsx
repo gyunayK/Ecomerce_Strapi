@@ -17,11 +17,8 @@ import Loading from "@/components/Loading/Loading";
 const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImg, setSelectedImg] = useState("img");
-
   const [isFavorite, setIsFavorite] = useState(false);
-
   const [item, setItem] = useState([]);
-  console.log(item);
 
   const dispatch = useDispatch();
 

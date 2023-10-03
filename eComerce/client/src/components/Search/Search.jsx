@@ -6,13 +6,17 @@ import useFetch from "@/hooks/useFetch";
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, setSearchItems] = useState([]);
-  const baseURL_IMG = import.meta.env.VITE_APP_UPLOAD_URL;
   const url = import.meta.env.VITE_APP_URL_API;
-  const fetchUrl = `${url}/products?populate=*&[filters][title][$contains]=${searchTerm}`;
+  const fetchUrl = `${url}/products?populate=*&[filters][title][$contains]=${searchTerm.replace(
+    /\b[a-z]/g,
+    (char) => char.toUpperCase()
+  )}`;
 
   const shouldFetch = searchTerm !== "";
 
   const { data, loading, error } = useFetch(fetchUrl, shouldFetch);
+
+  console.log(searchTerm);
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -53,10 +57,7 @@ function Search() {
             return (
               <div className="searchItem" key={item.id}>
                 <Link to={`/product/${item.id}`} onClick={handleClick}>
-                  <img
-                    src={imagePath}
-                    alt={item.attributes.title}
-                  />
+                  <img src={imagePath} alt={item.attributes.title} />
                   <div className="content">
                     <h3>{item.attributes.title}</h3>
                     <span>$ {item.attributes.price}</span>
