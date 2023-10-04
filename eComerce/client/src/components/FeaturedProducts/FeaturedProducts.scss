@@ -8,8 +8,7 @@
   .top {
     display: flex;
     margin: 0 auto;
-
-    width: 60%;
+    width: 100%;
     margin-bottom: 50px;
 
     @media (max-width: 1000px) {
@@ -42,7 +41,7 @@
   .bottom {
     display: flex;
     justify-content: center;
-    gap: 50px;
     flex-wrap: wrap;
+    gap: 20px;
   }
 }
