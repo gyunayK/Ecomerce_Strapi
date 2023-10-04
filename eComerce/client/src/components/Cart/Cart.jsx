@@ -1,5 +1,5 @@
 import "./Cart.scss";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 
-const Cart = () => {
+const Cart = React.forwardRef((props, ref) => {
   const [userJWT, setUserJWT] = useState("");
 
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className="cart">
+    <div className="cart" ref={ref}>
       <h1>
         {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
       </h1>
@@ -86,6 +86,6 @@ const Cart = () => {
       </span>
     </div>
   );
-};
+});
 
 export default Cart;

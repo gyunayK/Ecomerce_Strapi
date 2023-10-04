@@ -1,6 +1,6 @@
 import "./Navbar.scss";
 import "./hamburgerStyle.scss";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -13,11 +13,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const cartRef = useRef(null);
+
   const products = useSelector((state) => state.cart.products);
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (cartRef.current && !cartRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, []);
+
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -57,16 +74,10 @@ const Navbar = () => {
               Contact
             </Link>
           </div>
-          <div className="item">
-            <Link className="link" to="/">
-              Stores
-            </Link>
-          </div>
-
           <div className="icons">
             <Search />
 
-            <Link to={'/favorites'}>
+            <Link to={"/favorites"}>
               <FavoriteBorderOutlinedIcon />
             </Link>
 
@@ -117,13 +128,9 @@ const Navbar = () => {
             Contact
           </Link>
         </div>
-        <div className="item">
-          <Link className="link" to="/">
-            Stores
-          </Link>
-        </div>
       </div>
-      {isOpen && <Cart />}
+      {isOpen && <Cart ref={cartRef} />}
+
     </div>
   );
 };
