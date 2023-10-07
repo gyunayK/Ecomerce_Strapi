@@ -26,6 +26,12 @@ const Cart = React.forwardRef((props, ref) => {
 
   const stripePromise = loadStripe(stripePK);
   const handlePayment = async () => {
+
+    if (!userJWT) {
+      window.location.href = "/signin";
+      return;
+    }
+
     try {
       const stripeInstance = await stripePromise;
 
@@ -58,7 +64,7 @@ const Cart = React.forwardRef((props, ref) => {
         {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
       </h1>
       {products.map((item) => (
-        <Link to={`/product/${item.id}`} key={item.id} className="itemWrapper">
+        <Link to={`/product/${item.title}`} key={item.id} className="itemWrapper">
           <div className="item" key={item.id}>
             <img src={item.img} alt={item.title} />
             <div className="details">
