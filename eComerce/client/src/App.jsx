@@ -31,7 +31,7 @@ const Router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
-  
+
   {
     path: "/",
     element: <Layout />,
@@ -49,9 +49,10 @@ const Router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/product/:id",
+        path: "/product/:title",
         element: <Product />,
       },
+
       {
         path: "/favorites",
         element: <Favorites />,

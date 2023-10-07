@@ -64,7 +64,7 @@ const Navbar = () => {
         </div>
 
         <div className="right">
-          <div className="item">
+          {/* <div className="item">
             <Link className="link" to="/">
               About
             </Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
             <Link className="link" to="/">
               Contact
             </Link>
-          </div>
+          </div> */}
           <div className="icons">
             <Search />
 

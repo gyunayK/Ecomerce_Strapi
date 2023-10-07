@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ item, id }) => {
   return (
     <div className="card">
-      <Link className="link" to={`/product/${id}`}>
+      <Link className="link" to={`/product/${item?.title}`}>
         <div className="image">
           {item?.isNew ? <span>New Season</span> : null}
           <img src={item.img?.data.attributes.url} alt="" className="mainImg" />
@@ -18,7 +18,8 @@ const Card = ({ item, id }) => {
           <h2>{item.title}</h2>
           <div className="prices">
             {item?.type === "sale" ? (
-              <h3 className="salePrice">${item.price + 50}</h3>
+              <h3 className="salePrice">${(50 + item.price).toFixed(2)}
+              </h3>
             ) : null}
             <h3>${item.price}</h3>
           </div>

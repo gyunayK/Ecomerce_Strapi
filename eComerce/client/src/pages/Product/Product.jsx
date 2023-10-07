@@ -1,8 +1,6 @@
 import "./Product.scss";
 import { useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import BalanceIcon from "@mui/icons-material/Balance";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useFetch from "@/hooks/useFetch";
@@ -19,17 +17,22 @@ const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img");
   const [isFavorite, setIsFavorite] = useState(false);
   const [item, setItem] = useState([]);
+  const [id, setId] = useState([]);
 
   const dispatch = useDispatch();
+  const { title } = useParams();
 
-  const id = useParams().id;
   const api = import.meta.env.VITE_APP_URL_API;
-  const { data, loading, error } = useFetch(`${api}/products/${id}?populate=*`);
+  const { data, loading, error } = useFetch(
+    `${api}/products?populate=*&[filters][title][$eq]=${title}`
+  );
 
   const getItem = (data) => {
-    const item = data?.attributes;
-    setItem(item);
+    setItem(data?.[0].attributes);
+    setId(data?.[0].id);
   };
+
+  
 
   const handleAddToFavorites = () => {
     try {
@@ -66,54 +69,62 @@ const Product = () => {
     }
   };
 
-  useEffect(() => {
-    getItem(data);
+  // useEffect(() => {
+  //   getItem(data);
+  // }, [title, data]);
 
+  useEffect(() => {
+    if(title){
+      getItem(data);
+    }
     const favorites = JSON.parse(localStorage.getItem("favorites"));
     if (favorites) {
       const exist = favorites.find((fav) => fav.id === id);
+      console.log("exist", exist);
       if (exist) {
         setIsFavorite(true);
       }
     }
-  }, [id, data]);
+  }, [data, title]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [title]);
 
   return (
     <>
       <div className="product">
-        {loading ? (
-           <Loading />
+        {!item || Object.keys(item).length === 0 ? (
+          <Loading />
         ) : (
           <>
             {" "}
             <div className="left">
               <div className="images">
                 <img
-                  src={data?.attributes?.img?.data.attributes.url}
+                  src={item?.img?.data.attributes.url}
                   alt=""
                   onClick={(e) => setSelectedImg("img")}
                 />
                 <img
-                  src={data?.attributes?.img2.data.attributes.url}
+                  src={item?.img2.data.attributes.url}
                   alt=""
                   onClick={() => setSelectedImg("img2")}
                 />
               </div>
               <div className="mainImg">
-                <img
-                  src={data?.attributes[selectedImg].data.attributes.url}
-                  alt=""
-                />
+                <img src={item?.[selectedImg].data.attributes.url} alt="" />
               </div>
             </div>
             <div className="right">
-              <h1>{data?.attributes.title}</h1>
-              <span className="price">${data?.attributes.price}</span>
-              <p>{data?.attributes.desc}</p>
+              <h1>{item?.title}</h1>
+              <span className="price">
+                {item?.type === "sale" ? (
+                  <h3 className="salePrice">${(50 + item.price).toFixed(2)}</h3>
+                ) : null}
+                ${item?.price}
+              </span>
+              <p>{item?.desc}</p>
               <div className="quantity">
                 <button
                   onClick={() => {
@@ -139,11 +150,11 @@ const Product = () => {
                   toast.success("Product added to cart") &&
                   dispatch(
                     addToCart({
-                      id: data.id,
-                      title: data.attributes.title,
-                      desc: data.attributes.desc,
-                      img: data.attributes.img.data.attributes.url,
-                      price: data.attributes.price,
+                      id: id,
+                      title: item.title,
+                      desc: item.desc,
+                      img: item.img.data.attributes.url,
+                      price: item.price,
                       quantity: quantity,
                     })
                   )
