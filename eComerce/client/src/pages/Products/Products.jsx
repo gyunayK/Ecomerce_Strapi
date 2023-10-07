@@ -55,8 +55,8 @@ const Products = () => {
   const category = categories?.data?.find((cat) => cat.id === catId);
   const imagePath =
     category?.attributes?.img?.data?.attributes?.formats?.large?.url ||
-    category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
     category?.attributes?.img?.data?.attributes?.formats?.medium?.url ||
+    category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
     "";
 
   const handleChange = (e) => {
@@ -77,7 +77,7 @@ const Products = () => {
 
       <div className={isMenuOpen ? "left open" : "left"}>
         <div className="filterItem">
-          <h2>Product Categories</h2>
+          <h1>Product Categories</h1>
           {subCategories.data?.map((subCategory) => {
             return (
               <div className="inputItem" key={subCategory.id}>
@@ -89,14 +89,14 @@ const Products = () => {
                   onChange={handleChange}
                 />
                 <label htmlFor={subCategory.id}>
-                  {subCategory.attributes.title}
+                  {subCategory.attributes.title.to}
                 </label>
               </div>
             );
           })}
         </div>
         <div className="filterItem">
-          <h1 id="priceFilterLabel">Filter by price</h1>
+          <h1 >Filter by price</h1>
           <div className="inputItem">
             <span>0</span>
             <input
@@ -111,7 +111,7 @@ const Products = () => {
           </div>
         </div>
         <div className="filterItem">
-          <h2>Sort By</h2>
+          <h1>Sort By</h1>
           <div className="inputItem">
             <input
               type="radio"

@@ -77,7 +77,7 @@ const Navbar = () => {
           <div className="icons">
             <Search />
 
-            <Link to={"/favorites"}>
+            <Link id="fav" to={"/favorites"}>
               <FavoriteBorderOutlinedIcon />
             </Link>
 
