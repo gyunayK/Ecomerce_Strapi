@@ -18,13 +18,12 @@ const Product = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [item, setItem] = useState([]);
   const [id, setId] = useState(null);
-  console.log(id);
 
   const dispatch = useDispatch();
   const { title } = useParams();
 
   const api = import.meta.env.VITE_APP_URL_API;
-  const { data, loading, error } = useFetch(
+  const { data } = useFetch(
     `${api}/products?populate=*&[filters][title][$eq]=${title}`
   );
 
@@ -68,25 +67,29 @@ const Product = () => {
     }
   };
 
-  useEffect(() => {
-    if (title) {
-      getItem(data);
-    }
+  const checkIfFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites"));
-
-    if (favorites && id !== undefined) {
+    if (favorites) {
       const exist = favorites.find((fav) => fav.id === id);
       if (exist) {
         setIsFavorite(true);
       }
     }
+  };
+
+  useEffect(() => {
+    if (title) {
+      getItem(data);
+    }
   }, [data, title]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [title]);
+  }, [title, id]);
 
-  console.log("productComponent", id);
+  useEffect(() => {
+    checkIfFavorite();
+  }, [id]);
 
   return (
     <>

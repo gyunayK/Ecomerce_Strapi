@@ -4,7 +4,6 @@ import useFetch from "@/hooks/useFetch";
 import Card from "@/components/Card/Card";
 
 function Suggestions({ productID }) {
-  console.log("suggestedComponent", productID);
   const [subCategoryId, setSubCategoryId] = useState(null);
   const [suggestedProducts, setSuggestedProducts] = useState([]);
   const url = import.meta.env.VITE_APP_URL_API;
