@@ -6,6 +6,7 @@ import useFetch from "@/hooks/useFetch";
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, setSearchItems] = useState([]);
+  console.log(searchItems);
   const url = import.meta.env.VITE_APP_URL_API;
 
   //every word has to be capitalized
@@ -16,7 +17,6 @@ function Search() {
 
   const shouldFetch = searchTerm !== "";
   const { data, loading, error } = useFetch(fetchUrl, shouldFetch);
-
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -56,7 +56,10 @@ function Search() {
 
             return (
               <div className="searchItem" key={item.id}>
-                <Link to={`/product/${item.id}`} onClick={handleClick}>
+                <Link
+                  to={`/product/${item.attributes.title}`}
+                  onClick={handleClick}
+                >
                   <img src={imagePath} alt={item.attributes.title} />
                   <div className="content">
                     <h3>{item.attributes.title}</h3>
