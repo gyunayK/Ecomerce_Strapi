@@ -6,7 +6,6 @@ import useFetch from "@/hooks/useFetch";
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, setSearchItems] = useState([]);
-  console.log(searchItems);
   const url = import.meta.env.VITE_APP_URL_API;
 
   //every word has to be capitalized
