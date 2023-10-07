@@ -23,17 +23,17 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-        if (cartRef.current && !cartRef.current.contains(event.target)) {
-            setIsOpen(false);
-        }
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-}, []);
+  }, []);
 
   return (
     <div className="navbar">
@@ -64,16 +64,6 @@ const Navbar = () => {
         </div>
 
         <div className="right">
-          {/* <div className="item">
-            <Link className="link" to="/">
-              About
-            </Link>
-          </div>
-          <div className="item">
-            <Link className="link" to="/">
-              Contact
-            </Link>
-          </div> */}
           <div className="icons">
             <Search />
 
@@ -130,7 +120,6 @@ const Navbar = () => {
         </div>
       </div>
       {isOpen && <Cart ref={cartRef} />}
-
     </div>
   );
 };

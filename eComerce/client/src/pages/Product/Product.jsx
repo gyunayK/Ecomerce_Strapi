@@ -17,7 +17,8 @@ const Product = () => {
   const [selectedImg, setSelectedImg] = useState("img");
   const [isFavorite, setIsFavorite] = useState(false);
   const [item, setItem] = useState([]);
-  const [id, setId] = useState([]);
+  const [id, setId] = useState(null);
+  console.log(id);
 
   const dispatch = useDispatch();
   const { title } = useParams();
@@ -31,8 +32,6 @@ const Product = () => {
     setItem(data?.[0].attributes);
     setId(data?.[0].id);
   };
-
-  
 
   const handleAddToFavorites = () => {
     try {
@@ -69,18 +68,14 @@ const Product = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getItem(data);
-  // }, [title, data]);
-
   useEffect(() => {
-    if(title){
+    if (title) {
       getItem(data);
     }
     const favorites = JSON.parse(localStorage.getItem("favorites"));
-    if (favorites) {
+
+    if (favorites && id !== undefined) {
       const exist = favorites.find((fav) => fav.id === id);
-      console.log("exist", exist);
       if (exist) {
         setIsFavorite(true);
       }
@@ -90,6 +85,8 @@ const Product = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [title]);
+
+  console.log("productComponent", id);
 
   return (
     <>
@@ -183,10 +180,10 @@ const Product = () => {
                 </div>
               </div>
             </div>
+            <Suggestions productID={id} />
           </>
         )}
       </div>
-      <Suggestions productID={id} />
     </>
   );
 };

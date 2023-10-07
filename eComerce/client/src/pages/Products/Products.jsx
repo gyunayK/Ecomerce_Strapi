@@ -51,14 +51,6 @@ const Products = () => {
     fetchSubCategories();
   }, [catId]);
 
-  // This is a workaround for the fact that the API doesn't return the image URL for all sizes (large/medium/small)
-  const category = categories?.data?.find((cat) => cat.id === catId);
-  const imagePath =
-    category?.attributes?.img?.data?.attributes?.formats?.large?.url ||
-    category?.attributes?.img?.data?.attributes?.formats?.medium?.url ||
-    category?.attributes?.img?.data?.attributes?.formats?.small?.url ||
-    "";
-
   const handleChange = (e) => {
     if (e.target.checked) {
       setSelectedSubCategories([...selectedSubCategories, e.target.value]);
@@ -89,14 +81,14 @@ const Products = () => {
                   onChange={handleChange}
                 />
                 <label htmlFor={subCategory.id}>
-                  {subCategory.attributes.title.to}
+                  {subCategory.attributes.title}
                 </label>
               </div>
             );
           })}
         </div>
         <div className="filterItem">
-          <h1 >Filter by price</h1>
+          <h1>Filter by price</h1>
           <div className="inputItem">
             <span>0</span>
             <input
@@ -135,7 +127,14 @@ const Products = () => {
         </div>
       </div>
       <div className="right">
-        <img className="categoryIMG" src={imagePath} alt="" />
+        {categories?.data?.length > 0 && (
+          <img
+            className="categoryIMG"
+            src={categories.data[0].attributes.img.data.attributes.url}
+            alt=""
+          />
+        )}
+
         <List
           catId={catId}
           maxPrice={maxPrice}
