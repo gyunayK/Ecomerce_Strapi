@@ -24,6 +24,7 @@ export default function UserMenu() {
     localStorage.removeItem("UserJWT");
     setUser(null);
     handleClose();
+    window.location.reload("/");
   };
 
   useEffect(() => {

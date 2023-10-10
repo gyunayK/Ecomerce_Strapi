@@ -40,17 +40,17 @@ const Navbar = () => {
       <div className="wrapper">
         <div className="left">
           <div className="item">
-            <Link className="link" to="/products/1">
+            <Link className="link" to="/products/women">
               Women
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/products/2">
+            <Link className="link" to="/products/men">
               Men
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/products/3">
+            <Link className="link" to="/products/children">
               Children
             </Link>
           </div>
@@ -93,17 +93,17 @@ const Navbar = () => {
       </div>
       <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
         <div className="item">
-          <Link className="link" to="/products/1">
+          <Link className="link" to="/products/women">
             Women
           </Link>
         </div>
         <div className="item">
-          <Link className="link" to="/products/2">
+          <Link className="link" to="/products/men">
             Men
           </Link>
         </div>
         <div className="item">
-          <Link className="link" to="/products/3">
+          <Link className="link" to="/products/children">
             Children
           </Link>
         </div>

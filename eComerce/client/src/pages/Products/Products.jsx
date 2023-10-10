@@ -12,8 +12,9 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [id, setId] = useState("");
 
-  const catId = parseInt(useParams().id);
+  const { title } = useParams();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,37 +23,6 @@ const Products = () => {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [catId]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await makeRequest.get(
-          `/categories?populate=*&[filters][id][$eq]=${catId}`
-        );
-        setCategories(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const fetchSubCategories = async () => {
-      try {
-        const response = await makeRequest.get(
-          `/sub-categories?populate=*&[filters][categories][id][$eq]=${catId}`
-        );
-        setSubCategories(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchCategories();
-    fetchSubCategories();
-  }, [catId]);
 
   const handleChange = (e) => {
     if (e.target.checked) {
@@ -63,6 +33,41 @@ const Products = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await makeRequest.get(
+          `/categories?populate=*&[filters][title][$eq]=${title}`
+        );
+        setCategories(response.data);
+        setId(response.data.data[0].id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategories();
+  }, [title]);
+
+  useEffect(() => {
+    const fetchSubCategories = async () => {
+      try {
+        if (!id) return;
+        const response = await makeRequest.get(
+          `/sub-categories?populate=*&[filters][categories][id][$eq]=${id}`
+        );
+        setSubCategories(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSubCategories();
+  }, [id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   return (
     <div className="products">
@@ -138,12 +143,16 @@ const Products = () => {
           />
         )}
 
-        <List
-          catId={catId}
-          maxPrice={maxPrice}
-          sort={sort}
-          subCats={selectedSubCategories}
-        />
+        {id ? (
+          <List
+            catId={id}
+            maxPrice={maxPrice}
+            sort={sort}
+            subCats={selectedSubCategories}
+          />
+        ) : (
+          <div className="loading">Loading...</div>
+        )}
       </div>
     </div>
   );
