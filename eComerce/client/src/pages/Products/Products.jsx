@@ -6,19 +6,22 @@ import { makeRequest } from "@/hooks/makeRequest";
 import { BsFilterCircle } from "react-icons/bs";
 
 const Products = () => {
-  const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState("");
   const [selectedSubCategories, setSelectedSubCategories] = useState([]);
-
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const catId = parseInt(useParams().id);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -81,7 +84,7 @@ const Products = () => {
                   onChange={handleChange}
                 />
                 <label htmlFor={subCategory.id}>
-                  {subCategory.attributes.title}
+                  {capitalizeFirstLetter(subCategory.attributes.title)}
                 </label>
               </div>
             );
