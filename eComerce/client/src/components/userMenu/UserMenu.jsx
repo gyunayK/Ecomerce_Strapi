@@ -56,7 +56,11 @@ export default function UserMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link href="/profile" underline="none" color={"inherit"}>
+          <Link
+            href={`${user ? "/profile" : "/signin"}`}
+            underline="none"
+            color={"inherit"}
+          >
             Profile
           </Link>
         </MenuItem>

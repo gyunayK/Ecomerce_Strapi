@@ -123,7 +123,7 @@
     .wrapper .mobileRightSearch {
       position: absolute;
       right: 0px;
-      top: 95px;
+      top: 80px;
       display: flex;
       scale: 1.2;
     }
@@ -260,10 +260,11 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
 
   @media (max-width: 768px) {
     top: 100%;
-    right: 0;
     box-shadow: none;
-    width: 90%;
-    max-height: 50vh;
+    right: 20px;
+    width: 80%;
+    margin: 0 auto;
+    min-height: calc(100vh - 142px);
   }
 
   .searchItem {
@@ -314,25 +315,4 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
       transition: box-shadow 0.1s ease-in-out;
     }
   }
-}
-
-.searchItems::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-}
-
-.searchItems::-webkit-scrollbar-thumb {
-  background-color: darkgrey; /* Color of the thumb */
-  border-radius: 5px; /* Radius of the thumb */
-}
-
-.searchItems::-webkit-scrollbar-thumb:hover {
-  background: grey; /* Hover effect */
-}
-
-.searchItems::-webkit-scrollbar-track {
-  background: lightgrey; /* Color of the track */
-}
-
-.no-scroll {
-  overflow: hidden;
 }

@@ -10,3 +10,11 @@
     text-decoration: none;
   }
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(137, 137, 137);
+  outline: 1px solid rgb(0, 0, 0);
+}

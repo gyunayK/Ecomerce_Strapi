@@ -61,14 +61,8 @@
       }
       img {
         height: 100px;
+        width: 100%;
         object-fit: contain;
-      }
-
-      @media (max-width: 768px) {
-        img {
-          height: 80px;
-          object-fit: contain;
-        }
       }
 
       .icons {

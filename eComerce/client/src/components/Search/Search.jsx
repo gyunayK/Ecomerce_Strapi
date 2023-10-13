@@ -43,7 +43,7 @@ function Search() {
         placeholder="Type to Search..."
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
-        onBlur={handleClick}
+        // onBlur={handleClick}
       />
       {searchItems.length !== 0 ? (
         <div className="searchItems">

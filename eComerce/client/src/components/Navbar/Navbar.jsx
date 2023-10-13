@@ -92,8 +92,12 @@ const Navbar = () => {
           <div className="icons">
             <Search />
 
-            <Link id="fav" to={"/favorites"}>
-              <FavoriteBorderOutlinedIcon />
+            <Link id="fav" to={"/favorites"} aria-label="Navigate to favorites">
+              <FavoriteBorderOutlinedIcon
+                tabIndex="0"
+                aria-hidden="true"
+                alt="Favorites"
+              />
             </Link>
 
             <UserMenu />

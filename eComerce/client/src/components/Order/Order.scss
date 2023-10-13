@@ -1,11 +1,13 @@
 .orderContainer {
   display: flex;
   flex-direction: column;
+
   gap: 20px;
   width: 100%;
   min-width: 800px;
 
   @media (max-width: 768px) {
+    align-items: center;
     min-width: 100%;
   }
 
@@ -41,7 +43,6 @@
           flex-direction: column;
         }
 
-
         div:first-child {
           border-right: 1px solid #ddd;
           padding-right: 10px;
@@ -50,7 +51,6 @@
             border-right: none;
             padding-right: 0px;
           }
-  
 
           p {
             text-align: right;
