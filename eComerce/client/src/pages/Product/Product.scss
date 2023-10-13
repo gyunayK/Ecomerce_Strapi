@@ -9,6 +9,7 @@
   // Media Queries for .product
   @media (max-width: 1300px) {
     padding: 30px 0;
+    margin-top: 80px;
   }
 
   .left {
@@ -42,9 +43,10 @@
 
         // Media Queries for img
         @media (max-width: 768px) {
-          width: 100px;
-          object-fit: cover;
-          height: 100px;
+          width: 100%;
+          object-fit: contain;
+          height: 130px;
+          border: 1px solid #8989894d;
         }
       }
     }
@@ -89,7 +91,7 @@
       font-weight: 600;
       color: #3879fe;
 
-      .salePrice{
+      .salePrice {
         font-size: 20px;
         font-weight: 400;
         color: #555;
