@@ -58,8 +58,11 @@ const Navbar = () => {
             <span></span>
             <span></span>
           </label>
-          <div className="mobileRight">
+          <div className="mobileRightMenu">
             <UserMenu />
+          </div>
+          <div className="mobileRightSearch">
+            <Search />
           </div>
           <div className="item">
             <Link className="link" to="/products/women">

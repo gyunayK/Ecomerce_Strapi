@@ -2,6 +2,12 @@
   height: 90px;
   font-family: "Barlow Condensed", sans-serif;
   font-size: x-large;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  background-color: #fff;
 
   .wrapper {
     height: 100%;
@@ -87,7 +93,8 @@
         }
       }
     }
-    .mobileRight {
+    .mobileRightMenu,
+    .mobileRightSearch {
       display: none;
     }
   }
@@ -104,12 +111,19 @@
       left: -20px;
       top: 15px;
       display: flex;
-      scale: 0.5;
+      scale: 0.4;
     }
-    .wrapper .mobileRight {
+    .wrapper .mobileRightMenu {
       position: absolute;
       right: 0px;
       top: 30px;
+      display: flex;
+      scale: 1.2;
+    }
+    .wrapper .mobileRightSearch {
+      position: absolute;
+      right: 0px;
+      top: 95px;
       display: flex;
       scale: 1.2;
     }
@@ -142,7 +156,7 @@ $search-height: 100%;
 $font-size: 18px;
 $letter-spacing: 0px;
 $transition-time: 500ms;
-$bg-color: #ffffff;
+$bg-color: #ffffff00;
 $font-color: #000000;
 $placeholder-opacity: 0.5;
 $border-color: rgba(0, 0, 0, 0.5);
@@ -155,6 +169,9 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
   display: flex;
   justify-content: center;
   align-items: center;
+  &:focus-within {
+    background-color: #fff;
+  }
 
   .input-search {
     height: $search-height;
@@ -184,6 +201,11 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
       background-color: transparent;
       border-bottom: 1px solid $border-color;
       transition: all $transition-time $cubic-bezier;
+
+      @media (max-width: 768px) {
+        width: 79dvw;
+        border: none;
+      }
     }
   }
 
@@ -210,6 +232,10 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
       background-color: transparent;
       border-bottom: 1px solid $border-color;
       transition: all $transition-time $cubic-bezier;
+
+      @media (max-width: 768px) {
+        width: 79dvw;
+      }
     }
   }
 }
@@ -232,6 +258,14 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
   padding: 20px;
   background-color: #fff;
 
+  @media (max-width: 768px) {
+    top: 100%;
+    right: 0;
+    box-shadow: none;
+    width: 90%;
+    max-height: 50vh;
+  }
+
   .searchItem {
     flex-shrink: 0;
     width: 200px;
@@ -239,18 +273,26 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
     a {
       display: flex;
       align-items: center;
       text-decoration: none;
       gap: 10px;
-
       color: #333;
 
       img {
         width: 100px;
         height: 100px;
         object-fit: cover;
+
+        @media (max-width: 768px) {
+          object-fit: contain;
+        }
       }
 
       .content {

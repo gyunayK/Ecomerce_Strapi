@@ -17,6 +17,11 @@ function Search() {
   const shouldFetch = searchTerm !== "";
   const { data, loading, error } = useFetch(fetchUrl, shouldFetch);
 
+  const handleClick = () => {
+    setSearchItems([]);
+    setSearchTerm("");
+  };
+
   useEffect(() => {
     if (searchTerm === "") {
       setSearchItems([]);
@@ -27,11 +32,6 @@ function Search() {
       setSearchItems(data);
     }
   }, [data, searchTerm]);
-
-  const handleClick = () => {
-    setSearchItems([]);
-    setSearchTerm("");
-  };
   return (
     <div className="search-box">
       <button className="btn-search" aria-label="Search">
@@ -43,23 +43,21 @@ function Search() {
         placeholder="Type to Search..."
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
+        onBlur={handleClick}
       />
       {searchItems.length !== 0 ? (
         <div className="searchItems">
           {searchItems?.map((item) => {
-            const imagePath =
-              item.attributes?.img?.data?.attributes?.formats?.large?.url ||
-              item.attributes?.img?.data?.attributes?.formats?.small?.url ||
-              item.attributes?.img?.data?.attributes?.formats?.medium?.url ||
-              "";
-
             return (
               <div className="searchItem" key={item.id}>
                 <Link
                   to={`/product/${item.attributes.title}`}
                   onClick={handleClick}
                 >
-                  <img src={imagePath} alt={item.attributes.title} />
+                  <img
+                    src={item.attributes.img.data.attributes.url}
+                    alt={item.attributes.title}
+                  />
                   <div className="content">
                     <h3>{item.attributes.title}</h3>
                     <span>$ {item.attributes.price}</span>
