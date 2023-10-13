@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 
     @media (max-width: 768px) {
       padding: 0;
@@ -86,6 +87,9 @@
         }
       }
     }
+    .mobileRight {
+      display: none;
+    }
   }
 
   @media (max-width: 768px) {
@@ -96,7 +100,18 @@
     }
 
     .wrapper .hamburger {
+      position: absolute;
+      left: -20px;
+      top: 15px;
       display: flex;
+      scale: 0.5;
+    }
+    .wrapper .mobileRight {
+      position: absolute;
+      right: 0px;
+      top: 30px;
+      display: flex;
+      scale: 1.2;
     }
   }
 }
@@ -116,7 +131,7 @@
 
   transition: transform 0.2s ease-in-out;
 
-  transform: translateX(100%);
+  transform: translateX(-100%);
 }
 .mobileMenu.open {
   transform: translateX(0);
@@ -274,4 +289,8 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
 
 .searchItems::-webkit-scrollbar-track {
   background: lightgrey; /* Color of the track */
+}
+
+.no-scroll {
+  overflow: hidden;
 }

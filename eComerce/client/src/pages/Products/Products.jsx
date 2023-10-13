@@ -151,7 +151,7 @@ const Products = () => {
             subCats={selectedSubCategories}
           />
         ) : (
-          <div className="loading">Loading...</div>
+          <div>Loading...</div>
         )}
       </div>
     </div>

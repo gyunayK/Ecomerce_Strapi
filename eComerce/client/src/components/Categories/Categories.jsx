@@ -30,8 +30,8 @@ const Categories = () => {
             src="https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564"
             alt=""
           />
-          <Link to="/products/children" className="link catBTN">
-            children
+          <Link to="/products/kids" className="link catBTN">
+            kids
           </Link>
         </div>
       </div>
@@ -43,8 +43,8 @@ const Categories = () => {
                 src="https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564"
                 alt=""
               />
-              <Link to="/products/1" className="link catBTN">
-                Sale
+              <Link to="/products/makeup" className="link catBTN">
+                makeup
               </Link>
             </div>
           </div>
@@ -54,8 +54,8 @@ const Categories = () => {
                 src="https://ik.imagekit.io/riviaa/ImgEC/martin-katler-1kOIl9vu4cY-unsplash.png?updatedAt=1691212067564"
                 alt=""
               />
-              <Link to="/products/1" className="link catBTN">
-                Sale
+              <Link to="/products/bath" className="link catBTN">
+                bath
               </Link>
             </div>
           </div>

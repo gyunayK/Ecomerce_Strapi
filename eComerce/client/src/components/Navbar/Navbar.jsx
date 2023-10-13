@@ -35,10 +35,32 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <div className="navbar">
       <div className="wrapper">
         <div className="left">
+          <label className="hamburger">
+            <input
+              type="checkbox"
+              id="check"
+              checked={mobileMenuOpen}
+              onChange={toggleMenu}
+            />
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+          <div className="mobileRight">
+            <UserMenu />
+          </div>
           <div className="item">
             <Link className="link" to="/products/women">
               Women
@@ -50,8 +72,8 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="item">
-            <Link className="link" to="/products/children">
-              Children
+            <Link className="link" to="/products/kids">
+              Kids
             </Link>
           </div>
         </div>
@@ -78,17 +100,6 @@ const Navbar = () => {
               <span>{products.length}</span>
             </div>
           </div>
-          <label className="hamburger">
-            <input
-              type="checkbox"
-              id="check"
-              checked={mobileMenuOpen}
-              onChange={toggleMenu}
-            />
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
         </div>
       </div>
       <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
@@ -103,8 +114,8 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="item">
-          <Link className="link" to="/products/children">
-            Children
+          <Link className="link" to="/products/kids">
+            Kids
           </Link>
         </div>
 
