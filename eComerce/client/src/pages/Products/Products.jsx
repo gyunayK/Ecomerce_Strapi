@@ -67,7 +67,7 @@ const Products = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [id, selectedSubCategories]);
 
   return (
     <div className="products">
