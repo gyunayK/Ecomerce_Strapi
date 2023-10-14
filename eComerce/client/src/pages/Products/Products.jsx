@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import List from "@/components/List/List";
 import { makeRequest } from "@/hooks/makeRequest";
-import { BsFilterCircle } from "react-icons/bs";
+
+import { BsFilterCircle, BsXCircle } from "react-icons/bs";
 
 const Products = () => {
   const [maxPrice, setMaxPrice] = useState(1000);
@@ -71,8 +72,9 @@ const Products = () => {
 
   return (
     <div className="products">
-      <div className="hamburger" onClick={toggleMenu}>
-        <BsFilterCircle />
+      <div className="filterIcon" onClick={toggleMenu}>
+        Filter
+        {isMenuOpen ? <BsXCircle /> : <BsFilterCircle />}
       </div>
 
       <div className={isMenuOpen ? "left open" : "left"}>
@@ -95,7 +97,7 @@ const Products = () => {
             );
           })}
         </div>
-        <div className="filterItem">
+        <div className="filterItem  ">
           <h1>Filter by price</h1>
           <div className="inputItem">
             <span>0</span>
@@ -110,7 +112,7 @@ const Products = () => {
             <span>{maxPrice}</span>
           </div>
         </div>
-        <div className="filterItem">
+        <div className="filterItem sort">
           <h1>Sort By</h1>
           <div className="inputItem">
             <input
