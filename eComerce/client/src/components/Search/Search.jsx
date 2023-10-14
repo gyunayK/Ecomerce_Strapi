@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";
 import useFetch from "@/hooks/useFetch";
@@ -6,6 +6,9 @@ import useFetch from "@/hooks/useFetch";
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchItems, setSearchItems] = useState([]);
+
+  const searchRef = useRef(null);
+
   const url = import.meta.env.VITE_APP_URL_API;
 
   //every word has to be capitalized
@@ -15,12 +18,22 @@ function Search() {
   )}`;
 
   const shouldFetch = searchTerm !== "";
-  const { data, loading, error } = useFetch(fetchUrl, shouldFetch);
+  const { data } = useFetch(fetchUrl, shouldFetch);
 
-  const handleClick = () => {
-    setSearchItems([]);
-    setSearchTerm("");
+  const handleOutsideClick = (e) => {
+    if (!searchRef.current.contains(e.target)) {
+      setSearchTerm("");
+      setSearchItems([]);
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -32,8 +45,9 @@ function Search() {
       setSearchItems(data);
     }
   }, [data, searchTerm]);
+
   return (
-    <div className="search-box">
+    <div className="search-box" ref={searchRef}>
       <button className="btn-search" aria-label="Search">
         <SearchOutlinedIcon />
       </button>
@@ -43,7 +57,6 @@ function Search() {
         placeholder="Type to Search..."
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
-        onBlur={handleClick}
       />
       {searchItems.length !== 0 ? (
         <div className="searchItems">
@@ -51,8 +64,12 @@ function Search() {
             return (
               <div className="searchItem" key={item.id}>
                 <Link
+                  className="searchLink"
                   to={`/product/${item.attributes.title}`}
-                  onClick={handleClick}
+                  onClick={() => {
+                    setSearchTerm("");
+                    setSearchItems([]);
+                  }}
                 >
                   <img
                     src={item.attributes.img.data.attributes.url}
