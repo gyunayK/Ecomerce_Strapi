@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import "./List.scss";
-import Card from "@/components/Card/Card";
+// import Card from "@/components/Card/Card";
 import useFetch from "@/hooks/useFetch";
 import Loading from "@/components/Loading/Loading";
+const Card = lazy(() => import("@/components/Card/Card"));
 
 const List = ({ subCats, catId, maxPrice, sort }) => {
   const [productsData2, setProductsData2] = useState([]);
@@ -24,17 +25,13 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
 
   return (
     <div className="list">
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <h1>An error has occurred, please try again later.</h1>
-      ) : (
-        productsData2?.map((product) => {
+      <Suspense fallback={<Loading />}>
+        {productsData2?.map((product) => {
           return (
             <Card item={product.attributes} id={product.id} key={product.id} />
           );
-        })
-      )}
+        })}
+      </Suspense>
     </div>
   );
 };

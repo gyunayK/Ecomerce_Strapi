@@ -150,9 +150,7 @@ const Products = () => {
             sort={sort}
             subCats={selectedSubCategories}
           />
-        ) : (
-          <div>Loading...</div>
-        )}
+        ) : null}
       </div>
     </div>
   );

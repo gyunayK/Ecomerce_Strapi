@@ -20,6 +20,10 @@ function Favorites() {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="favProductWrapper">
       <div className="top">
