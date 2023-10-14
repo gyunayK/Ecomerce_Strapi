@@ -8,17 +8,31 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Cart from "@/components/Cart/Cart";
 import Search from "@/components/Search/Search";
 import UserMenu from "@/components/userMenu/UserMenu";
+import { makeRequest } from "@/hooks/makeRequest";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const cartRef = useRef(null);
-
   const products = useSelector((state) => state.cart.products);
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleGoToCatPage = (category) => {
+    setMobileMenuOpen(false);
+    setIsOpen(false);
+
+    const categoryItem = categories.data.find(
+      (item) => item.attributes.title === category
+    );
+
+    if (!categoryItem) return;
+
+    window.location.href = `/products/${categoryItem.attributes.title}`;
   };
 
   useEffect(() => {
@@ -29,10 +43,22 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await makeRequest.get(`/categories?populate=*`);
+        setCategories(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
   useEffect(() => {
@@ -110,32 +136,18 @@ const Navbar = () => {
         </div>
       </div>
       <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
-        <div className="item">
-          <Link className="link" to="/products/women">
-            Women
-          </Link>
-        </div>
-        <div className="item">
-          <Link className="link" to="/products/men">
-            Men
-          </Link>
-        </div>
-        <div className="item">
-          <Link className="link" to="/products/kids">
-            Kids
-          </Link>
-        </div>
-
-        <div className="item">
-          <Link className="link" to="/">
-            About
-          </Link>
-        </div>
-        <div className="item">
-          <Link className="link" to="/">
-            Contact
-          </Link>
-        </div>
+        {categories?.data?.map((category) => {
+          return (
+            <div className="item" key={category.id}>
+              <button
+                className="navBtn"
+                onClick={() => handleGoToCatPage(category.attributes.title)}
+              >
+                {category.attributes.title.toUpperCase()}
+              </button>
+            </div>
+          );
+        })}
       </div>
       {isOpen && <Cart ref={cartRef} />}
     </div>

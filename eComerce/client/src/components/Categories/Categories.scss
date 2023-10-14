@@ -5,8 +5,8 @@
   margin: 10px;
 
   @media (max-width: 768px) {
-   height: auto;
-}
+    height: auto;
+  }
   .col {
     flex: 1;
     display: flex;
@@ -35,7 +35,7 @@
       left: 0;
       right: 0;
       margin: auto;
-   
+
       background-color: rgba(255, 255, 255, 0.788);
       text-transform: uppercase;
       font-weight: 500;
@@ -46,7 +46,6 @@
       justify-content: center;
       align-items: center;
       font-size: 12px;
-
 
       &:hover {
         background-color: rgba(59, 59, 59, 0.788);
@@ -81,7 +80,8 @@
     // Mobile styles
     flex-direction: column;
 
-    .col, .col-l {
+    .col,
+    .col-l {
       width: 100%;
     }
 

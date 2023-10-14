@@ -142,10 +142,23 @@
   width: 100%;
   top: 0;
   z-index: 5;
-
   transition: transform 0.2s ease-in-out;
-
   transform: translateX(-100%);
+
+  .item {
+    .navBtn {
+      background: none;
+      border: none;
+      color: black;
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        color: #ffaa00;
+      }
+    }
+  }
 }
 .mobileMenu.open {
   transform: translateX(0);
