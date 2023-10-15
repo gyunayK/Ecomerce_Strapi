@@ -85,7 +85,7 @@ const Navbar = () => {
             <span></span>
           </label>
           <div className="mobileRightMenu">
-            <UserMenu />
+            <UserMenu idSuffix="1" />
           </div>
           <div className="mobileRightSearch">
             <Search />
@@ -126,7 +126,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <UserMenu />
+            <UserMenu idSuffix="2" />
 
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
               <ShoppingCartOutlinedIcon />

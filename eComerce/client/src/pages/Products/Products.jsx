@@ -97,8 +97,8 @@ const Products = () => {
             );
           })}
         </div>
-        <div className="filterItem  ">
-          <h1>Filter by price</h1>
+        <div className="filterItem">
+          <h1 id="priceFilterLabel">Filter by price</h1>
           <div className="inputItem">
             <span>0</span>
             <input
@@ -112,6 +112,7 @@ const Products = () => {
             <span>{maxPrice}</span>
           </div>
         </div>
+
         <div className="filterItem sort">
           <h1>Sort By</h1>
           <div className="inputItem">

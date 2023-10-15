@@ -5,10 +5,11 @@ import MenuItem from "@mui/material/MenuItem";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Link from "@mui/material/Link";
 
-export default function UserMenu() {
+export default function UserMenu({ idSuffix }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setMenuOpen(true);
@@ -36,8 +37,9 @@ export default function UserMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={menuOpen ? "basic-menu" : undefined}
+        id={`basic-button-${idSuffix}`}
+        a
+        aria-controls={menuOpen ? `userMenuButton-${idSuffix}` : undefined}
         aria-haspopup="true"
         aria-expanded={menuOpen ? "true" : undefined}
         onClick={handleClick}
@@ -47,12 +49,12 @@ export default function UserMenu() {
         <PersonOutlineOutlinedIcon />
       </Button>
       <Menu
-        id="basic-menu"
+        id={`userMenuButton-${idSuffix}`}
         anchorEl={anchorEl}
         open={menuOpen}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": `basic-button-${idSuffix}`,
         }}
       >
         <MenuItem onClick={handleClose}>
@@ -67,6 +69,7 @@ export default function UserMenu() {
         <MenuItem>
           {user ? (
             <Button
+              id="logOutButton"
               onClick={handleLogOut}
               color="inherit"
               sx={{
