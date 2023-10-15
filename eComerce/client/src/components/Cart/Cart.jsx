@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
 import { Link } from "react-router-dom";
-import { Elements } from "@stripe/react-stripe-js";
 
 const Cart = React.forwardRef((props, ref) => {
   const [userJWT, setUserJWT] = useState("");
@@ -26,7 +25,6 @@ const Cart = React.forwardRef((props, ref) => {
 
   const stripePromise = loadStripe(stripePK);
   const handlePayment = async () => {
-
     if (!userJWT) {
       window.location.href = "/signin";
       return;
@@ -63,33 +61,37 @@ const Cart = React.forwardRef((props, ref) => {
       <h1>
         {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
       </h1>
-      {products.map((item) => (
-        <Link to={`/product/${item.title}`} key={item.id} className="itemWrapper">
-          <div className="item" key={item.id}>
-            <img src={item.img} alt={item.title} />
-            <div className="details">
-              <div>
-                <h1>{item.title}</h1>
-                <h1 className="price">
-                  {item.quantity} x ${item.price}
-                </h1>
+      <div className="mapWrap">
+        {products.map((item) => (
+          <div key={item.id} className="itemWrapper">
+            <Link to={`/product/${item.title}`} className="item">
+              <img src={item.img} alt={item.title} />
+              <div className="details">
+                <div>
+                  <h1>{item.title}</h1>
+                  <h1 className="price">
+                    {item.quantity} x ${item.price}
+                  </h1>
+                </div>
               </div>
-              <DeleteIcon
-                className="delete"
-                onClick={() => dispatch(removeItem(item.id))}
-              />
-            </div>
+            </Link>
+            <DeleteIcon
+              className="delete"
+              onClick={() => dispatch(removeItem(item.id))}
+            />
           </div>
-        </Link>
-      ))}
-      <div className="total">
-        <span>Total</span>
-        <span>${totalPrice}</span>
+        ))}
       </div>
-      <button onClick={handlePayment}>Checkout</button>
-      <span className="reset" onClick={() => dispatch(resetCart())}>
-        Reset
-      </span>
+      <div className="cartBottomWrapper">
+        <div className="total">
+          <span>Total</span>
+          <span>${totalPrice}</span>
+        </div>
+        <div className="checkout">
+          <button onClick={handlePayment}>Checkout</button>
+          <span onClick={() => dispatch(resetCart())}>Reset</span>
+        </div>
+      </div>
     </div>
   );
 });
