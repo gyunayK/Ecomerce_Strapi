@@ -1,8 +1,8 @@
 import React from "react";
+import { FaXTwitter } from "react-icons/fa6";
 import {
   BsInstagram,
   BsFacebook,
-  BsTwitter,
   BsPinterest,
   BsYoutube,
   BsGithub,
@@ -84,7 +84,7 @@ const Footer = () => {
               <div className="icons">
                 <BsInstagram />
                 <BsFacebook />
-                <BsTwitter />
+                <FaXTwitter />
                 <BsPinterest />
                 <BsYoutube />
                 <a

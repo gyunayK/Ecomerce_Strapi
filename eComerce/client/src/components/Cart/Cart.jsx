@@ -26,7 +26,7 @@ const Cart = React.forwardRef((props, ref) => {
   const stripePromise = loadStripe(stripePK);
   const handlePayment = async () => {
     if (!userJWT) {
-      window.location.href = "/signin";
+      window.location.href = "/login";
       return;
     }
 
