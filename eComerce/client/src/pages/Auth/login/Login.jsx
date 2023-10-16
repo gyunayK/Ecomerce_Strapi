@@ -45,7 +45,8 @@ function Login() {
   };
 
   const handleDemoLogin = () => {
-    handleLogin({ email: "demo@gmail.ca", password: "123123123" });
+    setEmail("demo@gmail.ca");
+    setPassword("123123123");
   };
 
   const handleLogin = async (data = { email, password }) => {
@@ -108,6 +109,12 @@ function Login() {
       setPassword("");
     }
   }, [rememberMe]);
+
+  useEffect(() => {
+    if (email === "demo@gmail.ca" && password === "123123123") {
+      handleLogin({ email, password });
+    }
+  }, [email, password]);
 
   return (
     <div className="authContainer">
@@ -173,7 +180,14 @@ function Login() {
                 />
               </div>
               <button type="submit">LOGIN</button>
-              <button onClick={handleDemoLogin}>DEMO LOGIN</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDemoLogin();
+                }}
+              >
+                DEMO LOGIN
+              </button>
             </form>
             <a className="formLinks" href="#">
               Forgot Password?
