@@ -11,6 +11,10 @@ import Login from "./pages/Auth/login/Login";
 import SignUp from "./pages/Auth/signup/SignUp";
 import Profile from "./pages/Profile/Profile";
 import Favorites from "./pages/Favorites/Favorites";
+import {
+  ProtectedRoute,
+  GuestRoute,
+} from "./components/ProtectedRoutes/ProtectedRoutes";
 
 const Layout = () => {
   return (
@@ -25,13 +29,20 @@ const Layout = () => {
 const Router = createBrowserRouter([
   {
     path: "/signin",
-    element: <Login />,
+    element: (
+      <GuestRoute>
+        <Login />
+      </GuestRoute>
+    ),
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: (
+      <GuestRoute>
+        <SignUp />
+      </GuestRoute>
+    ),
   },
-
   {
     path: "/",
     element: <Layout />,
@@ -42,7 +53,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/products/:title",

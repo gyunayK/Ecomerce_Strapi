@@ -58,11 +58,7 @@ export default function UserMenu({ idSuffix }) {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link
-            href={`${user ? "/profile" : "/signin"}`}
-            underline="none"
-            color={"inherit"}
-          >
+          <Link href="/profile" underline="none" color={"inherit"}>
             Profile
           </Link>
         </MenuItem>

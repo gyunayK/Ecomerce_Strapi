@@ -8,9 +8,14 @@
   -webkit-box-shadow: -1px 16px 39px -3px rgba(0, 0, 0, 0.73);
   box-shadow: -1px 16px 39px -3px rgba(0, 0, 0, 0.73);
   min-height: fit-content;
-
   width: 400px;
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    width: 80dvw;
+    -webkit-box-shadow: -1px 16px 39px -3px rgba(72, 72, 72, 0.73);
+    box-shadow: -1px 16px 39px -3px rgba(72, 72, 72, 0.73);
+  }
 
   h1 {
     margin-bottom: 30px;
@@ -20,6 +25,10 @@
   }
   .mapWrap {
     max-height: 500px;
+
+    @media (max-width: 768px) {
+      max-height: 50dvh;
+    }
     overflow: auto;
     .itemWrapper {
       position: relative;

@@ -12,12 +12,16 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-width: 600px;
+    min-width: 800px;
     padding: 20px;
     border: 1px solid #ccc;
     background: #fff;
-
     border-radius: 5px;
+
+    @media screen and (max-width: 1280px) {
+      min-width: 100%;
+      border: none;
+    }
 
     .edit {
       display: flex;

@@ -94,7 +94,8 @@
       }
     }
     .mobileRightMenu,
-    .mobileRightSearch {
+    .mobileRightSearch,
+    .mobileLeftCart {
       display: none;
     }
   }
@@ -121,11 +122,40 @@
       scale: 1.2;
     }
     .wrapper .mobileRightSearch {
+      padding: 5px;
       position: absolute;
-      right: 0px;
       top: 80px;
+      right: 10px;
       display: flex;
-      scale: 1.2;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper .mobileLeftCart {
+      padding: 5px;
+      position: absolute;
+      top: 90px;
+      display: flex;
+      cursor: pointer;
+
+      .cartIcon {
+        position: relative;
+        span {
+          font-size: 15px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #1a71fc;
+          color: aliceblue;
+          position: absolute;
+          right: -10px;
+          top: -10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
   }
 }
@@ -153,6 +183,7 @@
       font-size: 22px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      text-decoration: none;
 
       &:hover {
         color: #ffaa00;
@@ -231,7 +262,7 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 8px;
+    right: 0px;
     color: $font-color;
     background-color: transparent;
     pointer-events: painted;

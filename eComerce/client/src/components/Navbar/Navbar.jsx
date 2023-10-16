@@ -84,6 +84,12 @@ const Navbar = () => {
             <span></span>
             <span></span>
           </label>
+          <div className="mobileLeftCart">
+            <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
+              <ShoppingCartOutlinedIcon />
+              <span>{products.length}</span>
+            </div>
+          </div>
           <div className="mobileRightMenu">
             <UserMenu idSuffix="1" />
           </div>
@@ -148,6 +154,15 @@ const Navbar = () => {
             </div>
           );
         })}
+        <div className="item">
+          <Link
+            className="navBtn"
+            to={"/favorites"}
+            onClick={handleGoToCatPage}
+          >
+            FAVORITES
+          </Link>
+        </div>
       </div>
       {isOpen && <Cart ref={cartRef} />}
     </div>
