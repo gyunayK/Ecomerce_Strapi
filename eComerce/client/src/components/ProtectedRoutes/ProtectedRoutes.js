@@ -8,7 +8,7 @@ export function ProtectedRoute({ children }) {
     useEffect(() => {
 
         if (!token) {
-            navigate('/signin');
+            navigate('/login');
         }
     }, [navigate]);
 

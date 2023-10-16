@@ -28,7 +28,7 @@ const Layout = () => {
 
 const Router = createBrowserRouter([
   {
-    path: "/signin",
+    path: "/login",
     element: (
       <GuestRoute>
         <Login />

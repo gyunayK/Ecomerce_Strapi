@@ -85,7 +85,7 @@ export default function UserMenu({ idSuffix }) {
             </Button>
           ) : (
             <Link
-              href="/signin"
+              href="/login"
               underline="none"
               color={"inherit"}
               width={"100%"}
@@ -94,10 +94,6 @@ export default function UserMenu({ idSuffix }) {
               Log in
             </Link>
           )}
-
-          {/* <Link href="/signin" underline="none" color={"inherit"}>
-            Log in
-          </Link> */}
         </MenuItem>
       </Menu>
     </div>

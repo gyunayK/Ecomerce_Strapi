@@ -182,7 +182,7 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
         <div className="profileInfo">
           <div className="profileName"> {user.username}</div>
           <div className="profileEmail">{user.email}</div>
-          <div className="profilePhone"> {user.phoneNumber}</div>
+          <div className="profilePhone">Mobile: {user.phoneNumber}</div>
           <div className="createdAt">
             Created At: {new Date(user.createdAt).toLocaleDateString()}
           </div>

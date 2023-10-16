@@ -70,7 +70,7 @@ function SignUp() {
         );
       }
 
-      navigate("/signin");
+      navigate("/login");
     } catch (error) {
       console.error("Failed to navigate or save data", error);
     }

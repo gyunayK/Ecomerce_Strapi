@@ -44,9 +44,13 @@ function Login() {
     "Content-Type": "application/json",
   };
 
-  const handleLogin = async (data) => {
-    const { email, ...restData } = data;
-    const requestData = { identifier: email, ...restData };
+  const handleDemoLogin = () => {
+    handleLogin({ email: "demo@gmail.ca", password: "123123123" });
+  };
+
+  const handleLogin = async (data = { email, password }) => {
+    const { email: emailFromData, ...restData } = data;
+    const requestData = { identifier: emailFromData, ...restData };
     try {
       const response = await axios.post(API_URL, requestData, {
         headers: HEADERS,
@@ -55,8 +59,6 @@ function Login() {
       if (response.status !== 200) {
         toast.error(`Error: ${response.status}`);
       }
-
-      console.log(response);
 
       localStorage.setItem("UserData", JSON.stringify(response.data.user));
       localStorage.setItem("UserJWT", JSON.stringify(response.data.jwt));
@@ -171,6 +173,7 @@ function Login() {
                 />
               </div>
               <button type="submit">LOGIN</button>
+              <button onClick={handleDemoLogin}>DEMO LOGIN</button>
             </form>
             <a className="formLinks" href="#">
               Forgot Password?
