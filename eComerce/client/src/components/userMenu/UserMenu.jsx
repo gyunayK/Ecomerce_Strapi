@@ -38,7 +38,6 @@ export default function UserMenu({ idSuffix }) {
     <div>
       <Button
         id={`basic-button-${idSuffix}`}
-        a
         aria-controls={menuOpen ? `userMenuButton-${idSuffix}` : undefined}
         aria-haspopup="true"
         aria-expanded={menuOpen ? "true" : undefined}

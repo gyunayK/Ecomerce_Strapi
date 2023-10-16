@@ -46,7 +46,7 @@ function Login() {
 
   const handleDemoLogin = () => {
     handleLogin({
-      email: "demo@gmail.ca",
+      email: "demo@hoge.ca",
       password: "123123123",
     });
   };
