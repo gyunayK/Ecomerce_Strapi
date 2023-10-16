@@ -45,8 +45,10 @@ function Login() {
   };
 
   const handleDemoLogin = () => {
-    setEmail("demo@gmail.ca");
-    setPassword("123123123");
+    handleLogin({
+      email: "demo@gmail.ca",
+      password: "123123123",
+    });
   };
 
   const handleLogin = async (data = { email, password }) => {
@@ -109,12 +111,6 @@ function Login() {
       setPassword("");
     }
   }, [rememberMe]);
-
-  useEffect(() => {
-    if (email === "demo@gmail.ca" && password === "123123123") {
-      handleLogin({ email, password });
-    }
-  }, [email, password]);
 
   return (
     <div className="authContainer">
