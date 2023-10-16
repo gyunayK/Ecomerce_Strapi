@@ -21,11 +21,11 @@ export default function UserMenu({ idSuffix }) {
   };
 
   const handleLogOut = () => {
+    window.location.replace("/");
     localStorage.removeItem("UserData");
     localStorage.removeItem("UserJWT");
     setUser(null);
     handleClose();
-    window.location.reload("/");
   };
 
   useEffect(() => {

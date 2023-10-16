@@ -27,6 +27,17 @@ function Search() {
     }
   };
 
+  const handleBlur = () => {
+    setTimeout(() => {
+      setSearchTerm("");
+      setSearchItems([]);
+    }, 100);
+
+    return () => {
+      clearTimeout();
+    };
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
 
@@ -57,6 +68,7 @@ function Search() {
         placeholder="Type to Search..."
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
+        onBlur={handleBlur}
       />
       {searchItems.length !== 0 ? (
         <div className="searchItems">
