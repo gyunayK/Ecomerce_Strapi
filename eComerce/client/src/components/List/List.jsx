@@ -9,12 +9,12 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
   const [productsData2, setProductsData2] = useState([]);
   const url = import.meta.env.VITE_APP_URL_API;
 
+  const shouldSort = sort ? `&sort=price:${sort}` : "";
+
   const { data, loading, error } = useFetch(
     `${url}/products?populate=*&[filters][categories][id]=${catId}${subCats
       .map((subCat) => `&[filters][sub_categories][id][$eq]=${subCat}`)
-      .join("")}&[filters][price][$lte]=${maxPrice}&sort=price:${
-      sort || "desc"
-    }`
+      .join("")}&[filters][price][$lte]=${maxPrice}${shouldSort}`
   );
 
   useEffect(() => {
