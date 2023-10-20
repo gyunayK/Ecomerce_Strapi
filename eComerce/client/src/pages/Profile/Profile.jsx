@@ -81,7 +81,7 @@ export default function Profile() {
                 handleChangeComponent("Orders");
               }}
             >
-              Oders
+              Orders
             </li>
           </ul>
         </nav>

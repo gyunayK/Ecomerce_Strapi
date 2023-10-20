@@ -15,6 +15,7 @@ import {
   ProtectedRoute,
   GuestRoute,
 } from "./components/ProtectedRoutes/ProtectedRoutes";
+import CheckoutSession from "./pages/CheckoutSession/CheckoutSession";
 
 const Layout = () => {
   return (
@@ -25,7 +26,6 @@ const Layout = () => {
     </div>
   );
 };
-
 const Router = createBrowserRouter([
   {
     path: "/login",
@@ -33,6 +33,18 @@ const Router = createBrowserRouter([
       <GuestRoute>
         <Login />
       </GuestRoute>
+    ),
+  },
+  {
+    path: "/success/:session_id",
+    element: (
+      <div className="app">
+        <Navbar />
+        <ProtectedRoute>
+          <CheckoutSession />
+        </ProtectedRoute>
+        <Footer />
+      </div>
     ),
   },
   {
@@ -67,7 +79,6 @@ const Router = createBrowserRouter([
         path: "/product/:title",
         element: <Product />,
       },
-
       {
         path: "/favorites",
         element: <Favorites />,

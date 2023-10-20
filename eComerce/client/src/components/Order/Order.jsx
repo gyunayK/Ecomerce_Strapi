@@ -75,7 +75,9 @@ function Order({ user, userJWT, handleUserUpdate }) {
               <h1>Completed</h1>
               <div className="oderTopRight">
                 <div>
-                  <p>Oder Date: {new Date(order.createdAt).toLocaleString()}</p>
+                  <p>
+                    Order Date: {new Date(order.createdAt).toLocaleString()}
+                  </p>
                   <p>
                     Order ID: {order.stripeId.slice(0, 20)}...
                     <a

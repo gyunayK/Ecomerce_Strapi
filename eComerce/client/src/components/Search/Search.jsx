@@ -31,7 +31,7 @@ function Search() {
     setTimeout(() => {
       setSearchTerm("");
       setSearchItems([]);
-    }, 100);
+    }, 500);
 
     return () => {
       clearTimeout();
