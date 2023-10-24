@@ -17,8 +17,6 @@ function Search() {
     (char) => char.toUpperCase()
   )}`;
 
-  console.log(fetchUrl);
-
   const shouldFetch = searchTerm !== "";
   const { data } = useFetch(fetchUrl, shouldFetch);
 
