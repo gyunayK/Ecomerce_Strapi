@@ -67,24 +67,24 @@ function CheckoutSession() {
   const googleMapsUrl = `https://maps.google.com/maps?q=${address}&hl=en&z=14&output=embed`;
 
   return (
-    <div className="thank-you-page">
-      <div className="orderDetails">
-        <img src="/thank-you.webp" alt="thank-you-img" />
+    <>
+      <div className="thank-you-page">
+        <div className="orderDetails">
+          <iframe
+            src={googleMapsUrl}
+            width="500"
+            height="450"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <h1>Thank you for your order, {session.shippingDetails.name}!</h1>
 
-        <iframe
-          src={googleMapsUrl}
-          width="500"
-          height="450"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-        <p>
-          Your order has been placed and is being processed. You will receive an
-          email confirmation shortly.
-        </p>
+          <p>
+            Your order has been placed and is being processed. You will receive
+            an email confirmation shortly.
+          </p>
 
-        <div className="paymentDetails">
-          <div>
+          <div className="paymentDetails">
             <h2>Shipping Details</h2>
             <p>
               {session.shippingDetails.name}
@@ -98,37 +98,43 @@ function CheckoutSession() {
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="order-summary">
-        <h2>Order Summary</h2>
-        <ul>
-          {orderProducts.map((item) => (
-            <Link className="link" to={`/product/${item.title}`} key={item.id}>
-              <li>
-                <img src={item.img} alt={item.title} />
-                <span>{item.title}</span>
-                <span>${item.price}</span>
-              </li>
-            </Link>
-          ))}
-        </ul>
-        <div className="tax">
-          <span>Tax:</span>
-          <span>${taxAmount}</span>
-        </div>
-        <div className="total">
-          <span>Total:</span>
-          <span>${grandTotal}</span>
-        </div>
+        <div className="order-summary">
+          <h2>Order Summary</h2>
+          <img src="/ty-img.webp" alt="" className="tyImg" />
 
-        <div className="continue">
-          <button onClick={() => (window.location.href = "/")}>
-            Continue Shopping
-          </button>
+          <ul>
+            {orderProducts.map((item) => (
+              <Link
+                className="link"
+                to={`/product/${item.title}`}
+                key={item.id}
+              >
+                <li>
+                  <img src={item.img} alt={item.title} />
+                  <span>{item.title}</span>
+                  <span>${item.price}</span>
+                </li>
+              </Link>
+            ))}
+          </ul>
+          <div className="tax">
+            <span>Tax:</span>
+            <span>${taxAmount}</span>
+          </div>
+          <div className="total">
+            <span>Total:</span>
+            <span>${grandTotal}</span>
+          </div>
+
+          <div className="continue">
+            <button onClick={() => (window.location.href = "/")}>
+              Continue Shopping
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
