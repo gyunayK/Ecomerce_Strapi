@@ -21,6 +21,7 @@ const Layout = () => {
   return (
     <div className="app">
       <Navbar />
+      <div id="topNavMr"></div>
       <Outlet />
       <Footer />
     </div>
@@ -40,6 +41,7 @@ const Router = createBrowserRouter([
     element: (
       <div className="app">
         <Navbar />
+        <div className="topNavMr"></div>
         <ProtectedRoute>
           <CheckoutSession />
         </ProtectedRoute>
