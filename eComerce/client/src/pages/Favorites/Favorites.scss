@@ -30,11 +30,13 @@
   }
 
   .cardWrapper {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 16px;
+    align-items: start;
 
     .empty {
       display: flex;

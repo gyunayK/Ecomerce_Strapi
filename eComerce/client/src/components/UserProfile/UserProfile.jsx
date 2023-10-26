@@ -5,6 +5,7 @@ import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Loading from "@/components/Loading/Loading";
 
 function UserProfile({ user, userJWT, handleUserUpdate }) {
   const [editProfileOpen, setEditProfileOpen] = useState(false);
@@ -106,6 +107,8 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
     if (user.phoneNumber) setPhone(user.phoneNumber);
     if (user.username) setName(user.username);
   }, [user]);
+
+  if(!user.createdAt) return <Loading/>
 
   return (
     <div className="profileContainer">

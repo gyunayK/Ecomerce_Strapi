@@ -97,7 +97,7 @@ function Order({ user, userJWT, handleUserUpdate }) {
               <div className="imgContainer">
                 {order.products.map((product, i) => {
                   return (
-                    <a key={i} href={`/product/${product.id}`}>
+                    <a key={i} href={`/product/${product.title}`}>
                       <img src={product.img} alt={product.title} />
                     </a>
                   );

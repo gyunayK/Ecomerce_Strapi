@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Profile.scss";
 import Order from "@/components/Order/Order";
-import WishList from "@/components/WishList/WishList";
 import UserProfile from "@/components/UserProfile/UserProfile";
 import axios from "axios";
 
@@ -69,20 +68,8 @@ export default function Profile() {
       <div className="userNavContainer">
         <nav className="userNavLeft">
           <ul>
-            <li
-              onClick={() => {
-                handleChangeComponent("Profile");
-              }}
-            >
-              Profile
-            </li>
-            <li
-              onClick={() => {
-                handleChangeComponent("Orders");
-              }}
-            >
-              Orders
-            </li>
+            <li onClick={() => handleChangeComponent("Profile")}>Profile</li>
+            <li onClick={() => handleChangeComponent("Orders")}>Orders</li>
           </ul>
         </nav>
       </div>
