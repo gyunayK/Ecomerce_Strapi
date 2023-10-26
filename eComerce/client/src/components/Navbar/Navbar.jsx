@@ -129,6 +129,7 @@ const Navbar = () => {
                 tabIndex="0"
                 aria-hidden="true"
                 alt="Favorites"
+                style={{ outline: "none" }}
               />
             </Link>
 
