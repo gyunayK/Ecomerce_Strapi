@@ -29,11 +29,13 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
     letter-spacing: $letter-spacing;
     outline: none;
     border-radius: 25px;
-
     transition: all 0.5s ease-in-out;
     background-color: $bg-color;
     padding-right: 20px;
     color: $font-color;
+  z-index: 999;
+  cursor: pointer;
+
 
     &::placeholder {
       color: $font-color;
@@ -44,10 +46,12 @@ $cubic-bezier: cubic-bezier(0, 0.11, 0.35, 2);
     &:focus {
       border: 1px solid $border-color;
       width: 175px;
+      
       border-radius: 0px;
       background-color: transparent;
       border-bottom: 1px solid $border-color;
       transition: all $transition-time $cubic-bezier;
+     
 
       @media (max-width: 768px) {
         width: 79dvw;
