@@ -1,3 +1,4 @@
+import "./Search.scss";
 import { useState, useEffect, useRef } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from "react-router-dom";

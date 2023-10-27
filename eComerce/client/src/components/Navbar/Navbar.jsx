@@ -165,7 +165,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      {isOpen && <Cart ref={cartRef} />}
+      {isOpen && <Cart ref={cartRef} setIsOpen={setIsOpen} />}
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import "./Cart.scss";
 import React, { useState, useEffect } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, resetCart } from "@/redux/cartReducer";
 import { loadStripe } from "@stripe/stripe-js";
@@ -60,6 +63,10 @@ const Cart = React.forwardRef((props, ref) => {
     <div className="cart" ref={ref}>
       <h1>
         {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
+        <HighlightOffIcon
+          className="cancelIcon"
+          onClick={() => props.setIsOpen(false)}
+        />
       </h1>
       <div className="mapWrap">
         {products.map((item) => (
