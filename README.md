@@ -14,13 +14,13 @@
 
 <img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.48.05%20PM.png?updatedAt=1698447336473" alt="project-screenshot" width="750" height="100%">
 
-<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.49.40%20PM.png?updatedAt=1698447358785" alt="project-screenshot" width="750" height="400/">
+<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.49.40%20PM.png?updatedAt=1698447358785" alt="project-screenshot" width="750" height="100%">
 
-<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.49.56%20PM.png?updatedAt=1698447394177" alt="project-screenshot" width="750" height="400/">
+<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.49.56%20PM.png?updatedAt=1698447394177" alt="project-screenshot" width="750" height="100%">
 
-<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.50.20%20PM.png?updatedAt=1698447397174" alt="project-screenshot" width="750" height="400/">
+<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.50.20%20PM.png?updatedAt=1698447397174" alt="project-screenshot" width="750" height="100%">
 
-<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%204.03.49%20PM.png?updatedAt=1698447860095" alt="project-screenshot" width="750" height="400/">
+<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%204.03.49%20PM.png?updatedAt=1698447860095" alt="project-screenshot" width="750" height="100%">
 
   
   
