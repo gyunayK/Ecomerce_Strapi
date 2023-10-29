@@ -37,10 +37,7 @@ function Favorites() {
         {favorites.length === 0 && (
           <div className="empty">
             <h2>Your Favorites is Empty</h2>
-            <p>
-              You have no items in your Favorites. Start shopping now to find
-              your favorite items.
-            </p>
+            <p>Start shopping now to find your favorite items.</p>
           </div>
         )}
       </div>
