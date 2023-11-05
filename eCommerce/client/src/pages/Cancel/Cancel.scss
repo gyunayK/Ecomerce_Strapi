@@ -1,0 +1,51 @@
+.cancelWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+
+  .cancel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60dvw;
+    height: 60dvh;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    a{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: white;
+        text-decoration: underline;
+        
+        &:hover{
+            color: #fca311;
+        }
+    }
+    
+  }
+}

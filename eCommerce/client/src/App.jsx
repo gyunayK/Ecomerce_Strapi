@@ -16,6 +16,7 @@ import {
   GuestRoute,
 } from "./components/ProtectedRoutes/ProtectedRoutes";
 import CheckoutSession from "./pages/CheckoutSession/CheckoutSession";
+import Cancel from "./pages/Cancel/Cancel";
 
 const Layout = () => {
   return (
@@ -44,6 +45,19 @@ const Router = createBrowserRouter([
         <div className="topNavMr"></div>
         <ProtectedRoute>
           <CheckoutSession />
+        </ProtectedRoute>
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/cancel/",
+    element: (
+      <div className="app">
+        <Navbar />
+        <div className="topNavMr"></div>
+        <ProtectedRoute>
+          <Cancel />
         </ProtectedRoute>
         <Footer />
       </div>
