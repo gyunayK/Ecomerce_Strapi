@@ -4,9 +4,12 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/cartReducer";
 import axios from "axios";
+import { makeRequest } from "@/hooks/makeRequest";
 
 function Order({ user, userJWT, handleUserUpdate }) {
   const [orders, setOrders] = useState([]);
+  const [paymentStatusChecked, setPaymentStatusChecked] = useState(false);
+
   const dispatch = useDispatch();
   const api = import.meta.env.VITE_APP_URL_API;
 
@@ -66,13 +69,48 @@ function Order({ user, userJWT, handleUserUpdate }) {
     setOrders([...user.orders]);
   }, [user]);
 
+  useEffect(() => {
+    if (!orders.length || paymentStatusChecked) return;
+  
+    const fetchStripeData = async () => {
+      // Create a new array to hold the updated orders with payment status
+      const updatedOrders = await Promise.all(
+        orders.map(async (order) => {
+          try {
+            const response = await makeRequest.get(
+              `/orders/checkout-session/${order.stripeId}`
+            );
+            // Add a new property to the order object indicating payment status
+            return { ...order, isPaid: response.data.paymentStatus === "paid" };
+          } catch (error) {
+            console.error(
+              `Failed to fetch data for stripeId ${order.stripeId}:`,
+              error
+            );
+            return { ...order, isPaid: false }; // Default to false if there's an error
+          }
+        })
+      );
+      // Update the orders state with the new array
+      setOrders(updatedOrders);
+      // Indicate that the payment status check is complete
+      setPaymentStatusChecked(true);
+    };
+  
+    fetchStripeData();
+    // Add dependencies here
+  }, [orders, paymentStatusChecked]);
+  
+  console.log(orders);
+
+
   return (
     <div className="orderContainer">
       {orders.map((order, i) => {
         return (
           <div className="oder" key={i}>
             <div className="oderTop">
-              <h1>Completed</h1>
+              <h1>{order.isPaid ? "Completed" : "Pending"}</h1>
               <div className="oderTopRight">
                 <div>
                   <p>
