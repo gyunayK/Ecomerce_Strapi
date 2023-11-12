@@ -146,7 +146,7 @@ function SignUp() {
             </form>
 
             <p className="formLinks">
-              Already have an account? <a href="/signin">Login</a>
+              Already have an account? <a href="/login">Login</a>
             </p>
           </div>
         </div>
