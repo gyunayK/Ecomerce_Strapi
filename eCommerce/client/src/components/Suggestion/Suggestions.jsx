@@ -2,6 +2,7 @@ import "./Suggestions.scss";
 import { useState, useEffect, useMemo } from "react";
 import useFetch from "@/hooks/useFetch";
 import Card from "@/components/Card/Card";
+import ProductCardSkeleton from "../Skeleton/ProductCardSkeleton/ProductCardSkeleton";
 
 function Suggestions({ productID }) {
   const [subCategoryId, setSubCategoryId] = useState(null);
@@ -42,7 +43,7 @@ function Suggestions({ productID }) {
 
   return (
     <>
-      {filteredProducts.length > 0 && (
+      {filteredProducts.length > 0 ? (
         <div className="suggestionsWrapper">
           <h1>You may also like</h1>
           <div className="suggestions">
@@ -51,6 +52,10 @@ function Suggestions({ productID }) {
             ))}
           </div>
         </div>
+      ) : (
+        <>
+          <ProductCardSkeleton numberOfItems={4} />
+        </>
       )}
     </>
   );
