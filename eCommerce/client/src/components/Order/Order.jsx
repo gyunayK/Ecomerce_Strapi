@@ -71,7 +71,7 @@ function Order({ user, userJWT, handleUserUpdate }) {
 
   useEffect(() => {
     if (!orders.length || paymentStatusChecked) return;
-  
+
     const fetchStripeData = async () => {
       // Create a new array to hold the updated orders with payment status
       const updatedOrders = await Promise.all(
@@ -96,13 +96,10 @@ function Order({ user, userJWT, handleUserUpdate }) {
       // Indicate that the payment status check is complete
       setPaymentStatusChecked(true);
     };
-  
+
     fetchStripeData();
     // Add dependencies here
   }, [orders, paymentStatusChecked]);
-  
-  console.log(orders);
-
 
   return (
     <div className="orderContainer">
