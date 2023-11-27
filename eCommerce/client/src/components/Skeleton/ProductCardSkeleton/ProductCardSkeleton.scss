@@ -3,36 +3,36 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2em; // Reduced from 4em for a tighter layout
-
+  gap: 1em;
+  margin-bottom: 2em;
   .product-skeleton {
-    width: 300px;
-    border-radius: 8px; // Increased radius for a smoother look
+    width: 280px;
+    border-radius: 8px;
     overflow: hidden;
-    background-color: #f0f0f0; // Lighter shade for a subtle look
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Added shadow for depth
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     .skeleton-image {
-      height: 330px;
-      background-color: #e4e4e4; // Changed for a gradient effect
+      height: 400px;
+      background-color: #e4e4e4;
     }
 
     .cardInformation {
-      padding: 16px; // Added padding for spacing
+      padding: 16px;
       display: flex;
-      flex-direction: column; // Changed to stack the text blocks
+      flex-direction: column;
 
       .skeleton-text {
         height: 20px;
         border-radius: 4px;
-        background-color: #eaeaea; // Changed for a gradient effect
+        background-color: #eaeaea;
         &.skeleton-title {
-          width: 80%; // Adjusted for variation
+          width: 80%;
           margin-top: 16px;
-          margin-bottom: 8px; // Added for spacing
+          margin-bottom: 8px;
         }
         &.skeleton-price {
-          width: 60%; // Adjusted for variation
+          width: 60%;
         }
       }
     }

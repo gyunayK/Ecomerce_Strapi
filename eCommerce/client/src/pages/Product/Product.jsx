@@ -162,10 +162,10 @@ const Product = () => {
                 </div>
               </div>
             </div>
-            <Suggestions productID={id} />
           </>
         )}
       </div>
+      <Suggestions productID={id} />
     </>
   );
 };

@@ -1,9 +1,9 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import "./List.scss";
-// import Card from "@/components/Card/Card";
+import Card from "@/components/Card/Card";
 import useFetch from "@/hooks/useFetch";
 import Loading from "@/components/Loading/Loading";
-const Card = lazy(() => import("@/components/Card/Card"));
+import ProductCardSkeleton from "../Skeleton/ProductCardSkeleton/ProductCardSkeleton";
 
 const List = ({ subCats, catId, maxPrice, sort }) => {
   const [productsData2, setProductsData2] = useState([]);
@@ -24,15 +24,14 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
   }, [data]);
 
   return (
-    <div className="list">
-      <Suspense fallback={<Loading />}>
-        {productsData2?.map((product) => {
-          return (
-            <Card item={product.attributes} id={product.id} key={product.id} />
-          );
-        })}
-      </Suspense>
-    </div>
+    <>
+      <div className="list">
+        {productsData2.map((product) => (
+          <Card item={product.attributes} id={product.id} key={product.id} />
+        ))}
+      </div>
+      {loading && <ProductCardSkeleton numberOfItems={10} />}
+    </>
   );
 };
 
