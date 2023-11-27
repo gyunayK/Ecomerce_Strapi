@@ -75,7 +75,6 @@ const Products = () => {
   return (
     <div className="products">
       <div className="filterIcon" onClick={toggleMenu}>
-        Filter
         {isMenuOpen ? <BsXCircle /> : <BsFilterCircle />}
       </div>
 
