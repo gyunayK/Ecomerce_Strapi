@@ -1,0 +1,41 @@
+.checkbox-skeleton-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  margin: 10px 0;
+  .skeleton-checkbox {
+    width: 1em;
+    height: 1em;
+    background-color: #ccc;
+    border-radius: 0.25em;
+  }
+
+  .skeleton-label {
+    width: 7em;
+    height: 1em;
+    background-color: #ddd;
+    border-radius: 0.25em;
+  }
+  @keyframes loading {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  .skeleton-checkbox,
+  .skeleton-label {
+    background-image: linear-gradient(
+      to left,
+      // Direction of the gradient
+      #e0e0e0 8%,
+      #f0f0f0 18%,
+      #e0e0e0 33%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.2s infinite linear;
+  }
+}

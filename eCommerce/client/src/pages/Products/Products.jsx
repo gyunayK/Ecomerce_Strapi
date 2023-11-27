@@ -5,6 +5,8 @@ import List from "@/components/List/List";
 import { makeRequest } from "@/hooks/makeRequest";
 
 import { BsFilterCircle, BsXCircle } from "react-icons/bs";
+import CheckboxSkeleton from "@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton";
+import LargeImageSkeleton from "../../components/Skeleton/LargeImageSkeleton/LargeImageSkeleton";
 
 const Products = () => {
   const [maxPrice, setMaxPrice] = useState(1000);
@@ -58,7 +60,7 @@ const Products = () => {
         const response = await makeRequest.get(
           `/sub-categories?populate=*&[filters][categories][id][$eq]=${id}`
         );
-        setSubCategories(response.data);
+        setSubCategories(response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -80,22 +82,26 @@ const Products = () => {
       <div className={isMenuOpen ? "left open" : "left"}>
         <div className="filterItem">
           <h1>Product Categories</h1>
-          {subCategories.data?.map((subCategory) => {
-            return (
-              <div className="inputItem" key={subCategory.id}>
-                <input
-                  type="checkbox"
-                  id={subCategory.id}
-                  value={subCategory.id}
-                  name={subCategory.name}
-                  onChange={handleChange}
-                />
-                <label htmlFor={subCategory.id}>
-                  {capitalizeFirstLetter(subCategory.attributes.title)}
-                </label>
-              </div>
-            );
-          })}
+          {subCategories.length > 0 ? (
+            subCategories.map((subCategory) => {
+              return (
+                <div className="inputItem" key={subCategory.id}>
+                  <input
+                    type="checkbox"
+                    id={subCategory.id}
+                    value={subCategory.id}
+                    name={subCategory.name}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor={subCategory.id}>
+                    {capitalizeFirstLetter(subCategory.attributes.title)}
+                  </label>
+                </div>
+              );
+            })
+          ) : (
+            <CheckboxSkeleton numberOfItems={6} />
+          )}
         </div>
         <div className="filterItem">
           <h1 id="priceFilterLabel">Filter by price</h1>
@@ -138,12 +144,14 @@ const Products = () => {
         </div>
       </div>
       <div className="right">
-        {categories?.data?.length > 0 && (
+        {categories?.data?.length > 0 ? (
           <img
             className="categoryIMG"
             src={categories.data[0].attributes.img.data.attributes.url}
             alt=""
           />
+        ) : (
+          <LargeImageSkeleton />
         )}
 
         {id ? (
