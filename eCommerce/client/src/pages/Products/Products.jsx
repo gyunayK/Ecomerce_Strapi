@@ -80,7 +80,7 @@ const Products = () => {
 
       <div className={isMenuOpen ? "left open" : "left"}>
         <div className="filterItem">
-          <h1>Product Categories</h1>
+          <h1>Shop by Category</h1>
           {subCategories.length > 0 ? (
             subCategories.map((subCategory) => {
               return (
@@ -103,7 +103,7 @@ const Products = () => {
           )}
         </div>
         <div className="filterItem">
-          <h1 id="priceFilterLabel">Filter by price</h1>
+          <h1 id="priceFilterLabel">Price Range</h1>
           <div className="inputItem">
             <span>0</span>
             <input
