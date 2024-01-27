@@ -50,16 +50,39 @@
         margin: 20px 0;
         width: 100%;
 
+        h1{
+          font-size: 1.5rem;
+          font-weight: 400;
+          margin: 10px 0;
+        }
+
         label {
           font-size: 1.2rem;
           font-weight: 400;
-          margin-right: 20px;
+          margin-right: 10px;
         }
         input {
           padding: 8px;
           border-radius: 5px;
           font-size: 1rem;
           margin: 10px 0;
+          outline: none;
+        }
+        button{
+          padding: 8px;
+          border-radius: 5px;
+          font-size: 1rem;
+          margin: 10px 0;
+          outline: none;
+          border: none;
+          background: #000000;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.1s ease-in-out;
+
+          &:hover{
+            transform: scale(1.1);
+          }
         }
       }
     }
@@ -132,6 +155,22 @@
             font-size: 1rem;
             font-weight: 400;
             margin: 10px 0;
+          }
+          button{
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin: 10px 0;
+            outline: none;
+            border: none;
+            background: #000000;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+  
+            &:hover{
+              transform: scale(1.1);
+            }
           }
         }
       }

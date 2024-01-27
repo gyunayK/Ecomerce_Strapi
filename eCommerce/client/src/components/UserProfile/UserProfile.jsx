@@ -119,7 +119,7 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
           </button>
           <Modal open={editProfileOpen} onClose={handleCloseEditProfile}>
             <div className="editProfile">
-              <h1 className="editProfileTitle">Edit Profile</h1>
+              <h1>Edit Profile</h1>
               <form className="editProfileForm" onSubmit={handleUpdateInfo}>
                 <div>
                   <label>Name:</label>
