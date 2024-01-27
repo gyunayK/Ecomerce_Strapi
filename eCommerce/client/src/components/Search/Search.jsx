@@ -22,10 +22,10 @@ function Search() {
   const { data } = useFetch(fetchUrl, shouldFetch);
 
   const handleOutsideClick = (e) => {
-    // if (!searchRef.current.contains(e.target)) {
-    //   setSearchTerm("");
-    //   setSearchItems([]);
-    // }
+    if (!searchRef.current.contains(e.target)) {
+      setSearchTerm("");
+      setSearchItems([]);
+    }
   };
 
   const handleBlur = () => {
@@ -69,7 +69,7 @@ function Search() {
         placeholder="Type to Search..."
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
-        // onBlur={handleBlur}
+        onBlur={handleBlur}
       />
       {searchItems.length !== 0 ? (
         <div className="searchItems">
