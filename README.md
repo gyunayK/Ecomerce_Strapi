@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://ik.imagekit.io/riviaa/Screenshot%202023-10-27%20at%203.53.03%20PM.png?updatedAt=1698447238636" alt="project-image"></p>
 
-<p id="description">Kadirov: Your fashion-forward marketplace. Discover curated clothing and unique makeup accessories. Filter search and add favorites with ease. Checkout securely with Stripe. Sign up for personalized shopping and order tracking.</p>
+<p id="description">Kadirov: Your fashion-forward marketplace. Discover curated clothing and unique makeup accessories. Filter search and add favourites with ease. Checkout securely with Stripe. Sign up for personalized shopping and order tracking.</p>
 
 <h2>🚀 Demo</h2>
 
