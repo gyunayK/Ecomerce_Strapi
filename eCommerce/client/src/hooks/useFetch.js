@@ -3,16 +3,16 @@ import axios from "axios";
 
 const token = import.meta.env.VITE_STRAPI_TOKEN;
 
-const useFetch = (url, shouldFetch = true) => {
+const useFetch = (url) => {
     const [data, setData] = useState(null);
-    const [loading, setLoding] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (!shouldFetch) return
+        if (!url || url.includes('null')) return;
         const fetchProducts = async () => {
             try {
-                setLoding(true);
+                setLoading(true);
                 const res = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -22,7 +22,7 @@ const useFetch = (url, shouldFetch = true) => {
             } catch (error) {
                 setError(true);
             } finally {
-                setLoding(false);
+                setLoading(false);
 
             }
         };

@@ -45,8 +45,6 @@ const Cart = React.forwardRef((props, ref) => {
           },
         }
       );
-      console.log("Sending these products:", products);
-
       await stripeInstance.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
       });
