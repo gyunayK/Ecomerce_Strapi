@@ -1,62 +1,62 @@
-import "./Search.scss";
-import { useState, useEffect, useRef } from "react";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link } from "react-router-dom";
-import useFetch from "@/hooks/useFetch";
+import './Search.scss'
+import { useState, useEffect, useRef } from 'react'
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
+import { Link } from 'react-router-dom'
+import useFetch from '@/hooks/useFetch'
 
 function Search() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchItems, setSearchItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchItems, setSearchItems] = useState([])
 
-  const searchRef = useRef(null);
+  const searchRef = useRef(null)
 
-  const url = import.meta.env.VITE_APP_URL_API;
+  const url = import.meta.env.VITE_APP_URL_API
 
   //every word has to be capitalized
   const fetchUrl = `${url}/products?populate=*&[filters][title][$contains]=${searchTerm.replace(
     /\b[a-z]/g,
     (char) => char.toUpperCase()
-  )}`;
+  )}`
 
-  const shouldFetch = searchTerm !== "";
-  const { data } = useFetch(fetchUrl, shouldFetch);
+  const shouldFetch = searchTerm !== ''
+  const { data } = useFetch(fetchUrl, shouldFetch)
 
   const handleOutsideClick = (e) => {
     if (!searchRef.current.contains(e.target)) {
-      setSearchTerm("");
-      setSearchItems([]);
+      setSearchTerm('')
+      setSearchItems([])
     }
-  };
+  }
 
   const handleBlur = () => {
     setTimeout(() => {
-      setSearchTerm("");
-      setSearchItems([]);
-    }, 500);
+      setSearchTerm('')
+      setSearchItems([])
+    }, 500)
 
     return () => {
-      clearTimeout();
-    };
-  };
+      clearTimeout()
+    }
+  }
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [])
 
   useEffect(() => {
-    if (searchTerm === "") {
-      setSearchItems([]);
-      return;
+    if (searchTerm === '') {
+      setSearchItems([])
+      return
     }
 
     if (data) {
-      setSearchItems(data);
+      setSearchItems(data)
     }
-  }, [data, searchTerm]);
+  }, [data, searchTerm])
 
   return (
     <div className="search-box" ref={searchRef}>
@@ -80,8 +80,8 @@ function Search() {
                   className="searchLink"
                   to={`/product/${item.attributes.title}`}
                   onClick={() => {
-                    setSearchTerm("");
-                    setSearchItems([]);
+                    setSearchTerm('')
+                    setSearchItems([])
                   }}
                 >
                   <img
@@ -94,12 +94,12 @@ function Search() {
                   </div>
                 </Link>
               </div>
-            );
+            )
           })}
         </div>
       ) : null}
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search

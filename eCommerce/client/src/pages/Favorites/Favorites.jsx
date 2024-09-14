@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
-import "./Favorites.scss";
-import Card from "@/components/Card/Card";
+import { useState, useEffect } from 'react'
+import './Favorites.scss'
+import Card from '@/components/Card/Card'
 
 function Favorites() {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([])
 
   const favoritesCount = () => {
     if (favorites.length === 1) {
-      return <span>1 Item</span>;
+      return <span>1 Item</span>
     } else if (favorites.length > 1) {
-      return <span>{favorites.length} Items</span>;
+      return <span>{favorites.length} Items</span>
     }
-  };
+  }
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    const favorites = JSON.parse(localStorage.getItem('favorites'))
     if (favorites) {
-      setFavorites(favorites);
+      setFavorites(favorites)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="favProductWrapper">
@@ -42,7 +42,7 @@ function Favorites() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Favorites;
+export default Favorites

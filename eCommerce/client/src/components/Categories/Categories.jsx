@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react";
-import "./Categories.scss";
-import { Link } from "react-router-dom";
-import { makeRequest } from "@/hooks/makeRequest";
+import { useEffect, useState } from 'react'
+import './Categories.scss'
+import { Link } from 'react-router-dom'
+import { makeRequest } from '@/hooks/makeRequest'
+import PropTypes from 'prop-types'
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([])
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await makeRequest.get(`/categories?populate=*`);
-        setCategories(response.data);
+        const response = await makeRequest.get('/categories?populate=*')
+        setCategories(response.data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    fetchCategories();
-  }, []);
+    fetchCategories()
+  }, [])
 
   const CategoryBlock = ({ name }) => {
     const category = categories.data?.find(
       (item) => item.attributes.title === name
-    );
+    )
 
-    if (!category) return;
+    if (!category) return
 
     return (
       <div className="row">
@@ -35,8 +36,12 @@ const Categories = () => {
           {name.toUpperCase()}
         </Link>
       </div>
-    );
-  };
+    )
+  }
+
+  CategoryBlock.propTypes = {
+    name: PropTypes.string
+  }
 
   return (
     <div className="categories">
@@ -59,7 +64,7 @@ const Categories = () => {
         <CategoryBlock name="women" />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Categories;
+export default Categories

@@ -1,6 +1,5 @@
-import React from "react";
-import "./Cancel.scss";
-import { Link } from "react-router-dom";
+import './Cancel.scss'
+import { Link } from 'react-router-dom'
 
 function Cancel() {
   return (
@@ -12,7 +11,7 @@ function Cancel() {
         <Link className="link" to={'/'}>Go back to home page</Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default Cancel;
+export default Cancel

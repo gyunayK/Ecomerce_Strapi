@@ -1,33 +1,33 @@
-import { useState, useEffect } from "react";
-import "../Auth.Style.scss";
-import axios from "axios";
-import GoogleIcon from "@mui/icons-material/Google";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import '../Auth.Style.scss'
+import axios from 'axios'
+import GoogleIcon from '@mui/icons-material/Google'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 
 function SignUp() {
-  const [requestError, setRequestError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [requestError, setRequestError] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const schema = z
     .object({
-      username: z.string().min(2, { message: "Please enter a valid name." }),
-      email: z.string().email({ message: "Please enter a valid email." }),
-      password: z.string().min(6, { message: "Password is too short." }),
-      confirmPassword: z.string().min(6, { message: "Password is too short." }),
+      username: z.string().min(2, { message: 'Please enter a valid name.' }),
+      email: z.string().email({ message: 'Please enter a valid email.' }),
+      password: z.string().min(6, { message: 'Password is too short.' }),
+      confirmPassword: z.string().min(6, { message: 'Password is too short.' }),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: "Passwords don't match",
-      path: ["confirmPassword"],
-    });
+      message: 'Passwords don\'t match',
+      path: ['confirmPassword'],
+    })
 
   const {
     register,
@@ -35,46 +35,46 @@ function SignUp() {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
-  });
+  })
 
-  const API_URL = `${import.meta.env.VITE_APP_URL_API}/auth/local/register`;
+  const API_URL = `${import.meta.env.VITE_APP_URL_API}/auth/local/register`
   const HEADERS = {
-    "Content-Type": "application/json",
-  };
+    'Content-Type': 'application/json',
+  }
 
   const postUser = async (data) => {
     try {
       const response = await axios.post(API_URL, data, {
         headers: HEADERS,
-      });
+      })
 
       if (response.status !== 200) {
-        toast.error(`Error: ${response.status}`);
+        toast.error(`Error: ${response.status}`)
       }
 
-      console.log(response.data);
+      console.log(response.data)
     } catch (error) {
-      setRequestError(error.response?.data?.error?.message);
-      return;
+      setRequestError(error.response?.data?.error?.message)
+      return
     }
 
     try {
       if (rememberMe) {
         localStorage.setItem(
-          "UserLoginInfo",
+          'UserLoginInfo',
           JSON.stringify({
             username: data.username,
             email: data.email,
             password: data.password,
           })
-        );
+        )
       }
 
-      navigate("/login");
+      navigate('/login')
     } catch (error) {
-      console.error("Failed to navigate or save data", error);
+      console.error('Failed to navigate or save data', error)
     }
-  };
+  }
 
   return (
     <div className="authContainer">
@@ -100,7 +100,7 @@ function SignUp() {
             {requestError && <p className="errorMessage">{requestError}</p>}
             <form onSubmit={handleSubmit(postUser)}>
               <input
-                {...register("username")}
+                {...register('username')}
                 type="text"
                 placeholder="Username"
               />
@@ -108,13 +108,13 @@ function SignUp() {
                 <p className="errorMessage">{errors.username.message}</p>
               )}
 
-              <input {...register("email")} type="email" placeholder="Email" />
+              <input {...register('email')} type="email" placeholder="Email" />
               {errors.email && (
                 <p className="errorMessage">{errors.email.message}</p>
               )}
 
               <input
-                {...register("password")}
+                {...register('password')}
                 type="password"
                 placeholder="Password"
               />
@@ -123,7 +123,7 @@ function SignUp() {
               )}
 
               <input
-                {...register("confirmPassword")}
+                {...register('confirmPassword')}
                 type="password"
                 placeholder="Confirm Password"
               />
@@ -152,7 +152,7 @@ function SignUp() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

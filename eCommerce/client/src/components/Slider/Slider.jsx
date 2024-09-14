@@ -1,33 +1,33 @@
-import { useState, useEffect } from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import "./Slider.scss";
+import { useState, useEffect } from 'react'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import './Slider.scss'
 
 const Slider = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0)
 
   const prevSlide = () => {
-    setCurrent(current === 0 ? 3 : current - 1);
-  };
+    setCurrent(current === 0 ? 3 : current - 1)
+  }
 
   const nextSlide = () => {
-    setCurrent(current === 3 ? 0 : current + 1);
-  };
+    setCurrent(current === 3 ? 0 : current + 1)
+  }
 
   useEffect(() => {
     const handleAutoChangeSlide = () => {
-      setCurrent(current === 3 ? 0 : current + 1);
-    };
-    const interval = setInterval(handleAutoChangeSlide, 9000); // 9s
-    return () => clearInterval(interval);
-  }, [current]);
+      setCurrent(current === 3 ? 0 : current + 1)
+    }
+    const interval = setInterval(handleAutoChangeSlide, 9000) // 9s
+    return () => clearInterval(interval)
+  }, [current])
 
   const data = [
-    "/img/slider/robert.webp",
-    "/img/slider/ant.webp",
-    "/img/slider/florida.webp",
-    "/img/slider/amos.webp",
-  ];
+    '/img/slider/robert.webp',
+    '/img/slider/ant.webp',
+    '/img/slider/florida.webp',
+    '/img/slider/amos.webp',
+  ]
 
   return (
     <div className="slider">
@@ -48,7 +48,7 @@ const Slider = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

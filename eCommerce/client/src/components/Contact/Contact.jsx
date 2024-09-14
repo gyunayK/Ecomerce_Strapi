@@ -1,9 +1,9 @@
-import "./Contact.scss";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import GoogleIcon from "@mui/icons-material/Google";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import { FaXTwitter } from "react-icons/fa6";
+import './Contact.scss'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import GoogleIcon from '@mui/icons-material/Google'
+import PinterestIcon from '@mui/icons-material/Pinterest'
+import { FaXTwitter } from 'react-icons/fa6'
 
 const Contact = () => {
   return (
@@ -23,7 +23,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const token = import.meta.env.VITE_STRAPI_TOKEN;
+const token = import.meta.env.VITE_STRAPI_TOKEN
 
 const useFetch = (url) => {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
-        if (!url || url.includes('null')) return;
+        if (!url || url.includes('null')) return
         const fetchProducts = async () => {
             try {
-                setLoading(true);
+                setLoading(true)
                 const res = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
-                });
-                setData(res.data.data);
+                })
+                setData(res.data.data)
             } catch (error) {
-                setError(true);
+                setError(true)
             } finally {
-                setLoading(false);
+                setLoading(false)
 
             }
-        };
-        fetchProducts();
-    }, [url]);
+        }
+        fetchProducts()
+    }, [url])
 
-    return { data, loading, error };
+    return { data, loading, error }
 }
 
-export default useFetch;
+export default useFetch

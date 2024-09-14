@@ -1,12 +1,11 @@
-import React from "react";
-import "./LargeImageSkeleton.scss";
+import './LargeImageSkeleton.scss'
 
 const LargeImageSkeleton = () => {
   return (
     <div className="large-image-skeleton">
       <div className="skeleton-large-image"></div>
     </div>
-  );
-};
+  )
+}
 
-export default LargeImageSkeleton;
+export default LargeImageSkeleton

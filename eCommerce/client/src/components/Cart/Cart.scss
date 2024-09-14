@@ -35,11 +35,11 @@
   }
   .mapWrap {
     max-height: calc(60dvh - 150px);
+    overflow: auto;
 
     @media (max-width: 768px) {
       max-height: 50dvh;
     }
-    overflow: auto;
     .itemWrapper {
       position: relative;
 
@@ -124,14 +124,14 @@
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
-        &:hover {
-          background-color: #2f6ae0;
-        }
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
         font-weight: 500;
+        &:hover {
+          background-color: #2f6ae0;
+        }
       }
 
       span {

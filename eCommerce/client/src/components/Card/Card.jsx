@@ -1,10 +1,11 @@
-import "./Card.scss";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useFavorites } from "@/hooks/useFavorites";
+import './Card.scss'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useFavorites } from '@/hooks/useFavorites'
+import PropTypes from 'prop-types'
 
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 const Card = ({ item, id }) => {
   const {
@@ -12,31 +13,31 @@ const Card = ({ item, id }) => {
     handleAddToFavorites,
     handleRemoveFromFavorites,
     checkIfFavorite,
-  } = useFavorites();
+  } = useFavorites()
 
   const checkWindoLocation = () => {
     if (
-      window.location.pathname.includes("favorites") ||
-      window.location.pathname.includes("products") ||
-      window.location.pathname.includes("product")
+      window.location.pathname.includes('favorites') ||
+      window.location.pathname.includes('products') ||
+      window.location.pathname.includes('product')
     ) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   const addToFavorites = () => {
-    handleAddToFavorites(item, id);
-  };
+    handleAddToFavorites(item, id)
+  }
 
   const removeFromFavorites = () => {
-    handleRemoveFromFavorites(id);
-  };
+    handleRemoveFromFavorites(id)
+  }
 
   useEffect(() => {
-    checkIfFavorite(id);
-  }, [id, checkIfFavorite]);
+    checkIfFavorite(id)
+  }, [id, checkIfFavorite])
 
   return (
     <div className="card">
@@ -92,7 +93,7 @@ const Card = ({ item, id }) => {
         <div className="pricesWrapper">
           <h2>{item.title}</h2>
           <div className="prices">
-            {item?.type === "sale" ? (
+            {item?.type === 'sale' ? (
               <h3 className="salePrice">${(50 + item.price).toFixed(2)}</h3>
             ) : null}
             <h3>${item.price}</h3>
@@ -100,7 +101,10 @@ const Card = ({ item, id }) => {
         </div>
       </Link>
     </div>
-  );
-};
-
-export default Card;
+  )
+}
+Card.propTypes = {
+  item: PropTypes.object,
+  id: PropTypes.string
+}
+export default Card

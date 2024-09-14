@@ -1,47 +1,48 @@
-import { useEffect } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import "./Modal.scss";
+import './Modal.scss'
+import { useEffect } from 'react'
+import CloseIcon from '@mui/icons-material/Close'
+import PropTypes from 'prop-types'
 
 function Modal({ open, onClose, children }) {
   const handleClose = () => {
-    onClose && onClose();
-  };
+    onClose && onClose()
+  }
 
   const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
-      handleClose();
+    if (e.key === 'Escape') {
+      handleClose()
     }
-  };
+  }
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto'
     }
 
     const handleClickOutsideModal = (e) => {
-      if (e.target.classList.contains("modal-wrapper")) {
-        handleClose();
+      if (e.target.classList.contains('modal-wrapper')) {
+        handleClose()
       }
-    };
+    }
 
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("click", handleClickOutsideModal);
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('click', handleClickOutsideModal)
 
     return () => {
-      document.removeEventListener("click", handleClickOutsideModal);
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto"; // Reset the overflow property
-    };
-  });
+      document.removeEventListener('click', handleClickOutsideModal)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = 'auto' // Reset the overflow property
+    }
+  })
 
   return (
-    <div className={`modal-wrapper ${open ? "modal-open" : ""}`}>
+    <div className={`modal-wrapper ${open ? 'modal-open' : ''}`}>
       <section
         role="dialog"
         aria-labelledby="modal-title"
-        className={`modal ${open ? "modal-visible" : "modal-hidden"}`}
+        className={`modal ${open ? 'modal-visible' : 'modal-hidden'}`}
       >
         <button
           className="closeIcon"
@@ -55,7 +56,13 @@ function Modal({ open, onClose, children }) {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default Modal;
+Modal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+export default Modal

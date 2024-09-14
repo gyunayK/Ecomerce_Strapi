@@ -1,45 +1,46 @@
-import "./Suggestions.scss";
-import { useState, useEffect, useMemo } from "react";
-import useFetch from "@/hooks/useFetch";
-import Card from "@/components/Card/Card";
-import ProductCardSkeleton from "../Skeleton/ProductCardSkeleton/ProductCardSkeleton";
+import './Suggestions.scss'
+import { useState, useEffect, useMemo } from 'react'
+import useFetch from '@/hooks/useFetch'
+import Card from '@/components/Card/Card'
+import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
+import PropTypes from 'prop-types'
 
 function Suggestions({ productID }) {
-  const [subCategoryId, setSubCategoryId] = useState(null);
-  const [suggestedProducts, setSuggestedProducts] = useState([]);
-  const url = import.meta.env.VITE_APP_URL_API;
+  const [subCategoryId, setSubCategoryId] = useState(null)
+  const [suggestedProducts, setSuggestedProducts] = useState([])
+  const url = import.meta.env.VITE_APP_URL_API
 
   const { data: productData } = useFetch(
     `${url}/products?populate=*&[filters][id][$eq]=${productID}`
-  );
+  )
 
   const { data: suggestedData } = useFetch(
     subCategoryId
       ? `${url}/sub-categories?populate=products.img,products.img2&[filters][id][$eq]=${subCategoryId}`
       : null
-  );
+  )
 
   const filteredProducts = useMemo(() => {
     return suggestedProducts
       .filter((product) => product.id !== parseInt(productID))
-      .slice(0, 4); // maximum of 4 suggested products
-  }, [suggestedProducts, productID]);
+      .slice(0, 4) // maximum of 4 suggested products
+  }, [suggestedProducts, productID])
 
   useEffect(() => {
     if (productData) {
       const newSubCategoryId =
-        productData[0]?.attributes.sub_categories.data[0]?.id;
+        productData[0]?.attributes.sub_categories.data[0]?.id
       if (newSubCategoryId) {
-        setSubCategoryId(newSubCategoryId);
+        setSubCategoryId(newSubCategoryId)
       }
     }
-  }, [productData]);
+  }, [productData])
 
   useEffect(() => {
     if (suggestedData) {
-      setSuggestedProducts(suggestedData[0]?.attributes.products.data);
+      setSuggestedProducts(suggestedData[0]?.attributes.products.data)
     }
-  }, [suggestedData]);
+  }, [suggestedData])
 
   return (
     <>
@@ -58,7 +59,11 @@ function Suggestions({ productID }) {
         </>
       )}
     </>
-  );
+  )
 }
 
-export default Suggestions;
+Suggestions.propTypes = {
+  productID: PropTypes.string
+}
+
+export default Suggestions

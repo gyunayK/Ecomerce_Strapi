@@ -1,5 +1,5 @@
-import React from "react";
-import "./CheckboxSkeleton.scss";
+import './CheckboxSkeleton.scss'
+import PropTypes from 'prop-types'
 
 const CheckboxSkeleton = ({ numberOfItems }) => {
   return (
@@ -11,7 +11,11 @@ const CheckboxSkeleton = ({ numberOfItems }) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default CheckboxSkeleton;
+CheckboxSkeleton.propTypes = {
+  numberOfItems: PropTypes.number,
+}
+
+export default CheckboxSkeleton

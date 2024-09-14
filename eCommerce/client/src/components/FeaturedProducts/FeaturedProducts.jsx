@@ -1,22 +1,23 @@
-import "./FeaturedProducts.scss";
-import Card from "../Card/Card";
-import { useEffect, useState } from "react";
-import useFetch from "@/hooks/useFetch";
-import Loading from "@/components/Loading/Loading";
+import './FeaturedProducts.scss'
+import Card from '../Card/Card'
+import { useEffect, useState } from 'react'
+import useFetch from '@/hooks/useFetch'
+import Loading from '@/components/Loading/Loading'
+import PropTypes from 'prop-types'
 
 const FeaturedProducts = ({ type, desc }) => {
-  const [products, setProducts] = useState([]);
-  const url = import.meta.env.VITE_APP_URL_API;
+  const [products, setProducts] = useState([])
+  const url = import.meta.env.VITE_APP_URL_API
 
   const { data, loading, error } = useFetch(
     `${url}/products?populate=*&[filters][type][$eq]=${type}`
-  );
+  )
 
   useEffect(() => {
     if (data) {
-      setProducts(data);
+      setProducts(data)
     }
-  }, [type, data]);
+  }, [type, data])
 
   return (
     <div className="featuredProducts">
@@ -31,12 +32,17 @@ const FeaturedProducts = ({ type, desc }) => {
           <h1>An error has occurred, please try again later.</h1>
         ) : (
           products?.map((product) => (
-            <Card key={product.id} item={product.attributes} id={product.id} />
+            <Card key={product.id} item={product.attributes} id={String(product.id)} />
           ))
         )}
       </div>
     </div>
-  );
-};
+  )
+}
+FeaturedProducts.propTypes = {
+  type: PropTypes.string,
+  desc: PropTypes.string
+}
 
-export default FeaturedProducts;
+
+export default FeaturedProducts

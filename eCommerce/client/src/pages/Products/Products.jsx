@@ -1,76 +1,76 @@
-import "./Products.scss";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import List from "@/components/List/List";
-import { makeRequest } from "@/hooks/makeRequest";
+import './Products.scss'
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import List from '@/components/List/List'
+import { makeRequest } from '@/hooks/makeRequest'
 
-import { BsFilterCircle, BsXCircle } from "react-icons/bs";
-import CheckboxSkeleton from "@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton";
-import LargeImageSkeleton from "../../components/Skeleton/LargeImageSkeleton/LargeImageSkeleton";
+import { BsFilterCircle, BsXCircle } from 'react-icons/bs'
+import CheckboxSkeleton from '@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton'
+import LargeImageSkeleton from '../../components/Skeleton/LargeImageSkeleton/LargeImageSkeleton'
 
 const Products = () => {
-  const [maxPrice, setMaxPrice] = useState(1000);
-  const [sort, setSort] = useState("");
-  const [selectedSubCategories, setSelectedSubCategories] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [subCategories, setSubCategories] = useState([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [id, setId] = useState("");
+  const [maxPrice, setMaxPrice] = useState(1000)
+  const [sort, setSort] = useState('')
+  const [selectedSubCategories, setSelectedSubCategories] = useState([])
+  const [categories, setCategories] = useState([])
+  const [subCategories, setSubCategories] = useState([])
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [id, setId] = useState('')
 
-  const { title } = useParams();
+  const { title } = useParams()
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   const handleChange = (e) => {
     if (e.target.checked) {
-      setSelectedSubCategories([...selectedSubCategories, e.target.value]);
+      setSelectedSubCategories([...selectedSubCategories, e.target.value])
     } else {
       setSelectedSubCategories(
         selectedSubCategories.filter((item) => item !== e.target.value)
-      );
+      )
     }
-  };
+  }
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await makeRequest.get(
           `/categories?populate=*&[filters][title][$eq]=${title}`
-        );
-        setCategories(response.data);
-        setId(response.data.data[0].id);
+        )
+        setCategories(response.data)
+        setId(response.data.data[0].id)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    fetchCategories();
-  }, [title]);
+    fetchCategories()
+  }, [title])
 
   useEffect(() => {
     const fetchSubCategories = async () => {
       try {
-        if (!id) return;
+        if (!id) return
         const response = await makeRequest.get(
           `/sub-categories?populate=*&[filters][categories][id][$eq]=${id}`
-        );
-        setSubCategories(response.data.data);
+        )
+        setSubCategories(response.data.data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
-    fetchSubCategories();
-  }, [id]);
+    }
+    fetchSubCategories()
+  }, [id])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id, selectedSubCategories]);
+    window.scrollTo(0, 0)
+  }, [id, selectedSubCategories])
 
   return (
     <div className="products">
@@ -78,7 +78,7 @@ const Products = () => {
         {isMenuOpen ? <BsXCircle /> : <BsFilterCircle />}
       </div>
 
-      <div className={isMenuOpen ? "left open" : "left"}>
+      <div className={isMenuOpen ? 'left open' : 'left'}>
         <div className="filterItem">
           <h1>Shop by Category</h1>
           {subCategories.length > 0 ? (
@@ -96,7 +96,7 @@ const Products = () => {
                     {capitalizeFirstLetter(subCategory.attributes.title)}
                   </label>
                 </div>
-              );
+              )
             })
           ) : (
             <CheckboxSkeleton numberOfItems={6} />
@@ -126,7 +126,7 @@ const Products = () => {
               id="acs"
               value="acs"
               name="price"
-              onChange={() => setSort("asc")}
+              onChange={() => setSort('asc')}
             />
             <label htmlFor="acs">Price (Lowest first)</label>
           </div>
@@ -136,7 +136,7 @@ const Products = () => {
               id="desc"
               value="desc"
               name="price"
-              onChange={() => setSort("desc")}
+              onChange={() => setSort('desc')}
             />
             <label htmlFor="desc">Price (Highest first)</label>
           </div>
@@ -163,7 +163,7 @@ const Products = () => {
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products

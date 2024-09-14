@@ -1,85 +1,86 @@
-import { useState, useEffect } from "react";
-import "./UserProfile.scss";
-import Modal from "@/components/Modal/Modal";
-import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
-import PersonIcon from "@mui/icons-material/Person";
-import axios from "axios";
-import { toast } from "react-toastify";
-import Loading from "@/components/Loading/Loading";
+import './UserProfile.scss'
+import { useState, useEffect } from 'react'
+import Modal from '@/components/Modal/Modal'
+import PropTypes from 'prop-types'
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle'
+import PersonIcon from '@mui/icons-material/Person'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import Loading from '@/components/Loading/Loading'
 
 function UserProfile({ user, userJWT, handleUserUpdate }) {
-  const [editProfileOpen, setEditProfileOpen] = useState(false);
-  const [changeAvatarOpen, setChangeAvatarOpen] = useState(false);
-  const [file, setFile] = useState(null);
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
+  const [editProfileOpen, setEditProfileOpen] = useState(false)
+  const [changeAvatarOpen, setChangeAvatarOpen] = useState(false)
+  const [file, setFile] = useState(null)
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [name, setName] = useState('')
 
-  const api = import.meta.env.VITE_APP_URL_API;
+  const api = import.meta.env.VITE_APP_URL_API
 
   const handleCloseEditProfile = () => {
-    setEditProfileOpen(false);
-  };
+    setEditProfileOpen(false)
+  }
 
   const handleOpenEditProfile = () => {
-    setEditProfileOpen(true);
-  };
+    setEditProfileOpen(true)
+  }
 
   const handleCloseChangeAvatar = () => {
-    setChangeAvatarOpen(false);
-  };
+    setChangeAvatarOpen(false)
+  }
 
   const handleOpenChangeAvatar = () => {
-    setChangeAvatarOpen(true);
-  };
+    setChangeAvatarOpen(true)
+  }
 
   const handleFileChange = ({ target: { files } }) => {
     if (files?.length) {
-      const { type } = files[0];
+      const { type } = files[0]
 
-      if (type === "image/jpeg" || type === "image/png") {
-        setFile(files[0]);
+      if (type === 'image/jpeg' || type === 'image/png') {
+        setFile(files[0])
       } else {
-        toast.error("Only 'jpeg' or 'png' files are allowed");
+        toast.error('Only \'jpeg\' or \'png\' files are allowed')
       }
     }
-  };
+  }
 
   const handleSubmitImage = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!file) {
-      toast.error("Please select an image");
-      return;
+      toast.error('Please select an image')
+      return
     }
 
     try {
-      const files = new FormData();
-      files.append("ref", "plugin::users-permissions.user");
-      files.append("refId", user.id);
-      files.append("field", "profile_IMG");
-      files.append("files", file);
+      const files = new FormData()
+      files.append('ref', 'plugin::users-permissions.user')
+      files.append('refId', user.id)
+      files.append('field', 'profile_IMG')
+      files.append('files', file)
 
       const res = await axios.post(`${api}/upload`, files, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${userJWT}`,
         },
-      });
+      })
 
       if (res.data && res.data.length > 0) {
-        toast.success("Image uploaded successfully");
+        toast.success('Image uploaded successfully')
       }
 
-      handleUserUpdate();
-      handleCloseChangeAvatar();
-      setFile(null);
+      handleUserUpdate()
+      handleCloseChangeAvatar()
+      setFile(null)
     } catch (error) {
-      toast.error("An error occurred while uploading the image.");
+      toast.error('An error occurred while uploading the image.')
     }
-  };
+  }
 
   const handleUpdateInfo = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const res = await axios.put(
@@ -90,23 +91,23 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
             Authorization: `Bearer ${userJWT}`,
           },
         }
-      );
+      )
 
       if (res.data) {
-        toast.success("User updated successfully");
-        handleUserUpdate();
-        handleCloseEditProfile();
+        toast.success('User updated successfully')
+        handleUserUpdate()
+        handleCloseEditProfile()
       }
     } catch (error) {
-      toast.error("An error occurred while updating the user.");
+      toast.error('An error occurred while updating the user.')
     }
-  };
+  }
 
   useEffect(() => {
-    if (user.email) setEmail(user.email);
-    if (user.phoneNumber) setPhone(user.phoneNumber);
-    if (user.username) setName(user.username);
-  }, [user]);
+    if (user.email) setEmail(user.email)
+    if (user.phoneNumber) setPhone(user.phoneNumber)
+    if (user.username) setName(user.username)
+  }, [user])
 
   if(!user.createdAt) return <Loading/>
 
@@ -192,7 +193,11 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
-
-export default UserProfile;
+UserProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+  userJWT: PropTypes.string.isRequired,
+  handleUserUpdate: PropTypes.func.isRequired,
+}
+export default UserProfile

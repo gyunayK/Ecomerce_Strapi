@@ -1,116 +1,111 @@
-import { useState, useEffect } from "react";
-import "../Auth.Style.scss";
-import GoogleIcon from "@mui/icons-material/Google";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { useState, useEffect } from 'react'
+import '../Auth.Style.scss'
+import GoogleIcon from '@mui/icons-material/Google'
+import InstagramIcon from '@mui/icons-material/Instagram'
+import TwitterIcon from '@mui/icons-material/Twitter'
 
-import axios from "axios";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 
 function Login() {
-  const [requestError, setRequestError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [requestError, setRequestError] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [savedUser, setSavedUser] = useState({})
 
-  const [savedUser, setSavedUser] = useState({});
-  const [user, setUser] = useState(null);
-
-  const navigate = useNavigate();
-  console.log(JSON.parse(localStorage.getItem("UserLoginInfo")));
+  const navigate = useNavigate()
+  console.log(JSON.parse(localStorage.getItem('UserLoginInfo')))
 
   const schema = z.object({
-    email: z.string().email({ message: "Please enter a valid email." }),
-    password: z.string().min(6, { message: "Password is too short." }),
-  });
+    email: z.string().email({ message: 'Please enter a valid email.' }),
+    password: z.string().min(6, { message: 'Password is too short.' })
+  })
 
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors }
   } = useForm({
-    resolver: zodResolver(schema),
-  });
+    resolver: zodResolver(schema)
+  })
 
-  const API_URL = `${import.meta.env.VITE_APP_URL_API}/auth/local/`;
+  const API_URL = `${import.meta.env.VITE_APP_URL_API}/auth/local/`
   const HEADERS = {
-    "Content-Type": "application/json",
-  };
+    'Content-Type': 'application/json'
+  }
 
   const handleDemoLogin = () => {
     handleLogin({
-      email: "demo@hoge.ca",
-      password: "123123123",
-    });
-  };
+      email: 'demo@hoge.ca',
+      password: '123123123'
+    })
+  }
 
   const handleLogin = async (data = { email, password }) => {
-    const { email: emailFromData, ...restData } = data;
-    const requestData = { identifier: emailFromData, ...restData };
+    const { email: emailFromData, ...restData } = data
+    const requestData = { identifier: emailFromData, ...restData }
     try {
       const response = await axios.post(API_URL, requestData, {
-        headers: HEADERS,
-      });
+        headers: HEADERS
+      })
 
       if (response.status !== 200) {
-        toast.error(`Error: ${response.status}`);
+        toast.error(`Error: ${response.status}`)
       }
 
-      localStorage.setItem("UserData", JSON.stringify(response.data.user));
-      localStorage.setItem("UserJWT", JSON.stringify(response.data.jwt));
+      localStorage.setItem('UserData', JSON.stringify(response.data.user))
+      localStorage.setItem('UserJWT', JSON.stringify(response.data.jwt))
       if (rememberMe) {
         localStorage.setItem(
-          "UserLoginInfo",
+          'UserLoginInfo',
           JSON.stringify({
             email: email,
-            password: data.password,
+            password: data.password
           })
-        );
+        )
       }
-      navigate("/");
+      navigate('/')
     } catch (error) {
-      setRequestError(error.response?.data?.error?.message);
-      return;
+      setRequestError(error.response?.data?.error?.message)
+      return
     }
-  };
+  }
 
   useEffect(() => {
     if (savedUser.email) {
-      setEmail(savedUser.email);
-      setValue("email", savedUser.email);
+      setEmail(savedUser.email)
+      setValue('email', savedUser.email)
     }
     if (savedUser.password) {
-      setPassword(savedUser.password);
-      setValue("password", savedUser.password);
+      setPassword(savedUser.password)
+      setValue('password', savedUser.password)
     }
-  }, [savedUser, setValue]);
+  }, [savedUser, setValue])
 
   useEffect(() => {
-    localStorage.getItem("UserData") &&
-      setUser(JSON.parse(localStorage.getItem("UserData")));
-
-    const savedUserInfo = JSON.parse(localStorage.getItem("UserLoginInfo"));
+    const savedUserInfo = JSON.parse(localStorage.getItem('UserLoginInfo'))
 
     if (savedUserInfo) {
-      setEmail(savedUserInfo.email);
-      setPassword(savedUserInfo.password);
-      setSavedUser(savedUserInfo);
-      setRememberMe(true);
+      setEmail(savedUserInfo.email)
+      setPassword(savedUserInfo.password)
+      setSavedUser(savedUserInfo)
+      setRememberMe(true)
     }
 
     if (rememberMe === false) {
-      localStorage.removeItem("UserLoginInfo");
-      setEmail("");
-      setPassword("");
+      localStorage.removeItem('UserLoginInfo')
+      setEmail('')
+      setPassword('')
     }
-  }, [rememberMe]);
+  }, [rememberMe])
 
   return (
     <div className="authContainer">
@@ -119,9 +114,8 @@ function Login() {
           <div className="content">
             <h1>WELCOME TO KADIROV</h1>
             <p>
-              We&apos;re thrilled to have you here. Get ready to discover an
-              extraordinary collection of the latest trends and timeless
-              classics.
+              We&apos;re thrilled to have you here. Get ready to discover an extraordinary collection of the
+              latest trends and timeless classics.
             </p>
 
             <div className="social">
@@ -134,34 +128,26 @@ function Login() {
         <div className="right">
           <div className="formContainer">
             <h1>LOGIN</h1>
-            {requestError && (
-              <p className="errorMessage">
-                {requestError.replace("identifier", "email")}
-              </p>
-            )}
+            {requestError && <p className="errorMessage">{requestError.replace('identifier', 'email')}</p>}
             <form onSubmit={handleSubmit(handleLogin)}>
               <input
-                {...register("email")}
+                {...register('email')}
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {errors.email && (
-                <p className="errorMessage">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="errorMessage">{errors.email.message}</p>}
 
               <input
-                {...register("password")}
+                {...register('password')}
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              {errors.password && (
-                <p className="errorMessage">{errors.password.message}</p>
-              )}
+              {errors.password && <p className="errorMessage">{errors.password.message}</p>}
               <div className="rememberMe">
                 <label htmlFor="rememberMe" className="rememberMeLabel">
                   Remember Me
@@ -178,8 +164,8 @@ function Login() {
               <button type="submit">LOGIN</button>
               <button
                 onClick={(e) => {
-                  e.preventDefault();
-                  handleDemoLogin();
+                  e.preventDefault()
+                  handleDemoLogin()
                 }}
               >
                 DEMO LOGIN
@@ -195,7 +181,7 @@ function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

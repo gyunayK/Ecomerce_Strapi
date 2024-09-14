@@ -1,40 +1,41 @@
-import "./Cart.scss";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import './Cart.scss'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import DeleteIcon from '@mui/icons-material/Delete'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import PropTypes from 'prop-types'
 
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem, resetCart } from "@/redux/cartReducer";
-import { loadStripe } from "@stripe/stripe-js";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { removeItem, resetCart } from '@/redux/cartReducer'
+import { loadStripe } from '@stripe/stripe-js'
+import { Link } from 'react-router-dom'
 
 const Cart = React.forwardRef((props, ref) => {
-  const [userJWT, setUserJWT] = useState("");
+  const [userJWT, setUserJWT] = useState('')
 
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.cart.products)
 
-  const api = import.meta.env.VITE_APP_URL_API;
-  const token = import.meta.env.VITE_STRAPI_TOKEN;
-  const stripePK = import.meta.env.VITE_STIPE_PUBLISHABLE_KEY;
+  const api = import.meta.env.VITE_APP_URL_API
+  const token = import.meta.env.VITE_STRAPI_TOKEN
+  const stripePK = import.meta.env.VITE_STIPE_PUBLISHABLE_KEY
 
   const totalPrice = products
     .reduce((acc, item) => {
-      return acc + item.price * item.quantity;
+      return acc + item.price * item.quantity
     }, 0)
-    .toFixed(2);
+    .toFixed(2)
 
-  const stripePromise = loadStripe(stripePK);
+  const stripePromise = loadStripe(stripePK)
   const handlePayment = async () => {
     if (!userJWT) {
-      window.location.href = "/login";
-      return;
+      window.location.href = '/login'
+      return
     }
 
     try {
-      const stripeInstance = await stripePromise;
+      const stripeInstance = await stripePromise
 
       const res = await axios.post(
         `${api}/orders`,
@@ -44,23 +45,23 @@ const Cart = React.forwardRef((props, ref) => {
             Authorization: `Bearer ${userJWT ? userJWT : token}`,
           },
         }
-      );
+      )
       await stripeInstance.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
-      });
+      })
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   useEffect(() => {
-    setUserJWT(JSON.parse(localStorage.getItem("UserJWT")));
-  }, []);
+    setUserJWT(JSON.parse(localStorage.getItem('UserJWT')))
+  }, [])
 
   return (
     <div className="cart" ref={ref}>
       <h1>
-        {products.length === 0 ? "Your cart is empty" : "Products in your cart"}
+        {products.length === 0 ? 'Your cart is empty' : 'Products in your cart'}
         <HighlightOffIcon
           className="cancelIcon"
           onClick={() => props.setIsOpen(false)}
@@ -98,7 +99,13 @@ const Cart = React.forwardRef((props, ref) => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
-export default Cart;
+Cart.displayName = 'Cart'
+
+Cart.propTypes = {
+  setIsOpen: PropTypes.func.isRequired
+}
+
+export default Cart

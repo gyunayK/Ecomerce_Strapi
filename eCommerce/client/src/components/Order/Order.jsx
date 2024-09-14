@@ -1,36 +1,37 @@
-import { useState, useEffect } from "react";
-import "./Order.scss";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/cartReducer";
-import axios from "axios";
-import { makeRequest } from "@/hooks/makeRequest";
+import './Order.scss'
+import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/redux/cartReducer'
+import axios from 'axios'
+import { makeRequest } from '@/hooks/makeRequest'
+import PropTypes from 'prop-types'
 
 function Order({ user, userJWT, handleUserUpdate }) {
-  const [orders, setOrders] = useState([]);
-  const [paymentStatusChecked, setPaymentStatusChecked] = useState(false);
+  const [orders, setOrders] = useState([])
+  const [paymentStatusChecked, setPaymentStatusChecked] = useState(false)
 
-  const dispatch = useDispatch();
-  const api = import.meta.env.VITE_APP_URL_API;
+  const dispatch = useDispatch()
+  const api = import.meta.env.VITE_APP_URL_API
 
   const handleCopyClick = (stripeId) => {
     navigator.clipboard
       .writeText(stripeId)
       .then(() => {
-        toast.success("Copied!");
+        toast.success('Copied!')
       })
       .catch(() => {
-        toast.error("Failed to copy!");
-      });
-  };
+        toast.error('Failed to copy!')
+      })
+  }
 
   const orderTotalPrice = (products) => {
-    let totalPrice = 0;
+    let totalPrice = 0
     products.forEach((product) => {
-      totalPrice += product.price;
-    });
-    return totalPrice.toFixed(2);
-  };
+      totalPrice += product.price
+    })
+    return totalPrice.toFixed(2)
+  }
 
   const handleAddToCart = (product) => {
     product.forEach((product) => {
@@ -43,9 +44,9 @@ function Order({ user, userJWT, handleUserUpdate }) {
           price: product.price,
           quantity: product.quantity,
         })
-      );
-    });
-  };
+      )
+    })
+  }
 
   const handleDeleteOrder = async (id) => {
     try {
@@ -53,24 +54,24 @@ function Order({ user, userJWT, handleUserUpdate }) {
         headers: {
           Authorization: `Bearer ${userJWT}`,
         },
-      });
+      })
 
       if (res.status === 200) {
-        toast.success("Order deleted!");
-        handleUserUpdate();
+        toast.success('Order deleted!')
+        handleUserUpdate()
       }
     } catch (err) {
-      toast.error("Failed to delete order!");
-      console.log(err);
+      toast.error('Failed to delete order!')
+      console.log(err)
     }
-  };
+  }
 
   useEffect(() => {
-    setOrders([...user.orders]);
-  }, [user]);
+    setOrders([...user.orders])
+  }, [user])
 
   useEffect(() => {
-    if (!orders.length || paymentStatusChecked) return;
+    if (!orders.length || paymentStatusChecked) return
 
     const fetchStripeData = async () => {
       // Create a new array to hold the updated orders with payment status
@@ -79,27 +80,24 @@ function Order({ user, userJWT, handleUserUpdate }) {
           try {
             const response = await makeRequest.get(
               `/orders/checkout-session/${order.stripeId}`
-            );
+            )
             // Add a new property to the order object indicating payment status
-            return { ...order, isPaid: response.data.paymentStatus === "paid" };
+            return { ...order, isPaid: response.data.paymentStatus === 'paid' }
           } catch (error) {
             console.error(
               `Failed to fetch data for stripeId ${order.stripeId}:`,
               error
-            );
-            return { ...order, isPaid: false }; // Default to false if there's an error
+            )
+            return { ...order, isPaid: false }
           }
         })
-      );
-      // Update the orders state with the new array
-      setOrders(updatedOrders);
-      // Indicate that the payment status check is complete
-      setPaymentStatusChecked(true);
-    };
+      )
+      setOrders(updatedOrders)
+      setPaymentStatusChecked(true)
+    }
 
-    fetchStripeData();
-    // Add dependencies here
-  }, [orders, paymentStatusChecked]);
+    fetchStripeData()
+  }, [orders, paymentStatusChecked])
 
   return (
     <div className="orderContainer">
@@ -107,7 +105,7 @@ function Order({ user, userJWT, handleUserUpdate }) {
         return (
           <div className="oder" key={i}>
             <div className="oderTop">
-              <h1>{order.isPaid ? "Completed" : "Pending"}</h1>
+              <h1>{order.isPaid ? 'Completed' : 'Pending'}</h1>
               <div className="oderTopRight">
                 <div>
                   <p>
@@ -135,7 +133,7 @@ function Order({ user, userJWT, handleUserUpdate }) {
                     <a key={i} href={`/product/${product.title}`}>
                       <img src={product.img} alt={product.title} />
                     </a>
-                  );
+                  )
                 })}
               </div>
               <div className="orderBotRight">
@@ -150,16 +148,22 @@ function Order({ user, userJWT, handleUserUpdate }) {
                   className="deleteBTN"
                   onClick={() => handleDeleteOrder(order.id)}
                 >
-                  {" "}
+                  {' '}
                   Delete
                 </button>
               </div>
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-export default Order;
+Order.propTypes = {
+  user: PropTypes.object,
+  userJWT: PropTypes.string,
+  handleUserUpdate: PropTypes.func,
+}
+
+export default Order

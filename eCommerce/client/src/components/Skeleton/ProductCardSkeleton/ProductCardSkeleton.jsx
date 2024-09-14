@@ -1,5 +1,5 @@
-import React from "react";
-import "./ProductCardSkeleton.scss";
+import './ProductCardSkeleton.scss'
+import PropTypes from 'prop-types'
 
 const ProductCardSkeleton = ({ numberOfItems }) => {
   return (
@@ -14,7 +14,11 @@ const ProductCardSkeleton = ({ numberOfItems }) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ProductCardSkeleton;
+ProductCardSkeleton.propTypes = {
+  numberOfItems: PropTypes.number,
+}
+
+export default ProductCardSkeleton

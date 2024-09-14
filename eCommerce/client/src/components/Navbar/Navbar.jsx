@@ -1,73 +1,73 @@
-import "./Navbar.scss";
-import "./hamburgerStyle.scss";
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import Cart from "@/components/Cart/Cart";
-import Search from "@/components/Search/Search";
-import UserMenu from "@/components/userMenu/UserMenu";
-import { makeRequest } from "@/hooks/makeRequest";
+import './Navbar.scss'
+import './hamburgerStyle.scss'
+import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import Cart from '@/components/Cart/Cart'
+import Search from '@/components/Search/Search'
+import UserMenu from '@/components/userMenu/UserMenu'
+import { makeRequest } from '@/hooks/makeRequest'
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [isOpen, setIsOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [categories, setCategories] = useState([])
 
-  const cartRef = useRef(null);
-  const products = useSelector((state) => state.cart.products);
+  const cartRef = useRef(null)
+  const products = useSelector((state) => state.cart.products)
 
   const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
   const handleGoToCatPage = (category) => {
-    setMobileMenuOpen(false);
-    setIsOpen(false);
+    setMobileMenuOpen(false)
+    setIsOpen(false)
 
     const categoryItem = categories.data.find(
       (item) => item.attributes.title === category
-    );
+    )
 
-    if (!categoryItem) return;
+    if (!categoryItem) return
 
-    window.location.href = `/products/${categoryItem.attributes.title}`;
-  };
+    window.location.href = `/products/${categoryItem.attributes.title}`
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await makeRequest.get(`/categories?populate=*`);
-        setCategories(response.data);
+        const response = await makeRequest.get('/categories?populate=*')
+        setCategories(response.data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    fetchCategories();
-  }, []);
+    fetchCategories()
+  }, [])
 
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.classList.add("no-scroll");
+      document.body.classList.add('no-scroll')
     } else {
-      document.body.classList.remove("no-scroll");
+      document.body.classList.remove('no-scroll')
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen])
 
   return (
     <div className="navbar">
@@ -124,12 +124,12 @@ const Navbar = () => {
           <div className="icons">
             <Search />
 
-            <Link id="fav" to={"/favorites"} aria-label="Navigate to favorites">
+            <Link id="fav" to={'/favorites'} aria-label="Navigate to favorites">
               <FavoriteBorderOutlinedIcon
                 tabIndex="0"
                 aria-hidden="true"
                 alt="Favorites"
-                style={{ outline: "none" }}
+                style={{ outline: 'none' }}
               />
             </Link>
 
@@ -142,7 +142,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`mobileMenu ${mobileMenuOpen ? "open" : ""}`}>
+      <div className={`mobileMenu ${mobileMenuOpen ? 'open' : ''}`}>
         {categories?.data?.map((category) => {
           return (
             <div className="item" key={category.id}>
@@ -153,12 +153,12 @@ const Navbar = () => {
                 {category.attributes.title.toUpperCase()}
               </button>
             </div>
-          );
+          )
         })}
         <div className="item">
           <Link
             className="navBtn"
-            to={"/favorites"}
+            to={'/favorites'}
             onClick={handleGoToCatPage}
           >
             FAVORITES
@@ -167,7 +167,7 @@ const Navbar = () => {
       </div>
       {isOpen && <Cart ref={cartRef} setIsOpen={setIsOpen} />}
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

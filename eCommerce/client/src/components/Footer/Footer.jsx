@@ -1,13 +1,12 @@
-import React from "react";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from 'react-icons/fa6'
 import {
   BsInstagram,
   BsFacebook,
   BsPinterest,
   BsYoutube,
   BsGithub,
-} from "react-icons/bs";
-import "./Footer.scss";
+} from 'react-icons/bs'
+import './Footer.scss'
 
 const Footer = () => {
   return (
@@ -100,11 +99,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="trademark">
-          <span>© 2023 kadirov, Inc. All Rights Reserved</span>
+          <span>© 2024 kadirov, Inc. All Rights Reserved</span>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
