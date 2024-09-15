@@ -2,7 +2,7 @@ import './ProductCardSkeleton.scss'
 import PropTypes from 'prop-types'
 
 ProductCardSkeleton.propTypes = {
-  numberOfItems: PropTypes.number,
+  numberOfItems: PropTypes.number
 }
 
 export default function ProductCardSkeleton ({ numberOfItems }) {

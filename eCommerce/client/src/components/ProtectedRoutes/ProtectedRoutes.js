@@ -15,7 +15,7 @@ export function ProtectedRoute({ children }) {
 }
 
 ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export function GuestRoute({ children }) {

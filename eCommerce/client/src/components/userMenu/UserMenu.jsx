@@ -7,7 +7,7 @@ import Link from '@mui/material/Link'
 import PropTypes from 'prop-types'
 
 UserMenu.propTypes = {
-  idSuffix: PropTypes.string,
+  idSuffix: PropTypes.string
 }
 
 export default function UserMenu({ idSuffix }) {
