@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default function Modal({ open, onClose, children }) {

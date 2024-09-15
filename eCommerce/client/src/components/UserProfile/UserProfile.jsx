@@ -11,7 +11,7 @@ import Loading from '@/components/Loading/Loading'
 UserProfile.propTypes = {
   user: PropTypes.object.isRequired,
   userJWT: PropTypes.string.isRequired,
-  handleUserUpdate: PropTypes.func.isRequired,
+  handleUserUpdate: PropTypes.func.isRequired
 }
 
 export default function UserProfile({ user, userJWT, handleUserUpdate }) {

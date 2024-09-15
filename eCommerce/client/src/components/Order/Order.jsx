@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 Order.propTypes = {
   user: PropTypes.object,
   userJWT: PropTypes.string,
-  handleUserUpdate: PropTypes.func,
+  handleUserUpdate: PropTypes.func
 }
 
 export default function Order({ user, userJWT, handleUserUpdate }) {

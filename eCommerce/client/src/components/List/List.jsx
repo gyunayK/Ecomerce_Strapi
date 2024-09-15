@@ -9,7 +9,7 @@ List.propTypes = {
   subCats: PropTypes.array,
   catId: PropTypes.string,
   maxPrice: PropTypes.number,
-  sort: PropTypes.string,
+  sort: PropTypes.string
 }
 
 export default function List ({ subCats, catId, maxPrice, sort }) {

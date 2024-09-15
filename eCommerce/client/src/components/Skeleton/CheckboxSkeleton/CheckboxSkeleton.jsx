@@ -2,7 +2,7 @@ import './CheckboxSkeleton.scss'
 import PropTypes from 'prop-types'
 
 CheckboxSkeleton.propTypes = {
-  numberOfItems: PropTypes.number,
+  numberOfItems: PropTypes.number
 }
 
 export default function CheckboxSkeleton ({ numberOfItems }) {
