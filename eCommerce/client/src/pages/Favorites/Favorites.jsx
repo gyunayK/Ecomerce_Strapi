@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import './Favorites.scss'
+import { useState, useEffect } from 'react'
 import Card from '@/components/Card/Card'
 
 function Favorites() {

@@ -32,7 +32,7 @@ const FeaturedProducts = ({ type, desc }) => {
           <h1>An error has occurred, please try again later.</h1>
         ) : (
           products?.map((product) => (
-            <Card key={product.id} item={product.attributes} id={String(product.id)} />
+            <Card key={product.id} item={product.attributes} id={product.id} />
           ))
         )}
       </div>

@@ -32,9 +32,7 @@ const Product = () => {
   } = useFavorites()
 
   const api = import.meta.env.VITE_APP_URL_API
-  const { data } = useFetch(
-    `${api}/products?populate=*&[filters][title][$eq]=${title}`
-  )
+  const { data } = useFetch(`${api}/products?populate=*&[filters][title][$eq]=${title}`)
 
   const getItem = (data) => {
     if (data && data.length > 0) {
@@ -43,13 +41,6 @@ const Product = () => {
     }
   }
 
-  const addToFavorites = () => {
-    handleAddToFavorites(item, id)
-  }
-
-  const removeFromFavorites = () => {
-    handleRemoveFromFavorites(id)
-  }
   useEffect(() => {
     checkIfFavorite(id)
   }, [id, checkIfFavorite])
@@ -149,12 +140,12 @@ const Product = () => {
                     {isFavorite ? (
                       <FavoriteIcon
                         className="favIconRed"
-                        onClick={removeFromFavorites}
+                        onClick={() => handleRemoveFromFavorites(id)}
                       />
                     ) : (
                       <FavoriteBorderOutlinedIcon
                         className="favIcon"
-                        onClick={addToFavorites}
+                        onClick={() => handleAddToFavorites(item, id)}
                       />
                     )}
                   </div>
@@ -165,7 +156,7 @@ const Product = () => {
           </>
         )}
       </div>
-      <Suggestions productID={id} />
+      <Suggestions productID={String(id)} />
     </>
   )
 }

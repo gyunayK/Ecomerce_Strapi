@@ -12,7 +12,7 @@ const Card = ({ item, id }) => {
     isFavorite,
     handleAddToFavorites,
     handleRemoveFromFavorites,
-    checkIfFavorite,
+    checkIfFavorite
   } = useFavorites()
 
   const checkWindoLocation = () => {
@@ -27,14 +27,6 @@ const Card = ({ item, id }) => {
     }
   }
 
-  const addToFavorites = () => {
-    handleAddToFavorites(item, id)
-  }
-
-  const removeFromFavorites = () => {
-    handleRemoveFromFavorites(id)
-  }
-
   useEffect(() => {
     checkIfFavorite(id)
   }, [id, checkIfFavorite])
@@ -46,12 +38,12 @@ const Card = ({ item, id }) => {
           {isFavorite ? (
             <FavoriteIcon
               className="favIconRed"
-              onClick={removeFromFavorites}
+              onClick={() => handleRemoveFromFavorites(id)}
             />
           ) : (
             <FavoriteBorderOutlinedIcon
               className="favIcon"
-              onClick={addToFavorites}
+              onClick={() => handleAddToFavorites(item, id)}
             />
           )}
         </div>
@@ -105,6 +97,6 @@ const Card = ({ item, id }) => {
 }
 Card.propTypes = {
   item: PropTypes.object,
-  id: PropTypes.string
+  id: PropTypes.number
 }
 export default Card

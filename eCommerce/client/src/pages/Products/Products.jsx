@@ -155,8 +155,8 @@ const Products = () => {
 
         {id ? (
           <List
-            catId={id}
-            maxPrice={maxPrice}
+            catId={String(id)}
+            maxPrice={Number(maxPrice)}
             sort={sort}
             subCats={selectedSubCategories}
           />
