@@ -47,12 +47,9 @@ export default function SignUp() {
       const response = await axios.post(API_URL, data, {
         headers: HEADERS
       })
-
       if (response.status !== 200) {
         toast.error(`Error: ${response.status}`)
       }
-
-      console.log(response.data)
     } catch (error) {
       setRequestError(error.response?.data?.error?.message)
       return
@@ -69,7 +66,6 @@ export default function SignUp() {
           })
         )
       }
-
       navigate('/login')
     } catch (error) {
       console.error('Failed to navigate or save data', error)
@@ -107,12 +103,10 @@ export default function SignUp() {
               {errors.username && (
                 <p className="errorMessage">{errors.username.message}</p>
               )}
-
               <input {...register('email')} type="email" placeholder="Email" />
               {errors.email && (
                 <p className="errorMessage">{errors.email.message}</p>
               )}
-
               <input
                 {...register('password')}
                 type="password"
@@ -121,7 +115,6 @@ export default function SignUp() {
               {errors.password && (
                 <p className="errorMessage">{errors.password.message}</p>
               )}
-
               <input
                 {...register('confirmPassword')}
                 type="password"
@@ -144,7 +137,6 @@ export default function SignUp() {
               </div>
               <button type="submit">SIGNUP</button>
             </form>
-
             <p className="formLinks">
               Already have an account? <a href="/login">Login</a>
             </p>

@@ -116,7 +116,6 @@ export default function Login() {
               We&apos;re thrilled to have you here. Get ready to discover an extraordinary collection of the
               latest trends and timeless classics.
             </p>
-
             <div className="social">
               <GoogleIcon className="socialIcon" alt="Google Icon" />
               <InstagramIcon className="socialIcon" alt="Instagram Icon" />
@@ -137,7 +136,6 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               {errors.email && <p className="errorMessage">{errors.email.message}</p>}
-
               <input
                 {...register('password')}
                 type="password"
@@ -145,7 +143,6 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-
               {errors.password && <p className="errorMessage">{errors.password.message}</p>}
               <div className="rememberMe">
                 <label htmlFor="rememberMe" className="rememberMeLabel">

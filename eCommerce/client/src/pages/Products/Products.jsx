@@ -117,7 +117,6 @@ export default function Products () {
             <span>{maxPrice}</span>
           </div>
         </div>
-
         <div className="filterItem sort">
           <h1>Sort By</h1>
           <div className="inputItem">
@@ -152,7 +151,6 @@ export default function Products () {
         ) : (
           <LargeImageSkeleton />
         )}
-
         {id ? (
           <List
             catId={String(id)}

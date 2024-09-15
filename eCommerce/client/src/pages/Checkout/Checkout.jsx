@@ -25,7 +25,6 @@ export default function Checkout() {
         console.log(error)
       }
     }
-
     fetchStripeData()
   }, [session_id])
 
@@ -50,20 +49,15 @@ export default function Checkout() {
     return <p>Loading...</p>
   }
 
-  const { line1, city, state, country, postal_code } =
-    session.shippingDetails.address
+  const { line1, city, state, country, postal_code } = session.shippingDetails.address
   const totalPrice = orderProducts
     .reduce((acc, item) => acc + item.price, 0)
     .toFixed(2)
   const taxRate = TAX_RATES[country] || 0
   const taxAmount = (totalPrice * taxRate).toFixed(2)
-  const grandTotal = (parseFloat(totalPrice) + parseFloat(taxAmount)).toFixed(
-    2
-  )
+  const grandTotal = (parseFloat(totalPrice) + parseFloat(taxAmount)).toFixed(2)
 
-  const address = encodeURIComponent(
-    `${line1}, ${city}, ${state}, ${country}, ${postal_code}`
-  )
+  const address = encodeURIComponent(`${line1}, ${city}, ${state}, ${country}, ${postal_code}`)
   const googleMapsUrl = `https://maps.google.com/maps?q=${address}&hl=en&z=14&output=embed`
 
   return (
@@ -78,12 +72,10 @@ export default function Checkout() {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
           <h1>Thank you for your order, {session.shippingDetails.name}!</h1>
-
           <p>
             Your order has been placed and is being processed. You will receive
             an email confirmation shortly.
           </p>
-
           <div className="paymentDetails">
             <h2>Shipping Details</h2>
             <p>
@@ -98,11 +90,9 @@ export default function Checkout() {
             </p>
           </div>
         </div>
-
         <div className="order-summary">
           <h2>Order Summary</h2>
           <img src="/ty-img.webp" alt="" className="tyImg" />
-
           <ul>
             {orderProducts.map((item) => (
               <Link
@@ -126,7 +116,6 @@ export default function Checkout() {
             <span>Total:</span>
             <span>${grandTotal}</span>
           </div>
-
           <div className="continue">
             <button onClick={() => (window.location.href = '/')}>
               Continue Shopping

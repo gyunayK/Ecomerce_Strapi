@@ -8,8 +8,8 @@ const __dirname = path.resolve()
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
+      '@': path.resolve(__dirname, 'src')
+    }
   },
-  plugins: [react()],
+  plugins: [react()]
 })

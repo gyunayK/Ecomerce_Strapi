@@ -53,11 +53,9 @@ export default function Card ({ item, id }) {
           )}
         </div>
       ) : null}
-
       <Link className="link" to={`/product/${item?.title}`}>
         <div className="image">
           {item?.isNew ? <span>New Season</span> : null}
-
           <img
             srcSet={`
               https://res.cloudinary.com/doxkzndkr/image/fetch/w_320,c_fill/${item.img?.data.attributes.url} 320w,

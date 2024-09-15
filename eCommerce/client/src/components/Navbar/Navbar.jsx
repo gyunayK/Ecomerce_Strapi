@@ -112,18 +112,15 @@ export default function Navbar () {
             </Link>
           </div>
         </div>
-
         <div className="center">
           <Link className="link" to="/">
             KADIROV
           </Link>
           <span>Bringing Ecorce to Life with Kadirov</span>
         </div>
-
         <div className="right">
           <div className="icons">
             <Search />
-
             <Link id="fav" to={'/favorites'} aria-label="Navigate to favorites">
               <FavoriteBorderOutlinedIcon
                 tabIndex="0"
@@ -132,9 +129,7 @@ export default function Navbar () {
                 style={{ outline: 'none' }}
               />
             </Link>
-
             <UserMenu idSuffix="2" />
-
             <div className="cartIcon" onClick={() => setIsOpen(!isOpen)}>
               <ShoppingCartOutlinedIcon />
               <span>{products.length}</span>

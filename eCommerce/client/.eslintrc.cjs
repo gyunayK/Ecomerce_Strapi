@@ -23,6 +23,7 @@ module.exports = {
     'semi': ['error', 'never'],
     'no-multiple-empty-lines': 'warn',
     'prettier/prettier': 0,
+    "indent": ["error", 2],
     'comma-dangle': ['error', 'never']
   }
 }

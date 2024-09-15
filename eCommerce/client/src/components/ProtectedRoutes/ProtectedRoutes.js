@@ -19,18 +19,18 @@ ProtectedRoute.propTypes = {
 }
 
 export function GuestRoute({ children }) {
-    const navigate = useNavigate()
-    const token = localStorage.getItem('UserJWT')
+  const navigate = useNavigate()
+  const token = localStorage.getItem('UserJWT')
 
-useEffect(() => {
+  useEffect(() => {
     if (token) {
-        navigate('/profile')
+      navigate('/profile')
     }
-}, [navigate, token])
+  }, [navigate, token])
 
-return !token ? children : null
+  return !token ? children : null
 }
 
 GuestRoute.propTypes = {
-    children: PropTypes.node
+  children: PropTypes.node
 }

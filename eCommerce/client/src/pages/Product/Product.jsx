@@ -138,7 +138,6 @@ export default function Product () {
                 <ShoppingCartIcon />
                 ADD TO CART
               </button>
-
               <div className="links">
                 <div className="item">
                   <div className="icons">

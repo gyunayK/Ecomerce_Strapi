@@ -1,5 +1,4 @@
 import './App.scss'
-
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
 import Home from './pages/Home/Home.jsx'
@@ -25,6 +24,7 @@ const Layout = () => {
     </div>
   )
 }
+
 const Router = createBrowserRouter([
   {
     path: '/login',
@@ -32,7 +32,7 @@ const Router = createBrowserRouter([
       <GuestRoute>
         <Login />
       </GuestRoute>
-    ),
+    )
   },
   {
     path: '/success/:session_id',
@@ -45,7 +45,7 @@ const Router = createBrowserRouter([
         </ProtectedRoute>
         <Footer />
       </div>
-    ),
+    )
   },
   {
     path: '/cancel/',
@@ -58,7 +58,7 @@ const Router = createBrowserRouter([
         </ProtectedRoute>
         <Footer />
       </div>
-    ),
+    )
   },
   {
     path: '/signup',
@@ -66,7 +66,7 @@ const Router = createBrowserRouter([
       <GuestRoute>
         <SignUp />
       </GuestRoute>
-    ),
+    )
   },
   {
     path: '/',
@@ -82,7 +82,7 @@ const Router = createBrowserRouter([
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
-        ),
+        )
       },
       {
         path: '/products/:title',

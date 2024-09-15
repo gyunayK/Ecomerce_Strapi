@@ -70,7 +70,6 @@ export default function Footer () {
           </div>
         </div>
       </div>
-
       <div className="bottom">
         <div className="bottomGroup">
           <div className="wrapper">
