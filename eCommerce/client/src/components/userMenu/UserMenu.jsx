@@ -58,7 +58,7 @@ export default function UserMenu({ idSuffix }) {
         open={menuOpen}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': `basic-button-${idSuffix}`,
+          'aria-labelledby': `basic-button-${idSuffix}`
         }}
       >
         <MenuItem onClick={handleClose}>
@@ -82,7 +82,7 @@ export default function UserMenu({ idSuffix }) {
                 textTransform: 'inherit',
                 letterSpacing: 'inherit',
                 lineHeight: 'inherit',
-                textAlign: 'inherit',
+                textAlign: 'inherit'
               }}
             >
               Log out

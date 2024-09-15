@@ -94,7 +94,7 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
         { username: name, email, phoneNumber: phone },
         {
           headers: {
-            Authorization: `Bearer ${userJWT}`,
+            Authorization: `Bearer ${userJWT}`
           }
         }
       )

@@ -22,6 +22,7 @@ module.exports = {
     'quotes': ['error', 'single'],
     'semi': ['error', 'never'],
     'no-multiple-empty-lines': 'warn',
-    'prettier/prettier': 0
+    'prettier/prettier': 0,
+    'comma-dangle': ['error', 'never']
   }
 }

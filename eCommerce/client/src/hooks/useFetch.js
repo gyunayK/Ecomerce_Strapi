@@ -15,8 +15,8 @@ export default function useFetch (url) {
                 setLoading(true)
                 const res = await axios.get(url, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                        Authorization: `Bearer ${token}`
+                    }
                 })
                 setData(res.data.data)
             } catch (error) {

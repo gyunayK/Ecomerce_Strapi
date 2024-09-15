@@ -48,7 +48,7 @@ export default function Order({ user, userJWT, handleUserUpdate }) {
           desc: product.desc,
           img: product.img,
           price: product.price,
-          quantity: product.quantity,
+          quantity: product.quantity
         })
       )
     })
@@ -58,8 +58,8 @@ export default function Order({ user, userJWT, handleUserUpdate }) {
     try {
       const res = await axios.delete(`${api}/orders/${id}`, {
         headers: {
-          Authorization: `Bearer ${userJWT}`,
-        },
+          Authorization: `Bearer ${userJWT}`
+        }
       })
 
       if (res.status === 200) {

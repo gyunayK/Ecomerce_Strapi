@@ -4,7 +4,7 @@ import {
   BsFacebook,
   BsPinterest,
   BsYoutube,
-  BsGithub,
+  BsGithub
 } from 'react-icons/bs'
 import './Footer.scss'
 

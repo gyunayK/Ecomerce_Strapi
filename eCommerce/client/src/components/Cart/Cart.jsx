@@ -43,12 +43,12 @@ const Cart = React.forwardRef((props, ref) => {
         { products },
         {
           headers: {
-            Authorization: `Bearer ${userJWT ? userJWT : token}`,
-          },
+            Authorization: `Bearer ${userJWT ? userJWT : token}`
+          }
         }
       )
       await stripeInstance.redirectToCheckout({
-        sessionId: res.data.stripeSession.id,
+        sessionId: res.data.stripeSession.id
       })
     } catch (err) {
       console.log(err)

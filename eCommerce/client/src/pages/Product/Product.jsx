@@ -30,7 +30,7 @@ export default function Product () {
     isFavorite,
     handleAddToFavorites,
     handleRemoveFromFavorites,
-    checkIfFavorite,
+    checkIfFavorite
   } = useFavorites()
 
   const api = import.meta.env.VITE_APP_URL_API

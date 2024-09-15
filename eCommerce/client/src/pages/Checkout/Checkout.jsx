@@ -11,7 +11,7 @@ export default function Checkout() {
 
   const TAX_RATES = {
     US: 0.07, // Example general sales tax rate for the U.S.
-    CA: 0.13, // Example general sales tax rate for Canada
+    CA: 0.13 // Example general sales tax rate for Canada
   }
 
   useEffect(() => {

@@ -22,30 +22,30 @@ export default function SignUp() {
       username: z.string().min(2, { message: 'Please enter a valid name.' }),
       email: z.string().email({ message: 'Please enter a valid email.' }),
       password: z.string().min(6, { message: 'Password is too short.' }),
-      confirmPassword: z.string().min(6, { message: 'Password is too short.' }),
+      confirmPassword: z.string().min(6, { message: 'Password is too short.' })
     })
     .refine((data) => data.password === data.confirmPassword, {
       message: 'Passwords don\'t match',
-      path: ['confirmPassword'],
+      path: ['confirmPassword']
     })
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema)
   })
 
   const API_URL = `${import.meta.env.VITE_APP_URL_API}/auth/local/register`
   const HEADERS = {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   }
 
   const postUser = async (data) => {
     try {
       const response = await axios.post(API_URL, data, {
-        headers: HEADERS,
+        headers: HEADERS
       })
 
       if (response.status !== 200) {
@@ -65,7 +65,7 @@ export default function SignUp() {
           JSON.stringify({
             username: data.username,
             email: data.email,
-            password: data.password,
+            password: data.password
           })
         )
       }

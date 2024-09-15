@@ -26,7 +26,7 @@ export default function Slider () {
     '/img/slider/robert.webp',
     '/img/slider/ant.webp',
     '/img/slider/florida.webp',
-    '/img/slider/amos.webp',
+    '/img/slider/amos.webp'
   ]
 
   return (
