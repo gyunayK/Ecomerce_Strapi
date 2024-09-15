@@ -1,6 +1,8 @@
 import './Product.scss'
 import { useState } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import useFetch from '@/hooks/useFetch'
@@ -16,7 +18,7 @@ import Loading from '@/components/Loading/Loading'
 import { useFavorites } from '@/hooks/useFavorites'
 
 export default function Product () {
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState()
   const [selectedImg, setSelectedImg] = useState('img')
   const [item, setItem] = useState([])
   const [id, setId] = useState(null)
@@ -48,6 +50,7 @@ export default function Product () {
   useEffect(() => {
     if (title) {
       getItem(data)
+      setQuantity(1)
     }
   }, [data, title])
 
@@ -83,7 +86,7 @@ export default function Product () {
                 />
               </div>
               <div className="mainImg">
-                <img src={item?.[selectedImg].data.attributes.url} alt="" />
+                <img src={item?.[selectedImg].data.attributes.url} />
               </div>
             </div>
             <div className="right">
@@ -103,15 +106,17 @@ export default function Product () {
                     }
                   }}
                 >
-                  -
+                  <RemoveIcon fontSize='small' />
                 </button>
                 <span>{quantity}</span>
                 <button
                   onClick={() => {
-                    setQuantity(quantity + 1)
+                    if (quantity < 10) {
+                      setQuantity(quantity + 1)
+                    }
                   }}
                 >
-                  +
+                  <AddIcon fontSize='small' />
                 </button>
               </div>
               <button
@@ -125,7 +130,7 @@ export default function Product () {
                       desc: item.desc,
                       img: item.img.data.attributes.url,
                       price: item.price,
-                      quantity: quantity,
+                      quantity: quantity
                     })
                   )
                 }

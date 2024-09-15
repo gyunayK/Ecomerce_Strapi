@@ -15,8 +15,8 @@ UserProfile.propTypes = {
 }
 
 export default function UserProfile({ user, userJWT, handleUserUpdate }) {
-  const [editProfileOpen, setEditProfileOpen] = useState(false)
-  const [changeAvatarOpen, setChangeAvatarOpen] = useState(false)
+  const [editProfile, setEditProfile] = useState(false)
+  const [changeAvatar, setChangeAvatar] = useState(false)
   const [file, setFile] = useState(null)
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -25,19 +25,19 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
   const api = import.meta.env.VITE_APP_URL_API
 
   const handleCloseEditProfile = () => {
-    setEditProfileOpen(false)
+    setEditProfile(false)
   }
 
   const handleOpenEditProfile = () => {
-    setEditProfileOpen(true)
+    setEditProfile(true)
   }
 
   const handleCloseChangeAvatar = () => {
-    setChangeAvatarOpen(false)
+    setChangeAvatar(false)
   }
 
   const handleOpenChangeAvatar = () => {
-    setChangeAvatarOpen(true)
+    setChangeAvatar(true)
   }
 
   const handleFileChange = ({ target: { files } }) => {
@@ -69,8 +69,8 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
       const res = await axios.post(`${api}/upload`, files, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userJWT}`,
-        },
+          Authorization: `Bearer ${userJWT}`
+        }
       })
 
       if (res.data && res.data.length > 0) {
@@ -95,7 +95,7 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
         {
           headers: {
             Authorization: `Bearer ${userJWT}`,
-          },
+          }
         }
       )
 
@@ -124,7 +124,7 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
           <button className="edditBTN" onClick={handleOpenEditProfile}>
             Edit
           </button>
-          <Modal open={editProfileOpen} onClose={handleCloseEditProfile}>
+          <Modal open={editProfile} onClose={handleCloseEditProfile}>
             <div className="editProfile">
               <h1>Edit Profile</h1>
               <form className="editProfileForm" onSubmit={handleUpdateInfo}>
@@ -172,7 +172,7 @@ export default function UserProfile({ user, userJWT, handleUserUpdate }) {
             <button className="changeAvatar" onClick={handleOpenChangeAvatar}>
               <ChangeCircleIcon />
             </button>
-            <Modal open={changeAvatarOpen} onClose={handleCloseChangeAvatar}>
+            <Modal open={changeAvatar} onClose={handleCloseChangeAvatar}>
               <div className="editProfile">
                 <div className="editProfileForm">
                   <h1 className="editProfileTitle">Change Avatar</h1>
