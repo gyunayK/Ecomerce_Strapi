@@ -8,7 +8,7 @@ import { BsFilterCircle, BsXCircle } from 'react-icons/bs'
 import CheckboxSkeleton from '@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton'
 import LargeImageSkeleton from '../../components/Skeleton/LargeImageSkeleton/LargeImageSkeleton'
 
-const Products = () => {
+export default function Products () {
   const [maxPrice, setMaxPrice] = useState(1000)
   const [sort, setSort] = useState('')
   const [selectedSubCategories, setSelectedSubCategories] = useState([])
@@ -165,5 +165,3 @@ const Products = () => {
     </div>
   )
 }
-
-export default Products

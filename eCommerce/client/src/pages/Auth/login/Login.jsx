@@ -4,15 +4,14 @@ import GoogleIcon from '@mui/icons-material/Google'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 
+import { toast } from 'react-toastify'
 import axios from 'axios'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
 
-import { toast } from 'react-toastify'
-
-function Login() {
+export default function Login() {
   const [requestError, setRequestError] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
 
@@ -183,5 +182,3 @@ function Login() {
     </div>
   )
 }
-
-export default Login

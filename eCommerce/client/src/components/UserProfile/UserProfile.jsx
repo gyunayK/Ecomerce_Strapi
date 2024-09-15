@@ -8,7 +8,13 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import Loading from '@/components/Loading/Loading'
 
-function UserProfile({ user, userJWT, handleUserUpdate }) {
+UserProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+  userJWT: PropTypes.string.isRequired,
+  handleUserUpdate: PropTypes.func.isRequired,
+}
+
+export default function UserProfile({ user, userJWT, handleUserUpdate }) {
   const [editProfileOpen, setEditProfileOpen] = useState(false)
   const [changeAvatarOpen, setChangeAvatarOpen] = useState(false)
   const [file, setFile] = useState(null)
@@ -195,9 +201,3 @@ function UserProfile({ user, userJWT, handleUserUpdate }) {
     </div>
   )
 }
-UserProfile.propTypes = {
-  user: PropTypes.object.isRequired,
-  userJWT: PropTypes.string.isRequired,
-  handleUserUpdate: PropTypes.func.isRequired,
-}
-export default UserProfile

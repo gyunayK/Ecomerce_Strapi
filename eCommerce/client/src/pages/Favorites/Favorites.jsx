@@ -2,7 +2,7 @@ import './Favorites.scss'
 import { useState, useEffect } from 'react'
 import Card from '@/components/Card/Card'
 
-function Favorites() {
+export default function Favorites() {
   const [favorites, setFavorites] = useState([])
 
   const favoritesCount = () => {
@@ -44,5 +44,3 @@ function Favorites() {
     </div>
   )
 }
-
-export default Favorites

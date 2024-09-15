@@ -5,7 +5,11 @@ import Card from '@/components/Card/Card'
 import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
 import PropTypes from 'prop-types'
 
-function Suggestions({ productID }) {
+Suggestions.propTypes = {
+  productID: PropTypes.string
+}
+
+export default function Suggestions({ productID }) {
   const [subCategoryId, setSubCategoryId] = useState(null)
   const [suggestedProducts, setSuggestedProducts] = useState([])
   const url = import.meta.env.VITE_APP_URL_API
@@ -28,8 +32,7 @@ function Suggestions({ productID }) {
 
   useEffect(() => {
     if (productData) {
-      const newSubCategoryId =
-        productData[0]?.attributes.sub_categories.data[0]?.id
+      const newSubCategoryId = productData[0]?.attributes.sub_categories.data[0]?.id
       if (newSubCategoryId) {
         setSubCategoryId(newSubCategoryId)
       }
@@ -61,9 +64,3 @@ function Suggestions({ productID }) {
     </>
   )
 }
-
-Suggestions.propTypes = {
-  productID: PropTypes.string
-}
-
-export default Suggestions

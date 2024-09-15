@@ -5,7 +5,14 @@ import useFetch from '@/hooks/useFetch'
 import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
 import PropTypes from 'prop-types'
 
-const List = ({ subCats, catId, maxPrice, sort }) => {
+List.propTypes = {
+  subCats: PropTypes.array,
+  catId: PropTypes.string,
+  maxPrice: PropTypes.number,
+  sort: PropTypes.string,
+}
+
+export default function List ({ subCats, catId, maxPrice, sort }) {
   const [productsData2, setProductsData2] = useState([])
   const url = import.meta.env.VITE_APP_URL_API
 
@@ -34,12 +41,3 @@ const List = ({ subCats, catId, maxPrice, sort }) => {
     </>
   )
 }
-
-List.propTypes = {
-  subCats: PropTypes.array,
-  catId: PropTypes.string,
-  maxPrice: PropTypes.number,
-  sort: PropTypes.string,
-}
-
-export default List

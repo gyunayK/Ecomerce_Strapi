@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const token = import.meta.env.VITE_STRAPI_TOKEN
 
-const useFetch = (url) => {
+export default function useFetch (url) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -31,5 +31,3 @@ const useFetch = (url) => {
 
     return { data, loading, error }
 }
-
-export default useFetch

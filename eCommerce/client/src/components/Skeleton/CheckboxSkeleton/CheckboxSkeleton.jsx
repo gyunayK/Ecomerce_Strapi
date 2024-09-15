@@ -1,7 +1,11 @@
 import './CheckboxSkeleton.scss'
 import PropTypes from 'prop-types'
 
-const CheckboxSkeleton = ({ numberOfItems }) => {
+CheckboxSkeleton.propTypes = {
+  numberOfItems: PropTypes.number,
+}
+
+export default function CheckboxSkeleton ({ numberOfItems }) {
   return (
     <>
       {Array.from({ length: numberOfItems }).map((_, index) => (
@@ -13,9 +17,3 @@ const CheckboxSkeleton = ({ numberOfItems }) => {
     </>
   )
 }
-
-CheckboxSkeleton.propTypes = {
-  numberOfItems: PropTypes.number,
-}
-
-export default CheckboxSkeleton

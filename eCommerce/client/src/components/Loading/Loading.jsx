@@ -1,11 +1,9 @@
 import './Loading.scss'
 
-function Loading() {
+export default function Loading() {
   return (
     <div className="loadingWrapper">
       <img src="/Infinity_Load.gif" alt="loading" className="loadingGif" />
     </div>
   )
 }
-
-export default Loading

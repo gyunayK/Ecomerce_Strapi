@@ -7,7 +7,13 @@ import axios from 'axios'
 import { makeRequest } from '@/hooks/makeRequest'
 import PropTypes from 'prop-types'
 
-function Order({ user, userJWT, handleUserUpdate }) {
+Order.propTypes = {
+  user: PropTypes.object,
+  userJWT: PropTypes.string,
+  handleUserUpdate: PropTypes.func,
+}
+
+export default function Order({ user, userJWT, handleUserUpdate }) {
   const [orders, setOrders] = useState([])
   const [paymentStatusChecked, setPaymentStatusChecked] = useState(false)
 
@@ -159,11 +165,3 @@ function Order({ user, userJWT, handleUserUpdate }) {
     </div>
   )
 }
-
-Order.propTypes = {
-  user: PropTypes.object,
-  userJWT: PropTypes.string,
-  handleUserUpdate: PropTypes.func,
-}
-
-export default Order

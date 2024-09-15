@@ -1,7 +1,7 @@
 import './Cancel.scss'
 import { Link } from 'react-router-dom'
 
-function Cancel() {
+export default function Cancel() {
   return (
     <div className="cancelWrapper">
       <div className="cancel">
@@ -13,5 +13,3 @@ function Cancel() {
     </div>
   )
 }
-
-export default Cancel

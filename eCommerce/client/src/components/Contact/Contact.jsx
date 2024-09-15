@@ -5,7 +5,7 @@ import GoogleIcon from '@mui/icons-material/Google'
 import PinterestIcon from '@mui/icons-material/Pinterest'
 import { FaXTwitter } from 'react-icons/fa6'
 
-const Contact = () => {
+export default function Contact () {
   return (
     <div className="contact">
       <div className="wrapper">
@@ -25,5 +25,3 @@ const Contact = () => {
     </div>
   )
 }
-
-export default Contact

@@ -1,11 +1,9 @@
 import './LargeImageSkeleton.scss'
 
-const LargeImageSkeleton = () => {
+export default function LargeImageSkeleton () {
   return (
     <div className="large-image-skeleton">
       <div className="skeleton-large-image"></div>
     </div>
   )
 }
-
-export default LargeImageSkeleton

@@ -3,7 +3,13 @@ import { useEffect } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import PropTypes from 'prop-types'
 
-function Modal({ open, onClose, children }) {
+Modal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+export default function Modal({ open, onClose, children }) {
   const handleClose = () => {
     onClose && onClose()
   }
@@ -58,11 +64,3 @@ function Modal({ open, onClose, children }) {
     </div>
   )
 }
-
-Modal.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-}
-
-export default Modal

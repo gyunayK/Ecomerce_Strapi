@@ -10,7 +10,7 @@ import Search from '@/components/Search/Search'
 import UserMenu from '@/components/userMenu/UserMenu'
 import { makeRequest } from '@/hooks/makeRequest'
 
-const Navbar = () => {
+export default function Navbar () {
   const [isOpen, setIsOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [categories, setCategories] = useState([])
@@ -169,5 +169,3 @@ const Navbar = () => {
     </div>
   )
 }
-
-export default Navbar

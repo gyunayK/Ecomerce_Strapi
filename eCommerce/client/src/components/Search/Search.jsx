@@ -4,7 +4,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import { Link } from 'react-router-dom'
 import useFetch from '@/hooks/useFetch'
 
-function Search() {
+export default function Search() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchItems, setSearchItems] = useState([])
 
@@ -101,5 +101,3 @@ function Search() {
     </div>
   )
 }
-
-export default Search

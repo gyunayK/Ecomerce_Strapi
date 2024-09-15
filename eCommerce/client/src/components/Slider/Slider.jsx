@@ -3,7 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import './Slider.scss'
 
-const Slider = () => {
+export default function Slider () {
   const [current, setCurrent] = useState(0)
 
   const prevSlide = () => {
@@ -50,5 +50,3 @@ const Slider = () => {
     </div>
   )
 }
-
-export default Slider

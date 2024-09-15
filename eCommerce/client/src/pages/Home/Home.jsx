@@ -3,7 +3,7 @@ import Slider from '@/components/Slider/Slider'
 import Categories from '@/components/Categories/Categories'
 import Contact from '../../components/Contact/Contact'
 
-const Home = () => {
+export default function Home () {
   return (
     <div className="home">
       <Slider />
@@ -21,5 +21,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home

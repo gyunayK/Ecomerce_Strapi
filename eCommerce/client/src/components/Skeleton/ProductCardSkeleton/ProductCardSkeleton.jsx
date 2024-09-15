@@ -1,7 +1,11 @@
 import './ProductCardSkeleton.scss'
 import PropTypes from 'prop-types'
 
-const ProductCardSkeleton = ({ numberOfItems }) => {
+ProductCardSkeleton.propTypes = {
+  numberOfItems: PropTypes.number,
+}
+
+export default function ProductCardSkeleton ({ numberOfItems }) {
   return (
     <div className="product-skeleton-wrapper">
       {Array.from({ length: numberOfItems }, (_, index) => (
@@ -16,9 +20,3 @@ const ProductCardSkeleton = ({ numberOfItems }) => {
     </div>
   )
 }
-
-ProductCardSkeleton.propTypes = {
-  numberOfItems: PropTypes.number,
-}
-
-export default ProductCardSkeleton

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { makeRequest } from '@/hooks/makeRequest'
 import PropTypes from 'prop-types'
 
-const Categories = () => {
+export default function Categories () {
   const [categories, setCategories] = useState([])
   useEffect(() => {
     const fetchCategories = async () => {
@@ -66,5 +66,3 @@ const Categories = () => {
     </div>
   )
 }
-
-export default Categories

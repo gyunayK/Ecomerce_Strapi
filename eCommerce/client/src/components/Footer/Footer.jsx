@@ -8,7 +8,7 @@ import {
 } from 'react-icons/bs'
 import './Footer.scss'
 
-const Footer = () => {
+export default function Footer () {
   return (
     <footer className="footer">
       <div className="top">
@@ -105,5 +105,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer

@@ -15,7 +15,7 @@ import Loading from '@/components/Loading/Loading'
 
 import { useFavorites } from '@/hooks/useFavorites'
 
-const Product = () => {
+export default function Product () {
   const [quantity, setQuantity] = useState(1)
   const [selectedImg, setSelectedImg] = useState('img')
   const [item, setItem] = useState([])
@@ -160,5 +160,3 @@ const Product = () => {
     </>
   )
 }
-
-export default Product

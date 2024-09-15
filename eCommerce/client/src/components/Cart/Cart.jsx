@@ -11,6 +11,7 @@ import { removeItem, resetCart } from '@/redux/cartReducer'
 import { loadStripe } from '@stripe/stripe-js'
 import { Link } from 'react-router-dom'
 
+
 const Cart = React.forwardRef((props, ref) => {
   const [userJWT, setUserJWT] = useState('')
 

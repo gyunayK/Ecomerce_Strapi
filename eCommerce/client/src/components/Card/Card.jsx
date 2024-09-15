@@ -7,7 +7,12 @@ import PropTypes from 'prop-types'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
-const Card = ({ item, id }) => {
+Card.propTypes = {
+  item: PropTypes.object,
+  id: PropTypes.number
+}
+
+export default function Card ({ item, id }) {
   const {
     isFavorite,
     handleAddToFavorites,
@@ -95,8 +100,3 @@ const Card = ({ item, id }) => {
     </div>
   )
 }
-Card.propTypes = {
-  item: PropTypes.object,
-  id: PropTypes.number
-}
-export default Card

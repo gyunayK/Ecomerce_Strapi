@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { makeRequest } from '@/hooks/makeRequest'
 import { Link } from 'react-router-dom'
 
-function Checkout() {
+export default function Checkout() {
   const { session_id } = useParams()
   const [session, setSession] = useState(null)
   const [orderProducts, setOrderProducts] = useState([])
@@ -137,5 +137,3 @@ function Checkout() {
     </>
   )
 }
-
-export default Checkout

@@ -5,7 +5,12 @@ import useFetch from '@/hooks/useFetch'
 import Loading from '@/components/Loading/Loading'
 import PropTypes from 'prop-types'
 
-const FeaturedProducts = ({ type, desc }) => {
+FeaturedProducts.propTypes = {
+  type: PropTypes.string,
+  desc: PropTypes.string
+}
+
+export default function FeaturedProducts ({ type, desc }) {
   const [products, setProducts] = useState([])
   const url = import.meta.env.VITE_APP_URL_API
 
@@ -39,10 +44,3 @@ const FeaturedProducts = ({ type, desc }) => {
     </div>
   )
 }
-FeaturedProducts.propTypes = {
-  type: PropTypes.string,
-  desc: PropTypes.string
-}
-
-
-export default FeaturedProducts
