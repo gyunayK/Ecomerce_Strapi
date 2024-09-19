@@ -11,8 +11,8 @@ export default function Checkout() {
   const [orderProducts, setOrderProducts] = useState([])
 
   const TAX_RATES = {
-    US: 0.07, // Example general sales tax rate for the U.S.
-    CA: 0.13 // Example general sales tax rate for Canada
+    US: 0.07, // U.S.
+    CA: 0.13  // Canada
   }
 
   useEffect(() => {
