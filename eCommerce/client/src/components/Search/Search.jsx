@@ -1,7 +1,8 @@
 import './Search.scss'
-import { useState, useEffect, useRef } from 'react'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import useFetch from '@/hooks/useFetch'
 
 export default function Search() {

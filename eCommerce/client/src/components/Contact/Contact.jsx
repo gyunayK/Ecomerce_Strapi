@@ -1,7 +1,7 @@
 import './Contact.scss'
 import FacebookIcon from '@mui/icons-material/Facebook'
-import InstagramIcon from '@mui/icons-material/Instagram'
 import GoogleIcon from '@mui/icons-material/Google'
+import InstagramIcon from '@mui/icons-material/Instagram'
 import PinterestIcon from '@mui/icons-material/Pinterest'
 import { FaXTwitter } from 'react-icons/fa6'
 

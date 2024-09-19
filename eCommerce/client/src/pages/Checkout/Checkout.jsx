@@ -1,8 +1,9 @@
 import './Checkout.scss'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link , useParams } from 'react-router-dom'
+
 import { makeRequest } from '@/hooks/makeRequest'
-import { Link } from 'react-router-dom'
+
 
 export default function Checkout() {
   const { session_id } = useParams()

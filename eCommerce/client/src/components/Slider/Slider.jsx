@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useEffect, useState } from 'react'
 import './Slider.scss'
 
 export default function Slider () {

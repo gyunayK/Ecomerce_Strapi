@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const token = import.meta.env.VITE_STRAPI_TOKEN
 

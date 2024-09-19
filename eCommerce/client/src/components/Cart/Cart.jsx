@@ -1,16 +1,14 @@
 import './Cart.scss'
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-
 import DeleteIcon from '@mui/icons-material/Delete'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import PropTypes from 'prop-types'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { removeItem, resetCart } from '@/redux/cartReducer'
 import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { removeItem, resetCart } from '@/redux/cartReducer'
 
 const Cart = React.forwardRef((props, ref) => {
   const [userJWT, setUserJWT] = useState('')

@@ -1,12 +1,12 @@
-import { FaXTwitter } from 'react-icons/fa6'
-import {
-  BsInstagram,
-  BsFacebook,
-  BsPinterest,
-  BsYoutube,
-  BsGithub
-} from 'react-icons/bs'
 import './Footer.scss'
+import {
+  BsFacebook,
+  BsGithub,
+  BsInstagram,
+  BsPinterest,
+  BsYoutube
+} from 'react-icons/bs'
+import { FaXTwitter } from 'react-icons/fa6'
 
 export default function Footer () {
   return (

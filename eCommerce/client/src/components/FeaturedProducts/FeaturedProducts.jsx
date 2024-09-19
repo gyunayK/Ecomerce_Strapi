@@ -1,9 +1,11 @@
 import './FeaturedProducts.scss'
-import Card from '../Card/Card'
-import { useEffect, useState } from 'react'
-import useFetch from '@/hooks/useFetch'
-import Loading from '@/components/Loading/Loading'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+
+import Card from '../Card/Card'
+
+import Loading from '@/components/Loading/Loading'
+import useFetch from '@/hooks/useFetch'
 
 FeaturedProducts.propTypes = {
   type: PropTypes.string,

@@ -1,18 +1,18 @@
 import './App.scss'
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
+import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
+import { GuestRoute, ProtectedRoute } from './components/ProtectedRoutes/ProtectedRoutes'
+import Login from './pages/Auth/login/Login'
+import SignUp from './pages/Auth/signup/SignUp'
+import Cancel from './pages/Cancel/Cancel'
+import Checkout from './pages/Checkout/Checkout'
+import Favorites from './pages/Favorites/Favorites'
 import Home from './pages/Home/Home.jsx'
 import Product from './pages/Product/Product.jsx'
 import Products from './pages/Products/Products.jsx'
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
-import Login from './pages/Auth/login/Login'
-import SignUp from './pages/Auth/signup/SignUp'
 import Profile from './pages/Profile/Profile'
-import Favorites from './pages/Favorites/Favorites'
-import { ProtectedRoute, GuestRoute } from './components/ProtectedRoutes/ProtectedRoutes'
-import Checkout from './pages/Checkout/Checkout'
-import Cancel from './pages/Cancel/Cancel'
 
 const Layout = () => {
   return (

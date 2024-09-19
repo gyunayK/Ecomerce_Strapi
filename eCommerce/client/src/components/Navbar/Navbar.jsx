@@ -1,14 +1,16 @@
 import './Navbar.scss'
 import './hamburgerStyle.scss'
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+
 import Cart from '@/components/Cart/Cart'
 import Search from '@/components/Search/Search'
 import UserMenu from '@/components/userMenu/UserMenu'
 import { makeRequest } from '@/hooks/makeRequest'
+
 
 export default function Navbar () {
   const [isOpen, setIsOpen] = useState(false)

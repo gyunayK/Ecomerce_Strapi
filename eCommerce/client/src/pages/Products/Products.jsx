@@ -1,14 +1,15 @@
 import './Products.scss'
-import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import List from '@/components/List/List'
-import { makeRequest } from '@/hooks/makeRequest'
-
+import { useEffect, useState } from 'react'
 import { BsFilterCircle, BsXCircle } from 'react-icons/bs'
-import CheckboxSkeleton from '@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton'
+import { useParams } from 'react-router-dom'
+
 import LargeImageSkeleton from '../../components/Skeleton/LargeImageSkeleton/LargeImageSkeleton'
 
-export default function Products () {
+import List from '@/components/List/List'
+import CheckboxSkeleton from '@/components/Skeleton/CheckboxSkeleton/CheckboxSkeleton'
+import { makeRequest } from '@/hooks/makeRequest'
+
+export default function Products() {
   const [maxPrice, setMaxPrice] = useState(1000)
   const [sort, setSort] = useState('')
   const [selectedSubCategories, setSelectedSubCategories] = useState([])

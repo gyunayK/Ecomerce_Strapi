@@ -1,11 +1,13 @@
 import './Order.scss'
-import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '@/redux/cartReducer'
 import axios from 'axios'
-import { makeRequest } from '@/hooks/makeRequest'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+
+import { makeRequest } from '@/hooks/makeRequest'
+import { addToCart } from '@/redux/cartReducer'
+
 
 Order.propTypes = {
   user: PropTypes.object,

@@ -1,9 +1,11 @@
 import './Suggestions.scss'
-import { useState, useEffect, useMemo } from 'react'
-import useFetch from '@/hooks/useFetch'
-import Card from '@/components/Card/Card'
-import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
 import PropTypes from 'prop-types'
+import { useEffect, useMemo, useState } from 'react'
+
+import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
+
+import Card from '@/components/Card/Card'
+import useFetch from '@/hooks/useFetch'
 
 Suggestions.propTypes = {
   productID: PropTypes.string

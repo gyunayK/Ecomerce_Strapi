@@ -1,7 +1,7 @@
 import './Modal.scss'
-import { useEffect } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,

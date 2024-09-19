@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import './List.scss'
+import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
+
 import Card from '@/components/Card/Card'
 import useFetch from '@/hooks/useFetch'
-import ProductCardSkeleton from '../Skeleton/ProductCardSkeleton/ProductCardSkeleton'
+
 import PropTypes from 'prop-types'
 
 List.propTypes = {

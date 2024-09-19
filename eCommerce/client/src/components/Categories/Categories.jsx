@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
 import './Categories.scss'
-import { Link } from 'react-router-dom'
-import { makeRequest } from '@/hooks/makeRequest'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import { makeRequest } from '@/hooks/makeRequest'
 
 export default function Categories () {
   const [categories, setCategories] = useState([])

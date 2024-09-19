@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import Button from '@mui/material/Button'
+import Link from '@mui/material/Link'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
-import Link from '@mui/material/Link'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 
 UserMenu.propTypes = {
   idSuffix: PropTypes.string

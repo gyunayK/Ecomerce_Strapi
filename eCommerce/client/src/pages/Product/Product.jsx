@@ -1,21 +1,21 @@
 import './Product.scss'
-import { useState } from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AddIcon from '@mui/icons-material/Add'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
-import useFetch from '@/hooks/useFetch'
-import { useParams } from 'react-router-dom'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { useEffect , useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addToCart } from '@/redux/cartReducer'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 import Suggestions from '../../components/Suggestion/Suggestions'
 
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import FavoriteIcon from '@mui/icons-material/Favorite'
 import Loading from '@/components/Loading/Loading'
-
 import { useFavorites } from '@/hooks/useFavorites'
+import useFetch from '@/hooks/useFetch'
+import { addToCart } from '@/redux/cartReducer'
+
 
 export default function Product () {
   const [quantity, setQuantity] = useState()

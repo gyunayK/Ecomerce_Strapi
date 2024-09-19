@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import '../Auth.Style.scss'
-import axios from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
 import GoogleIcon from '@mui/icons-material/Google'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
-import { z } from 'zod'
+import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
-
 import { toast } from 'react-toastify'
+import { z } from 'zod'
 
 export default function SignUp() {
   const [requestError, setRequestError] = useState('')

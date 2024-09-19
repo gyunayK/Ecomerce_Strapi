@@ -1,11 +1,12 @@
 import './Card.scss'
+
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
+import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useFavorites } from '@/hooks/useFavorites'
-import PropTypes from 'prop-types'
 
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import { useFavorites } from '@/hooks/useFavorites'
 
 Card.propTypes = {
   item: PropTypes.object,

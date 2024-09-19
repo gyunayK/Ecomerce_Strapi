@@ -1,8 +1,9 @@
 import './Profile.scss'
-import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
 import Order from '@/components/Order/Order'
 import UserProfile from '@/components/UserProfile/UserProfile'
-import axios from 'axios'
 
 export default function Profile() {
   const [currentView, setCurrentView] = useState('Profile')
@@ -22,12 +23,24 @@ export default function Profile() {
 
   const renderComponent = () => {
     switch (currentView) {
-      case 'Profile':
-        return <UserProfile user={user} userJWT={userJWT} handleUserUpdate={handleUserUpdate} />
-      case 'Orders':
-        return <Order user={user} userJWT={userJWT} handleUserUpdate={handleUserUpdate} />
-      default:
-        return <UserProfile />
+    case 'Profile':
+      return (
+        <UserProfile
+          user={user}
+          userJWT={userJWT}
+          handleUserUpdate={handleUserUpdate}
+        />
+      )
+    case 'Orders':
+      return (
+        <Order
+          user={user}
+          userJWT={userJWT}
+          handleUserUpdate={handleUserUpdate}
+        />
+      )
+    default:
+      return <UserProfile />
     }
   }
 

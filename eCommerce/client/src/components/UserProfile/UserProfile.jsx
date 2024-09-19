@@ -1,12 +1,13 @@
 import './UserProfile.scss'
-import { useState, useEffect } from 'react'
-import Modal from '@/components/Modal/Modal'
-import PropTypes from 'prop-types'
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle'
 import PersonIcon from '@mui/icons-material/Person'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+
 import Loading from '@/components/Loading/Loading'
+import Modal from '@/components/Modal/Modal'
 
 UserProfile.propTypes = {
   user: PropTypes.object.isRequired,
