@@ -19,7 +19,6 @@ export default function Login() {
   const [savedUser, setSavedUser] = useState({})
 
   const navigate = useNavigate()
-  console.log(JSON.parse(localStorage.getItem('UserLoginInfo')))
 
   const schema = z.object({
     email: z.string().email({ message: 'Please enter a valid email.' }),
@@ -112,8 +111,9 @@ export default function Login() {
           <div className="content">
             <h1>WELCOME TO KADIROV</h1>
             <p>
-              We&apos;re thrilled to have you here. Get ready to discover an extraordinary collection of the
-              latest trends and timeless classics.
+              We&apos;re thrilled to have you here. Get ready to discover an
+              extraordinary collection of the latest trends and timeless
+              classics.
             </p>
             <div className="social">
               <GoogleIcon className="socialIcon" alt="Google Icon" />
@@ -125,7 +125,11 @@ export default function Login() {
         <div className="right">
           <div className="formContainer">
             <h1>LOGIN</h1>
-            {requestError && <p className="errorMessage">{requestError.replace('identifier', 'email')}</p>}
+            {requestError && (
+              <p className="errorMessage">
+                {requestError.replace('identifier', 'email')}
+              </p>
+            )}
             <form onSubmit={handleSubmit(handleLogin)}>
               <input
                 {...register('email')}
@@ -134,7 +138,9 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {errors.email && <p className="errorMessage">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="errorMessage">{errors.email.message}</p>
+              )}
               <input
                 {...register('password')}
                 type="password"
@@ -142,19 +148,26 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {errors.password && <p className="errorMessage">{errors.password.message}</p>}
-              <div className="rememberMe">
-                <label htmlFor="rememberMe" className="rememberMeLabel">
-                  Remember Me
-                </label>
-                <input
-                  className="rememberMeInput"
-                  type="checkbox"
-                  id="rememberMe"
-                  name="rememberMe"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
+              {errors.password && (
+                <p className="errorMessage">{errors.password.message}</p>
+              )}
+              <div className="auth-options">
+                <div className="rememberMe">
+                  <input
+                    className="rememberMeInput"
+                    type="checkbox"
+                    id="rememberMe"
+                    name="rememberMe"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />
+                  <label htmlFor="rememberMe" className="rememberMeLabel">
+                    Remember Me
+                  </label>
+                </div>
+                <a className="auth-link" href="#">
+                  Forgot Password?
+                </a>
               </div>
               <button type="submit">LOGIN</button>
               <button
@@ -166,10 +179,7 @@ export default function Login() {
                 DEMO LOGIN
               </button>
             </form>
-            <a className="formLinks" href="#">
-              Forgot Password?
-            </a>
-            <p className="formLinks">
+            <p className="auth-link" style={{ marginTop: '12px' }}>
               Don&apos;t have an account? <a href="/signup">Register</a>
             </p>
           </div>

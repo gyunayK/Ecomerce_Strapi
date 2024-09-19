@@ -1,6 +1,6 @@
 .authContainer {
   background: rgba(56, 55, 56, 0.301);
-  background-image: url("/img/autum.webp");
+  background-image: url("/img/hiroyoshi.webp");
   width: 100%;
   height: 100dvh;
   display: flex;
@@ -28,8 +28,6 @@
       border-radius: 20px 0 0 20px;
 
       .content {
-        width: 100%;
-        height: 75%;
         position: relative;
         z-index: 1;
         display: flex;
@@ -38,11 +36,9 @@
         flex-direction: column;
         text-align: center;
 
-        padding: 0 20px;
-
         h1 {
           color: #fff;
-          font-size: 150px;
+          font-size: 100px;
           font-weight: 300;
         }
         p {
@@ -95,7 +91,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url("/img/loginBG.webp");
+        background-image: url("/img/clay-banks.webp");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -127,6 +123,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
         .errorMessage {
           color: red;
           font-size: 14px;
@@ -141,32 +138,32 @@
         form {
           display: flex;
           justify-content: center;
-          align-items: center;
           flex-direction: column;
+          width: 70%;
 
           @media (max-width: 768px) {
-            width: 100%;
+            width: 80%;
           }
 
           input {
-            width: 80%;
+            width: 100%;
             height: 40px;
             border: none;
             outline: none;
             border-bottom: 1px solid #000;
             margin-bottom: 20px;
-            padding: 0 10px;
+            padding: 0;
             font-size: 16px;
             font-weight: 300;
             font-family: Arial, Helvetica, sans-serif;
           }
 
           button {
-            width: 80%;
+            width: 100%;
             height: 40px;
             border: none;
             outline: none;
-            border-radius: 20px;
+            border-radius: 4px;
             background: #000;
             color: #fff;
             font-size: 18px;
@@ -194,21 +191,26 @@
             }
           }
         }
-        .formLinks {
-          color: #727272;
+        .auth-link {
+          color: #5b5b5b;
           font-size: 16px;
-          margin-top: 20px;
           a {
             color: inherit;
-            letter-spacing: 1px;
           }
         }
 
-        .rememberMe {
+        .auth-options {
           display: flex;
-          white-space: nowrap;
           gap: 10px;
           margin-top: 10px;
+          justify-content: space-between;
+
+          .rememberMe{
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+          }
+
           .rememberMeLabel {
             color: #000000;
             text-decoration: none;

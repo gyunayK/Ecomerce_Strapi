@@ -122,21 +122,23 @@ export default function SignUp() {
               {errors.confirmPassword && (
                 <p className="errorMessage">{errors.confirmPassword.message}</p>
               )}
-              <div className="rememberMe">
-                <label htmlFor="rememberMe" className="rememberMeLabel">
-                  Remember Me
-                </label>
-                <input
-                  className="rememberMeInput"
-                  type="checkbox"
-                  id="rememberMe"
-                  name="rememberMe"
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
+              <div className="auth-options">
+                <div className="rememberMe">
+                  <input
+                    className="rememberMeInput"
+                    type="checkbox"
+                    id="rememberMe"
+                    name="rememberMe"
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />
+                  <label htmlFor="rememberMe" className="rememberMeLabel">
+                    Remember Me
+                  </label>
+                </div>
               </div>
               <button type="submit">SIGNUP</button>
             </form>
-            <p className="formLinks">
+            <p className="auth-link" style={{ marginTop: '12px' }}>
               Already have an account? <a href="/login">Login</a>
             </p>
           </div>
