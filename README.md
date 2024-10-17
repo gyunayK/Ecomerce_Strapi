@@ -37,7 +37,7 @@ Some key features of this project:
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. cd eCommerce/client</p>
+<p>Clone the repository and navigate to the client folder:</p>
 
 ```
 npm i & npm run dev
