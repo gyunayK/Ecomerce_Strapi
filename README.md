@@ -26,14 +26,14 @@
   
 <h2>🧐 Features</h2>
 
-Here're some of the project's best features:
+Some key features of this project:
 
-*   Responsive and Aesthetic Design: Developed a visually appealing user interface with a responsive design ensuring a seamless shopping experience across all devices.
-*   User Authentication and Profile Management: Integrated secure login/register functionality enabling users to create and manage their profiles view order history.
-*   Stripe Payment Integration: Integrated Stripe as a payment gateway to facilitate secure and hassle-free transactions providing users with a variety of payment options.
-*   Personalized Recommendations: Implemented a recommendation algorithm on product pages to suggest related items based on the currently viewed product encouraging product exploration and potential upselling.
-*   Favorites List: Added functionality for users to save products to a favorites list facilitating quick access to preferred items and improving the overall shopping experience.
-*   Performance and SEO Optimization: Utilized Google Lighthouse to audit the site’s performance and SEO making necessary optimizations to improve load times accessibility and search engine rankings ultimately enhancing the user experience and site visibility.
+* Responsive Design: A visually appealing interface that works well on all devices.
+* User Accounts: Secure login and profile management with order history.
+* Stripe Payments: Secure transactions using Stripe with multiple payment options.
+* Product Recommendations: Suggest related items based on the product being viewed.
+* Favorites List: Allows users to save and quickly access preferred items.
+* Optimized Performance and SEO: Improved load times and visibility with SEO enhancements.
 
 <h2>🛠️ Installation Steps:</h2>
 
