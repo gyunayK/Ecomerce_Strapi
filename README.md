@@ -53,9 +53,9 @@ Technologies used in the project:
 *   SASS
 *   Strapi
 *   Stripe
-*   zod
+*   Zod
 *   Redux
 
 <h2>🛡️ License:</h2>
 
-This project is licensed under the This project is licensed under the @Gyunay
+This project is licensed under @gyunayK
